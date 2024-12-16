@@ -1,7 +1,9 @@
 # hello-dbms
 
+## Contexte
 
-## Hello veille
+
+## Veille scientifique
 
 ### A. Qu’est ce qu’une donnée ? Sous quelle forme peut-elle se présenter ?
 
@@ -28,3 +30,7 @@
 
 
 ### I. Définissez le langage SQL. Donnez les commandes les plus utilisées de ce langage et les différentes jointures qu’il est possible de faire.
+
+
+## Conclusion
+
