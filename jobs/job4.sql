@@ -24,12 +24,17 @@ WHERE yr > 1979 AND yr < 1990
 
 
 -- 5. Créez une requête permettant d’afficher les détails des lauréats du prix de Chimie.
-SELECT *
-FROM nobels
-WHERE subject = "Chemistry"
-
---  Combien y en a-t-il ? 
-SELECT COUNT(*) AS laureates_count
+    -- Avec une fonction de fenêtre
+SELECT *, 
+       COUNT(*) OVER (PARTITION BY subject) AS laureates_count
 FROM nobels
 WHERE subject = 'Chemistry';
 
+
+    -- Avec une sous requête	
+SELECT *, 
+       (SELECT COUNT(*) 
+        FROM nobels 
+        WHERE subject = 'Chemistry') AS laureates_count
+FROM nobels
+WHERE subject = 'Chemistry';
