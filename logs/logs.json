@@ -2,7 +2,7 @@
     "steps": [
         {
             "category": "Data Loading",
-            "message": "Loaded data from c:\\Users\\Mazar\\Documents\\GitHub\\Projets_la_plateforme\\hello-dbms\\src\\../raw_data/countries.csv in 0.00 seconds.",
+            "message": "Loaded data from c:\\Users\\Mazar\\Documents\\GitHub\\Projets_la_plateforme\\hello-dbms\\src\\../raw_data/countries.csv in 0.01 seconds.",
             "success": true
         },
         {
@@ -12,112 +12,22 @@
         },
         {
             "category": "Database Connection",
-            "message": "Connected to the database in 0.03 seconds.",
+            "message": "Connected to the database in 0.01 seconds.",
             "success": true
         },
         {
             "category": "Table Creation",
-            "message": {
-                "table_name": "countries",
-                "creation_time_seconds": 0.05,
-                "table_structure": [
-                    {
-                        "column_name": "Country",
-                        "data_type": "VARCHAR(255) PRIMARY KEY"
-                    },
-                    {
-                        "column_name": "Region",
-                        "data_type": "VARCHAR(255)"
-                    },
-                    {
-                        "column_name": "Population",
-                        "data_type": "INT"
-                    },
-                    {
-                        "column_name": "Area_(sq._mi.)",
-                        "data_type": "VARCHAR(255)"
-                    },
-                    {
-                        "column_name": "Pop._Density_(per_sq._mi.)",
-                        "data_type": "VARCHAR(255)"
-                    },
-                    {
-                        "column_name": "Coastline_(coast/area_ratio)",
-                        "data_type": "VARCHAR(255)"
-                    },
-                    {
-                        "column_name": "Net_migration",
-                        "data_type": "VARCHAR(255)"
-                    },
-                    {
-                        "column_name": "Infant_mortality_(per_1000_births)",
-                        "data_type": "VARCHAR(255)"
-                    },
-                    {
-                        "column_name": "GDP_($_per_capita)",
-                        "data_type": "VARCHAR(255)"
-                    },
-                    {
-                        "column_name": "Literacy_(%)",
-                        "data_type": "VARCHAR(255)"
-                    },
-                    {
-                        "column_name": "Phones_(per_1000)",
-                        "data_type": "VARCHAR(255)"
-                    },
-                    {
-                        "column_name": "Arable_(%)",
-                        "data_type": "VARCHAR(255)"
-                    },
-                    {
-                        "column_name": "Crops_(%)",
-                        "data_type": "VARCHAR(255)"
-                    },
-                    {
-                        "column_name": "Other_(%)",
-                        "data_type": "VARCHAR(255)"
-                    },
-                    {
-                        "column_name": "Climate",
-                        "data_type": "INT"
-                    },
-                    {
-                        "column_name": "Birthrate",
-                        "data_type": "FLOAT"
-                    },
-                    {
-                        "column_name": "Deathrate",
-                        "data_type": "FLOAT"
-                    },
-                    {
-                        "column_name": "Agriculture",
-                        "data_type": "FLOAT"
-                    },
-                    {
-                        "column_name": "Industry",
-                        "data_type": "FLOAT"
-                    },
-                    {
-                        "column_name": "Service",
-                        "data_type": "FLOAT"
-                    }
-                ]
-            },
-            "success": true
-        },
-        {
-            "category": "Table Creation",
-            "message": "Table created in 0.05 seconds.",
+            "message": "Table 'countries' already exists. No need to create.",
             "success": true
         },
         {
             "category": "Data Insertion",
-            "message": "227 rows inserted and 0 rows ignored into 'countries' in 0.08 seconds.",
+            "message": "0 rows inserted and 227 rows ignored into 'countries' in 0.08 seconds.",
             "success": true
         },
         {
             "category": "Data Insertion",
-            "message": "Inserted 227 rows, ignored 0 rows in 0.08 seconds.",
+            "message": "Inserted 0 rows, ignored 227 rows in 0.08 seconds.",
             "success": true
         },
         {
@@ -127,7 +37,7 @@
         },
         {
             "category": "Table Alteration",
-            "message": "Table columns cleaned and modified in 0.12 seconds.",
+            "message": "Table columns cleaned and modified in 0.02 seconds.",
             "success": true
         }
     ],
