@@ -1,8 +1,9 @@
+# database_handler.py
 import pymysql
 from config import db_host, db_user, db_password, db_name
 import pandas as pd
 import time  # Pour mesurer le temps d'exécution
-
+from data_cleaner import DataCleaner  # Importer le DataCleaner
 
 class DatabaseHandler:
     @staticmethod
@@ -83,7 +84,6 @@ class DatabaseHandler:
 
         # Log des détails de la création de la table avec structure détaillée
         if logger:
-            # Transformez la table_description dans le format souhaité pour le log
             formatted_table_description = [
                 {
                     "column_name": col["column_name"].replace(" ", "_"),  # Remplacer les espaces par des underscores
@@ -91,7 +91,6 @@ class DatabaseHandler:
                 }
                 for col in table_description
             ]
-
             logger.log_step("Table Creation", {
                 "table_name": table_name,
                 "creation_time_seconds": round(end_time - start_time, 2),
@@ -105,6 +104,9 @@ class DatabaseHandler:
         rows_inserted = 0
         rows_ignored = 0  # Compteur pour les lignes ignorées
         start_time = time.time()  # Mesurer le temps d'insertion des données
+
+        # Nettoyer les données avant l'insertion
+        df = DataCleaner.clean_data(df)
 
         for index, ligne in df.iterrows():
             # Si "Country" est une clé primaire, une ligne existante provoque une erreur lors de l'insertion,
