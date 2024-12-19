@@ -44,12 +44,12 @@ def create_tables():
                 CREATE TABLE IF NOT EXISTS Country (
                     id INT AUTO_INCREMENT PRIMARY KEY,
                     country VARCHAR(100),
-                    coal_emissions FLOAT,
-                    gas_emissions FLOAT,
-                    oil_emissions FLOAT,
-                    hydro_emissions FLOAT,
-                    renewable_emissions FLOAT,
-                    nuclear_emissions FLOAT
+                    coal_emissions DECIMAL(10, 2),
+                    gas_emissions DECIMAL(10, 2),
+                    oil_emissions DECIMAL(10, 2),
+                    hydro_emissions DECIMAL(10, 2),
+                    renewable_emissions DECIMAL(10, 2),
+                    nuclear_emissions DECIMAL(10, 2)
                 )
             ''')
             logging.info("Table 'Country' créée ou déjà existante.")
@@ -58,12 +58,12 @@ def create_tables():
                 CREATE TABLE IF NOT EXISTS World (
                     id INT AUTO_INCREMENT PRIMARY KEY,
                     region VARCHAR(100),
-                    coal_emissions_total FLOAT,
-                    gas_emissions_total FLOAT,
-                    oil_emissions_total FLOAT,
-                    hydro_emissions_total FLOAT,
-                    renewable_emissions_total FLOAT,
-                    nuclear_emissions_total FLOAT
+                    coal_emissions_total DECIMAL(10, 2),
+                    gas_emissions_total DECIMAL(10, 2),
+                    oil_emissions_total DECIMAL(10, 2),
+                    hydro_emissions_total DECIMAL(10, 2),
+                    renewable_emissions_total DECIMAL(10, 2),
+                    nuclear_emissions_total DECIMAL(10, 2)
                 )
             ''')
             logging.info("Table 'World' créée ou déjà existante.")
