@@ -12,7 +12,7 @@
         },
         {
             "category": "Database Connection",
-            "message": "Connected to the database in 0.01 seconds.",
+            "message": "Connected to the database in 0.02 seconds.",
             "success": true
         },
         {
@@ -22,12 +22,12 @@
         },
         {
             "category": "Data Insertion",
-            "message": "0 rows inserted and 227 rows ignored into 'countries' in 0.08 seconds.",
+            "message": "0 rows inserted and 227 rows ignored into 'countries' in 0.05 seconds.",
             "success": true
         },
         {
             "category": "Data Insertion",
-            "message": "Inserted 0 rows, ignored 227 rows in 0.08 seconds.",
+            "message": "Inserted 0 rows, ignored 227 rows in 0.05 seconds.",
             "success": true
         },
         {
