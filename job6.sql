@@ -45,8 +45,26 @@ GROUP BY Continent;
 
 
 -- Afficher le nombre de pays ayant une superficie supérieure ou égale à 1 000 000m2.
-SELECT COUNT(Country)
+SELECT COUNT(Country) AS "Number of countries who's Area > 1 000 000"
 FROM countries
 WHERE `Area (sq. mi.)`> 1000000;
 
-show columns from countries;
+
+-- la population totale des pays suivants : Estonia, Latvia, Lithuania.
+SELECT Country, Population
+FROM countries
+WHERE Country In ('Estonia', 'Latvia', 'Lithuania');
+
+-- d’afficher le nombre de pays de chaque continent.
+SELECT Continent, COUNT(Country)
+FROM countries
+GROUP BY Continent;
+
+
+-- Afficher les continents ayant une population totale d’au moins 100 millions d’individus.
+SELECT Continent, SUM(Population)
+FROM countries
+GROUP BY Continent
+-- WHERE agit avant l'agrégation
+-- HAVING s'applique après l'agrégation
+HAVING SUM(Population) > 100000000;
