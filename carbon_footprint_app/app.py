@@ -5,7 +5,6 @@ import pandas as pd
 import logging
 import config
 
-
 # Configuration des logs
 logging.basicConfig(filename='app.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
@@ -47,8 +46,8 @@ def total_emissions():
         """)
         results = cursor.fetchall()
     connection.close()
-    data = pd.DataFrame(results)
-    return render_template('total_emissions.html', data=data)
+    data = pd.DataFrame(results, columns=['country', 'total_emissions'])
+    return render_template('total_emissions.html', data=data.to_dict(orient='list'))
 
 @app.route('/coal-usage')
 def coal_usage():
@@ -62,8 +61,8 @@ def coal_usage():
         """)
         results = cursor.fetchall()
     connection.close()
-    data = pd.DataFrame(results)
-    return render_template('coal_usage.html', data=data)
+    data = pd.DataFrame(results, columns=['country', 'coal_emissions'])
+    return render_template('coal_usage.html', data=data.to_dict(orient='list'))
 
 @app.route('/energy-source-proportions')
 def energy_source_proportions():
@@ -81,7 +80,8 @@ def energy_source_proportions():
         """)
         results = cursor.fetchone()
     connection.close()
-    return render_template('energy_proportions.html', data=results)
+    data = dict(zip(['total_coal', 'total_gas', 'total_oil', 'total_hydro', 'total_renewables', 'total_nuclear'], results))
+    return render_template('energy_proportions.html', data=data)
 
 if __name__ == '__main__':
     app.run(debug=True)
