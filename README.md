@@ -1,6 +1,6 @@
-# <span style="color:gray">hello-dbms</span>
+# <spanllo-dbms</span>
 
-## <span style="color:skyblue"> Sommaire</span>
+## <span> Sommaire</span>
 - [Contexte](#contexte)
 - [Veille scientifique](#veille-scientifique)
   - [A. Qu'est-ce qu'une donnée ? Sous quelle forme peut-elle se présenter ?](#a-quest-ce-quune-donnee)
@@ -14,7 +14,7 @@
   - [I. Définissez le langage SQL. Donnez les commandes les plus utilisées de ce langage et les différentes jointures qu'il est possible de faire.](#i-langage-sql-commandes)
 - [Conclusion](#conclusion)
 
-## <span style="color:skyblue"> Contexte <a id="contexte"></a></span>
+## <span> Contexte <a id="contexte"></a></span>
 
 
 """""""""""""""""""
@@ -23,36 +23,36 @@
 
 """"""
 
-## <span style="color:skyblue"> Veille scientifique <a id="veille-scientifique"></a></span>
+## <span> Veille scientifique <a id="veille-scientifique"></a></span>
 
-###  <span style="color:#9bf0a6">A.</span><span style="color:#aa9bf0"> Qu'est-ce qu'une donnée ? Sous quelle forme peut-elle se présenter ? <a id="a-quest-ce-quune-donnee"></a></span>
+###  <span>A.</span><span> Qu'est-ce qu'une donnée ? Sous quelle forme peut-elle se présenter ? <a id="a-quest-ce-quune-donnee"></a></span>
 
-<span style="color:#178a6e"><u>**Etymologie :**</u> </span>
+<span><u>**Etymologie :**</u> </span>
 
-Etymologiquemen, le terme donnée provient du latin *datum* signifiant " donner " .
+Étymologiquemen, le terme donnée provient du latin *datum* signifiant " donner " .
 
 Cependant, comme le soulève Jenser en 1950, l'histoire aurait dû retenir *capere*, soit " capturer ". En effet, pour la science il s'agit de sélecitonner, de capturer dans l'existant plutôt que de comprendre la donnée comme quelque-chose de préalablement " donné ". 
 
 Cette différence historique met en évidence le caractère sélectif et partiel, voir réductionniste, inhérent à la donnée. 
 
-<span style="color:#178a6e"><u>**Définitions :**</u> </span>
+<span><u>**Définitions :**</u> </span>
 * 1 GLOBALE :
 
-<span style="color:#95b5ad">Fait ou principe </span>**indiscuté**<span style="color:#95b5ad">, ou considéré comme tel, sur lequel se fonde un</span> **raisonnement**<span style="color:#95b5ad"> ; constatation servant de base à un examen, une recherche, une découverte.</span>
+<span>Fait ou principe </span>**indiscuté**<span>, ou considéré comme tel, sur lequel se fonde un</span> **raisonnement**<span> ; constatation servant de base à un examen, une recherche, une découverte.</span>
 
 * 2 PSYCHOLOGIE : 
 
-<span style="color:#95b5ad">Ce qui est</span> **connu immédiatement**<span style="color:#95b5ad"> par le sujet, indépendamment de toute élaboration de l'esprit, par opposition à ce qui est connu par induction ou déduction, par raisonnement, par calcul.</span>
+<span>Ce qui est</span> **connu immédiatement**<span> par le sujet, indépendamment de toute élaboration de l'esprit, par opposition à ce qui est connu par induction ou déduction, par raisonnement, par calcul.</span>
 
 * 3 MATHEMATIQUES :
 
-<span style="color:#95b5ad">Souvent au pluriel. Chacune des</span> **quantités ou propriétés**<span style="color:#95b5ad"> mentionnées dans l'énoncé d'un problème et qui permettent de le résoudre.</span> 
+<span>Souvent au pluriel. Chacune des</span> **quantités ou propriétés**<span> mentionnées dans l'énoncé d'un problème et qui permettent de le résoudre.</span> 
 
 * 4 INFORMATIQUE :
 
-<span style="color:#95b5ad">Représentation d'une</span>  **information sous une forme conventionelle** <span style="color:#95b5ad">adaptée à son exploitation.</span> 
+<span>Représentation d'une</span>  **information sous une forme conventionelle** <span>adaptée à son exploitation.</span> 
 
-<span style="color:#178a6e"><u>**En résumé :**</u> </span>
+<span><u>**En résumé :**</u> </span>
 
 Une donnée est ce qui est connu et qui sert de point de départ à un raisonnement ayant pour objet la détermination d'une solution à un problème en relaiton avec cette donnée. Cela peut être une description élémentaire qui vise à objectiver une réalité, le résultat d'une comparaison entre deux événements du même ordre (mesure) soit en d'autres termes une observation ou une mesure. 
 
@@ -78,7 +78,7 @@ Les données peuvent être :
 
 Le résultat du traitement sera souvent *in fine* soumis à l'interprétation d'un être humain et devra de ce fait être présenté sous forme adéquate, par exemple un graphique ou une liste de choix, pour donner un sens (interprétation) et ainsi créer une nouvelle information. 
 
-<span style="color:#178a6e"><u>**La valeur des données :**</u> </span>
+<span><u>**La valeur des données :**</u> </span>
 
 La valorisation de la donnée s fait à travers un processus capable à cahque étape de la transformation d'augmenter sa vlaeur directement ou par combinaison avec d'autres données. En général la finalité est l'exploitation par l'homme por la price de décision ou par un autre système permettant une commande de processus. 
 
@@ -92,36 +92,93 @@ Simon Chignard et Louis-David Benyayer ont essayé de créer une grille de lectu
 
 * 3. La valeur est potentielle : elle donne ou pas un avantage futur à ceux qui la détiennent. 
 
-A parti de ces axiomes, les données peuvent être interprétées à la lumire de trois formes de valeur. 
+A partir de ces axiomes, les données peuvent être interprétées à la lumire de trois formes de valeur. 
 
-**Les données comme matière première**
 
-zefgzfazdadazdazd
-azdazdazd
-azdazd
+### <span>B.</span> Donnez et expliquez les critères de mesure de qualité des données. <a id="b-criteres-de-qualite"></a>
 
-**Les données comme levier**
+Les critères de mesure de la qualité des données permettent de s'assurer que les données sont fiables, précises et utilisables, en d'autres termes, de maximiser la valeur des données pour l'organisation afin de s'assurer qu'elles peuvent être utilisées efficacement pour des analyses et prises de décisions. 
 
-adzzadazdazdazd
+<span><u>**1. Exactitude (précision) :**</u></span>
 
-**Les données comme actif stratégique**
+  * Les données doivent refléter correctement la réalité.   
+    * Par exemple, un chffre d'affaire incorrect fausserait les analyses finnancières.
 
-cazczeczeczecezczecececzed
+<span><u>**2. Complétude :**</u></span>
+  
+  * Les données doivent petre complètes et ne pas contenir de champs vides lorsque ces informations sont essentielles. 
+    * Par exemple, une base de données de clients sans adresses email serait incomplète pour une campagne marketing par courriel.  
 
-### <span style="color:#9bf0a6">B.</span> Donnez et expliquez les critères de mesure de qualité des données. <a id="b-criteres-de-qualite"></a>
+<span><u>**3. Cohérence :**</u></span> 
 
-### <span style="color:#9bf0a6">C.</span> Définissez et comparez les notions de Data Lake, Data Warehouse et Lake House. Illustrez les différences à l’aide de schémas. <a id="c-data-lake-vs-data-warehouse"></a>
+  * Les données doivent être cohérentes entre différentes systèmes et bases de données. 
+    * Par exemple, un même produit ne devrait pas avoir des prix différents dans deux bases de données différentes. 
 
-### <span style="color:#9bf0a6">D.</span> Donnez une définition et des exemples de systèmes de gestion de bases de données avec des illustrations. <a id="d-systemes-de-gestion"></a>
+<span><u>**4. Actualité :**</u></span> 
 
-### <span style="color:#9bf0a6">E.</span> Qu'est-ce qu'une base de données relationnelle ? Qu'est-ce qu'une base de données non relationnelle ? Donnez la différence entre les deux avec des exemples d'applications. <a id="e-bases-relationnelles-vs-non-relationnelles"></a>
+  * Les données doivent être à jour pour le moment présent. 
+    * Des informations obsolètes peuvent entraîner des décisions inappropriées.
 
-### <span style="color:#9bf0a6">F.</span> Définissez les notions de clé étrangère et clé primaire. <a id="f-cles-etrangeres-et-cles-primaires"></a>
+<span><u>**5. Pertinence :**</u></span>
 
-### <span style="color:#9bf0a6">G.</span> Quelles sont les propriétés ACID ? <a id="g-proprietes-acid"></a>
+  * Les données doivent être pertinentes et adaptées aux besoins de l'utilisateur. 
+    * Par exemple, pour une analyse des ventes, seules les données pertinentes aux ventes doivent être incluses.
 
-### <span style="color:#9bf0a6">H.</span> Définissez les méthodes Merise et UML. Quelles sont leur utilité dans le monde de l'informatique ? Donnez des cas précis d'utilisation avec des schémas. <a id="h-methodes-merise-et-uml"></a>
+<span><u>**6. Accessibilité :**</u></span>
 
-### <span style="color:#9bf0a6">I.</span> Définissez le langage SQL. Donnez les commandes les plus utilisées de ce langage et les différentes jointures qu'il est possible de faire. <a id="i-langage-sql-commandes"></a>
+  * Les données doivent petre facilement accessibles et compréhensibles pour les utilisateurs autorisés. 
+    * Une mauvaise accessibilité peut freiner les opérations et analyses.
 
-## <span style="color:skyblue">Conclusion <a id="conclusion"></a></span>
+<span><u>**7. Traçabilité :**</u></span>
+
+  * Il doit être possible de retracer l'origine et les modifications apportées aux données pour garentir leur intégrité et leur fiabilité. 
+    * Par exemple, pour garantir la sécurité et la qualité de produits d'une entreprise de produits alimentaires, elle doit pouvoir retracer l'origine de chaque ingrédient utilisé dans la fabrication. 
+
+
+### <span>C.</span> Définissez et comparez les notions de Data Lake, Data Warehouse et Lake House. Illustrez les différences à l’aide de schémas. <a id="c-data-lake-vs-data-warehouse"></a>
+
+<span><u>**Data Lake :**</u></pan>
+
+Un **data lake** est un système de stockage de données brutes, non structurées ou semi-structurées, à leur échelle d'origine.
+
+Il donne la priorité au stockage rapide et volumineux de données hétérogènes en adoptant une architecture en cluster (grappe de calcul), qui est une approche d'architecture distribuée où un ensemble d'ordinateurs étroitement connectés travaillent ensemble et son vus comme un seul ordinateur par l'utilisateur.
+
+Il n'est pas optimisé pour les requêtes SQL comme les SGBD relationnels classiques, et s'écarte des propriétés ACID traditionnelles. On parle depuis 2010 de SGBD NoSQL.
+
+<span><u>**Data Warehouse :**</u></pan>
+
+Une **data warehouse** (entrepôt de données ou base de données décisionnelle) désigne une base de données utilisée pour collecter, ordoner, journaliser et stocker des informations provenant de base de données opérationnelles et fournir ainsi un socle à l'aide à la décision en entreprise. 
+
+<span><u>**Lake House :**</u></pan>
+
+Un **data lake house** est un système de gestion des données qui combine les avantages des lacs de données et des entrpôts de données. 
+
+Il fournit des capacités de stockage et de traitement évolutive pour les organisaitons modernes qui souhaitent éviter un système isolé pour le traitement de différentes charges de travail, telles que le Machine Learning (ML) et le décisionnel (BI). 
+
+Il permet d'établir une source unique de vérité, d'éliminer les côuts redondants et de garantir l'actualisation des données. 
+
+Il utilise souvent un modèle de conception de données qui améliore, enrichit et affine les données de façon incrémentielle au fur et à mesure qu'elles passent par des couches de mise en lots de transformation. (Architecture en médaillon)
+
+
+<span><u>**Illustration des différences clés :**</u></pan>
+
+| Type de stockage | Description | Utilisation | Avantages | Inconvénients |
+|------------------|-------------|-------------|-----------|---------------|
+| **Data Lake**    | Données brutes, non structurées ou semi-structurées | Analyse de données massives, machine learning | Flexibilité, coût réduit | Complexité de gestion, qualité des données variable |
+| **Data Warehouse** | Données structurées, organisées en tables et schémas | Reporting, Business Intelligence | Performance, qualité des données | Coût élevé, moins flexible |
+| **Lake House**   | Combinaison de données brutes et structurées | Analyse avancée, machine learning, reporting | Flexibilité, performance, qualité des données | Complexité de mise en œuvre |
+
+
+### <span>D.</span> Donnez une définition et des exemples de systèmes de gestion de bases de données avec des illustrations. <a id="d-systemes-de-gestion"></a>
+
+### <span>E.</span> Qu'est-ce qu'une base de données relationnelle ? Qu'est-ce qu'une base de données non relationnelle ? Donnez la différence entre les deux avec des exemples d'applications. <a id="e-bases-relationnelles-vs-non-relationnelles"></a>
+
+### <span>F.</span> Définissez les notions de clé étrangère et clé primaire. <a id="f-cles-etrangeres-et-cles-primaires"></a>
+
+### <span>G.</span> Quelles sont les propriétés ACID ? <a id="g-proprietes-acid"></a>
+
+### <span>H.</span> Définissez les méthodes Merise et UML. Quelles sont leur utilité dans le monde de l'informatique ? Donnez des cas précis d'utilisation avec des schémas. <a id="h-methodes-merise-et-uml"></a>
+
+### <span>I.</span> Définissez le langage SQL. Donnez les commandes les plus utilisées de ce langage et les différentes jointures qu'il est possible de faire. <a id="i-langage-sql-commandes"></a>
+
+## <span>Conclusion <a id="conclusion"></a></span>
