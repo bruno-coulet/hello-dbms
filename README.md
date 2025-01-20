@@ -186,7 +186,7 @@ Un système de gestion de bases de données (SGBD) est un logiciel qui permet de
 
 3. **MongoDB**
    - **Description** : SGBD NoSQL orienté documents, idéal pour les applications nécessitant une grande flexibilité des données.
-   - **Illustration** : ![MongoDB](https://upload.wikimedia.org/wikipedia/en/4/45/MongoDB-Logo.svg)
+   - **Illustration** : ![MongoDB](https://upload.wikimedia.org/wikipedia/fr/thumb/4/45/MongoDB-Logo.svg/791px-MongoDB-Logo.svg.png?20190421175613)
 
 4. **Oracle Database**
    - **Description** : SGBD relationnel commercial très performant, utilisé par de grandes entreprises pour des applications critiques.
@@ -213,7 +213,8 @@ Un système de gestion de bases de données (SGBD) est un logiciel qui permet de
     - **MongoDB** : Utilisé pour les applications nécessitant une grande flexibilité des données, comme les plateformes de réseaux sociaux et les applications mobiles.
     - **Cassandra** : Utilisé pour les applications de big data, comme les systèmes de recommandation et les analyses en temps réel.
 
-## Différences entre bases de données relationnelles et non relationnelles
+
+<span><u>**Différences entre bases de données relationnelles et non relationnelles :**</u></span>
 
 | Caractéristique       | Base de données relationnelle | Base de données non relationnelle |
 |-----------------------|-------------------------------|-----------------------------------|
@@ -226,8 +227,37 @@ Un système de gestion de bases de données (SGBD) est un logiciel qui permet de
 
 ### <span>F.</span> Définissez les notions de clé étrangère et clé primaire. <a id="f-cles-etrangeres-et-cles-primaires"></a>
 
+<span><u>**Clé primaire :**</u></span>
+
+Une clé primaire est un champ ou ensemble de champ d'une table dans une base de données relationnelle qui identifie de manière unique chaque enregistrement de cette table. Chaque table peut avoir une seule clé primaire, et celle-ci ne peut pas contenir de valeurs nulles. Voici ses principales caractéristiques : 
+  * **Unicité :** Chaque valeur de la clé primaire doit être unique dans la table.
+  * **Non-nullité :** Les baleurs de la clé primaire ne peuvent pas être nulles.
+  * **Immutabilité :** Les valeurs de la clé primaire ne doivent pas être modifiée une fois définies.  
+
+<span><u>**Clé étrangère:**</u></span>
+
+Une clé étrangère est un champ ou ensemble de champs dans une table qui crée un lien entre cete table et une autre table. La clé étrangère fait référence à la clé primaire de l'autre table, établissant ainsi une relation entre les enregistrements des deux tables. Voici ses principales caractéristiques : 
+  * **Relation :** Elle établit une relation entre deux tables en faisant référence à la clé primaire de l'autre table.
+  * **Intégrité référentielle :** Elle assure que les valeurs des champs de la clé étrangère correspondent à des valeurs exsistantes de la clé primaire dans la table référencée. 
+  * **Peut contenir des valeurs nulles :** Contrairement à la clé primaire, une clé étrangère peut contenir des valeurs nulles si cela est autorisé par la logique de la base de données. 
+
 ### <span>G.</span> Quelles sont les propriétés ACID ? <a id="g-proprietes-acid"></a>
 
+Les propriétés **ACID** sont fondamentales pour garantir la fiabilité des transactions dans les bases de données.
+
+**ACID**
+1. **Atomicité :**
+    * Toutes les opérations d'une transatcion sont considérées comme une seule unité indivisible. Soit toutes les opérations sont effectuées avec succès, soit aucune ne l'est. 
+
+2. **Cohérence :**
+    * Une transaction transforme le système d'un état cohérent à un autre. Elle doit respecter toutes les règles et contraintes définies dans la base de données.
+
+3. **Isolation :**
+    * Les modifications apportées par une transaction en cours ne doivent pas être visibles par d'autres transactions jusqu'à ce que la transaction soit terminée. CEla prévient les interférences entre transcations simultanées.
+
+4. **Durabilité :**
+    * Une fois qu'une transaction est validée, ses modifications sont permanentes et suirvivent à tout type de panne. 
+    
 ### <span>H.</span> Définissez les méthodes Merise et UML. Quelles sont leur utilité dans le monde de l'informatique ? Donnez des cas précis d'utilisation avec des schémas. <a id="h-methodes-merise-et-uml"></a>
 
 ### <span>I.</span> Définissez le langage SQL. Donnez les commandes les plus utilisées de ce langage et les différentes jointures qu'il est possible de faire. <a id="i-langage-sql-commandes"></a>
