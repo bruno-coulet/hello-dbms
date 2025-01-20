@@ -171,7 +171,58 @@ Il utilise souvent un modèle de conception de données qui améliore, enrichit 
 
 ### <span>D.</span> Donnez une définition et des exemples de systèmes de gestion de bases de données avec des illustrations. <a id="d-systemes-de-gestion"></a>
 
+
+Un système de gestion de bases de données (SGBD) est un logiciel qui permet de créer, gérer et manipuler des bases de données. Il offre des outils pour stocker, récupérer, modifier et supprimer des données de manière efficace et sécurisée.
+
+<span><u>**Exemples de SGBD**</u></span>
+
+1. **MySQL**
+   - **Description** : SGBD relationnel open-source très utilisé pour les applications web.
+   - **Illustration** : ![MySQL](https://upload.wikimedia.org/wikipedia/commons/0/0a/MySQL_textlogo.svg)
+
+2. **PostgreSQL**
+   - **Description** : SGBD relationnel open-source connu pour sa robustesse et ses fonctionnalités avancées.
+   - **Illustration** : ![PostgreSQL](https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg)
+
+3. **MongoDB**
+   - **Description** : SGBD NoSQL orienté documents, idéal pour les applications nécessitant une grande flexibilité des données.
+   - **Illustration** : ![MongoDB](https://upload.wikimedia.org/wikipedia/en/4/45/MongoDB-Logo.svg)
+
+4. **Oracle Database**
+   - **Description** : SGBD relationnel commercial très performant, utilisé par de grandes entreprises pour des applications critiques.
+   - **Illustration** : ![Oracle](https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg)
+
+5. **Microsoft SQL Server**
+   - **Description** : SGBD relationnel commercial développé par Microsoft, utilisé pour des applications d'entreprise.
+   - **Illustration** : ![SQL Server](https://upload.wikimedia.org/wikipedia/commons/8/87/Sql_data_base_with_logo.png)
+
+
 ### <span>E.</span> Qu'est-ce qu'une base de données relationnelle ? Qu'est-ce qu'une base de données non relationnelle ? Donnez la différence entre les deux avec des exemples d'applications. <a id="e-bases-relationnelles-vs-non-relationnelles"></a>
+
+<span><u>**Bases de Données Relationnelles et Non Relationnelles :**</u></span>
+
+* **Base de Données Relationnelle :** Une base de données relationnelle (SGBDR) est un type de base de données qui organise les données en tables, où chaque table est composée de lignes et de colonnes. Les relations entre les tables sont définies par des clés étrangères. Les SGBDR utilisent le langage SQL (Structured Query Language) pour interroger et manipuler les données.
+
+  * Exemples de SGBDR
+    - **MySQL** : Utilisé pour les applications web, comme les sites de commerce électronique et les blogs.
+    - **Oracle Database** : Utilisé par les grandes entreprises pour les applications critiques, comme les systèmes de gestion des ressources humaines et les systèmes financiers.
+
+* **Base de Données Non Relationnelle :** Une base de données non relationnelle (NoSQL) est un type de base de données qui ne suit pas le modèle tabulaire des bases de données relationnelles. Les données peuvent être stockées sous forme de documents, de paires clé-valeur, de colonnes ou de graphes. Les bases de données NoSQL sont conçues pour gérer des volumes massifs de données non structurées ou semi-structurées.
+
+  * Exemples de bases de données NoSQL
+    - **MongoDB** : Utilisé pour les applications nécessitant une grande flexibilité des données, comme les plateformes de réseaux sociaux et les applications mobiles.
+    - **Cassandra** : Utilisé pour les applications de big data, comme les systèmes de recommandation et les analyses en temps réel.
+
+## Différences entre bases de données relationnelles et non relationnelles
+
+| Caractéristique       | Base de données relationnelle | Base de données non relationnelle |
+|-----------------------|-------------------------------|-----------------------------------|
+| **Modèle de données** | Tables avec lignes et colonnes | Documents, paires clé-valeur, colonnes, graphes |
+| **Langage de requête**| SQL                           | Langages spécifiques à chaque SGBD NoSQL |
+| **Schéma**            | Schéma fixe et rigide         | Schéma flexible et dynamique      |
+| **Scalabilité**       | Scalabilité verticale (ajout de ressources à un seul serveur) | Scalabilité horizontale (ajout de serveurs supplémentaires) |
+| **Cas d'utilisation** | Applications transactionnelles, systèmes de gestion d'entreprise | Applications nécessitant une grande flexibilité des données, big data, applications en temps réel |
+
 
 ### <span>F.</span> Définissez les notions de clé étrangère et clé primaire. <a id="f-cles-etrangeres-et-cles-primaires"></a>
 
