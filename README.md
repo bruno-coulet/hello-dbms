@@ -257,7 +257,8 @@ Les propriétés **ACID** sont fondamentales pour garantir la fiabilité des tra
 
 4. **Durabilité :**
     * Une fois qu'une transaction est validée, ses modifications sont permanentes et suirvivent à tout type de panne. 
-    
+
+
 ### <span>H.</span> Définissez les méthodes Merise et UML. Quelles sont leur utilité dans le monde de l'informatique ? Donnez des cas précis d'utilisation avec des schémas. <a id="h-methodes-merise-et-uml"></a>
 
 ### <span>I.</span> Définissez le langage SQL. Donnez les commandes les plus utilisées de ce langage et les différentes jointures qu'il est possible de faire. <a id="i-langage-sql-commandes"></a>
