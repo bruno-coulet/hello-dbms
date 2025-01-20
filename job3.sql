@@ -1,6 +1,8 @@
 --afficher toutes les colonnes de la table 
 select *
-from students
+from students 
+/* ou */
+DESCRIBE students 
 
 --afficher les eleves de moins de 20 ans 
 select *

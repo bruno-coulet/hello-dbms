@@ -18,7 +18,7 @@ CREATE TABLE Departments
     department_name VARCHAR(100),
     department_head INT,
     location VARCHAR(100),
-    FOREIGN KEY (department_head) REFERENCES Employees(employee_id)
+    FOREIGN KEY (department_id) REFERENCES Employees(department_id)
 );
 
 INSERT INTO Employees
