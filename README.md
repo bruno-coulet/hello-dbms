@@ -365,6 +365,68 @@ UML est un langage de modélisation standardisé utilisé pour spécifier, visua
 
 ### <span>I.</span> Définissez le langage SQL. Donnez les commandes les plus utilisées de ce langage et les différentes jointures qu'il est possible de faire. <a id="i-langage-sql-commandes"></a>
 
+Le langage SQL (Structured Query Language) est un langage de programmation utilisé pour gérer et manipuler des bases de données relationnelles. Il permet d'effectuer diverses opérations telles que la création, la modification, la suppression et la récupération des données dans une base de données.
 
+**Commandes les plus utilisés en SQL**
 
+<img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20190826175059/Types-of-SQL-Commands.jpg" alt="SQL COMMANDS" style="width:500px;"/>
+
+* **SELECT :** Récupérer des données à partir d'une base de données. 
+```
+SELECT colonne1, colonne2 FROM table;
+```
+* **INSERT :** Insérer des données existantes dans une table. 
+```
+INSERT INTO table (colonne1, colonne2) VALUES (valeur1, valeur2);
+```
+* **UPDATE :** Modifier des données existantes dans une table.
+```
+UPDATE table SET colonne1 = valeur1 WHERE condition;
+```
+* **DELETE :** Supprimmer des données d'une table. 
+```
+DELETE FROM table WHERE condition;
+```
+* **CREATE TABLE :** Créer une table dans une base de données.
+```
+CREATE TABLE table (
+    colonne1 type_donnée,
+    colonne2 type_donnée
+);
+```
+* **DROP TABLE :** Supprimer une table de la base de données.
+```
+DROP TABLE table;
+```
+
+**Différentes jointures en SQL**
+
+<img src="https://uploads-ssl.webflow.com/60ec34540d013784844d2ee2/620180a62fdeef97b206b558_Jointures%20SQL.PNG" alt="SQL JOIN" style="width:500px;"/>
+
+* **INNER JOIN :** Retourne les enregistrements qui ont des valeurs correspondantes dans les deux tables. 
+```
+SELECT colonne1, colonne2
+FROM table1
+INNER JOIN table2 ON table1.colonne = table2.colonne;
+```
+* **LEFT JOINT (ou LEFT OUTER JOIN) :** Retourne tous les enregistrements de la table de gauche et les enregistrements correspondants dans la table de droite. Si aucunes correspondances n'est trouvée, les résultats de la table de droite seront NULL.
+```
+SELECT colonne1, colonne2
+FROM table1
+LEFT joint table2 ON table1.colonne = table2.colonne;
+```
+* **RIGHT JOINT (ou RIGHT OUTER JOIN) : Retourne tous les enregistrements de la table de droite et les enregistrements correspondants de la table de gauche. SI aucune correspondance n'est trouvée, les résultats de la table de gauche seront NULL.
+```
+SELECT colonne1, colonne2
+FROM table1
+RIGHT JOIN table2 ON table1.colonne = table2.colonne;
+```
+* **FULL JOIN (ou FULL OUTER JOIN) :** Retourne tous les enregistrements lorsqu'il y a une correspondance dans l'un des tables. Si aucune correspondance n'est trouvée, les résultats seront NULL pour la table sans correpondance.
+```
+SELECT colonne1, colonne2
+FROM table1
+FULL JOIN table2 ON table1.colonne = table2.colonne;
+```
+
+Ces commandes et jointures sont essentielles pour travailler efficacement avec des bases de données relationelles en SQL.
 ## <span>Conclusion <a id="conclusion"></a></span>
