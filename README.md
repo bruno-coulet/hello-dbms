@@ -2,6 +2,7 @@
 
 ## <span> Sommaire</span>
 - [Contexte](#contexte)
+- [ Schéma de l'application](#app-schema)
 - [Veille scientifique](#veille-scientifique)
   - [A. Qu'est-ce qu'une donnée ? Sous quelle forme peut-elle se présenter ?](#a-quest-ce-quune-donnee)
   - [B. Donnez et expliquez les critères de mesure de qualité des données.](#b-criteres-de-qualite)
@@ -22,6 +23,39 @@
 """"
 
 """"""
+
+## <span> Schéma de l'application <a id="app-schema"></a></span>
+
+| Dossier/Fichier                | Description                                      |
+|--------------------------------|--------------------------------------------------|
+| HELLO-DBMS                     | Racine du projet                                 |
+| ├── carbon_footprin_app        | Dossier de l'application principale              |
+| │   ├── templates              | Dossier des templates HTML                       |
+| │   │   ├── ***.html           | Fichiers HTML pour les templates de l'application|
+| │   ├── app.py                 | Script principal de l'application                |
+| │   └── config.py              | Fichier de configuration de l'application        |
+| ├── data_analysis              | Dossier pour l'analyse de données                |
+| │   └── first_analyse.sql      | Script SQL pour la première analyse de données   |
+| ├── database_manager           | Dossier pour la gestion de la base de données    |
+| │   ├── config.py              | Fichier de configuration pour la gestion de la base de données |
+| │   ├── data_processing.py     | Script pour le traitement des données            |
+| │   ├── database.py            | Script pour les opérations de base de données    |
+| │   ├── insert_data.py         | Script pour insérer des données dans la base de données |
+| │   └── main.py                | Script principal pour la gestion de la base de données |
+| ├── jobs                       | Dossier pour les scripts de jobs                 |
+| │   ├── job1.sql               | Script SQL pour un job spécifique                |
+| │   ├── ...                    | D'autres scripts SQL pour différents jobs        |
+| ├── pre_processed_data         | Dossier pour les données pré-traitées            |
+| │   ├── country.csv            | Données pré-traitées pour les pays               |
+| │   └── world.csv              | Données pré-traitées pour le monde               |
+| ├── raw_data                   | Dossier pour les données brutes                  |
+| │   └── carbon-footprint-data.csv | Données brutes sur l'empreinte carbone        |
+| ├── .gitignore                 | Fichier pour ignorer certains fichiers dans Git  |
+| ├── README.md                  | Fichier de documentation du projet               |
+| ├── requirements.txt           | Fichier listant les dépendances du projet        |
+| ├── .env                       | Fichier d'environnement (ignoré mais nécessaire) |
+| └── app.log                    | Fichier de log (ignoré mais généré au lancement de l'application) |
+
 
 ## <span> Veille scientifique <a id="veille-scientifique"></a></span>
 
