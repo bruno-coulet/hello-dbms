@@ -56,6 +56,18 @@
 | ├── .env                       | Fichier d'environnement (ignoré mais nécessaire) |
 | └── app.log                    | Fichier de log (ignoré mais généré au lancement de l'application) |
 
+Pour pouvoir lancer l'application, il faut nécessairement :
+* Avoir MySQL pour la création de la DB et la généraiton automatique des tables
+* Indiquer dans un fichier .env les informations pour la connexion à la db MySQL suivantes :  
+  * DB_HOST=****
+  * DB_USER=****
+  * DB_PASSWORD=****
+  * DB_NAME=carbon_footprint
+
+Ensuite : 
+* Lancer le script main.py situé dans le dossier database_manager qui créera automatiquement les tables graces aux données des fichiers présents dans pre_processed_data.
+* Lancer l'application de data visualisation via le script app.py dans le dossier carbon_footprint_app
+
 
 ## <span> Veille scientifique <a id="veille-scientifique"></a></span>
 
