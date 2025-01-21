@@ -1,4 +1,4 @@
-# <spanllo-dbms</span>
+# <span>HELLO-DBMS</span>
 
 ## <span> Sommaire</span>
 - [Contexte](#contexte)
@@ -26,6 +26,8 @@
 ## <span> Veille scientifique <a id="veille-scientifique"></a></span>
 
 ###  <span>A.</span><span> Qu'est-ce qu'une donnée ? Sous quelle forme peut-elle se présenter ? <a id="a-quest-ce-quune-donnee"></a></span>
+
+<img src="https://3.bp.blogspot.com/-rlfbTrL2prE/Wx6N-BeZjYI/AAAAAAAAA3k/lL0rYDbGqGgTH4cSQNh9MbkCTvNremG6gCLcBGAs/s1600/data_1.jpg" alt="DATA" style="width:500px;"/>
 
 <span><u>**Etymologie :**</u> </span>
 
@@ -96,6 +98,8 @@ A partir de ces axiomes, les données peuvent être interprétées à la lumire 
 
 
 ### <span>B.</span> Donnez et expliquez les critères de mesure de qualité des données. <a id="b-criteres-de-qualite"></a>
+
+<img src="https://datavalue-consulting.com/wp-content/uploads/2021/10/Criteres-qualite-donnees.png" alt="Mesure qualité" style="width:500px;"/>
 
 Les critères de mesure de la qualité des données permettent de s'assurer que les données sont fiables, précises et utilisables, en d'autres termes, de maximiser la valeur des données pour l'organisation afin de s'assurer qu'elles peuvent être utilisées efficacement pour des analyses et prises de décisions. 
 
@@ -171,30 +175,39 @@ Il utilise souvent un modèle de conception de données qui améliore, enrichit 
 
 ### <span>D.</span> Donnez une définition et des exemples de systèmes de gestion de bases de données avec des illustrations. <a id="d-systemes-de-gestion"></a>
 
-
 Un système de gestion de bases de données (SGBD) est un logiciel qui permet de créer, gérer et manipuler des bases de données. Il offre des outils pour stocker, récupérer, modifier et supprimer des données de manière efficace et sécurisée.
+
+  <div style="text-align: center;">
+   <img src="https://sgbd.developpez.com/tutoriels/cours-complet-bases-de-donnees/images/42_img01.jpg" alt="Architecture type SGBD" style="width:450px;"/>
+  </div>
 
 <span><u>**Exemples de SGBD**</u></span>
 
 1. **MySQL**
    - **Description** : SGBD relationnel open-source très utilisé pour les applications web.
-   - **Illustration** : ![MySQL](https://upload.wikimedia.org/wikipedia/commons/0/0a/MySQL_textlogo.svg)
+
+   <img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/MySQL_textlogo.svg" alt="MySQL" style="width:200px;"/>
 
 2. **PostgreSQL**
    - **Description** : SGBD relationnel open-source connu pour sa robustesse et ses fonctionnalités avancées.
-   - **Illustration** : ![PostgreSQL](https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg)
+
+   <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg" alt="PostgreSQL" style="width:200px;"/>
 
 3. **MongoDB**
    - **Description** : SGBD NoSQL orienté documents, idéal pour les applications nécessitant une grande flexibilité des données.
-   - **Illustration** : ![MongoDB](https://upload.wikimedia.org/wikipedia/fr/thumb/4/45/MongoDB-Logo.svg/791px-MongoDB-Logo.svg.png?20190421175613)
+
+   <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/4/45/MongoDB-Logo.svg/791px-MongoDB-Logo.svg.png?20190421175613" alt="MongoDB" style="width:200px;"/>
 
 4. **Oracle Database**
    - **Description** : SGBD relationnel commercial très performant, utilisé par de grandes entreprises pour des applications critiques.
-   - **Illustration** : ![Oracle](https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg)
+
+   <img src="https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg" alt="Oracle" style="width:200px;"/>
 
 5. **Microsoft SQL Server**
    - **Description** : SGBD relationnel commercial développé par Microsoft, utilisé pour des applications d'entreprise.
-   - **Illustration** : ![SQL Server](https://upload.wikimedia.org/wikipedia/commons/8/87/Sql_data_base_with_logo.png)
+
+   <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Sql_data_base_with_logo.png" alt="SQL Server" style="width:200px;"/>
+
 
 
 ### <span>E.</span> Qu'est-ce qu'une base de données relationnelle ? Qu'est-ce qu'une base de données non relationnelle ? Donnez la différence entre les deux avec des exemples d'applications. <a id="e-bases-relationnelles-vs-non-relationnelles"></a>
@@ -224,8 +237,33 @@ Un système de gestion de bases de données (SGBD) est un logiciel qui permet de
 | **Scalabilité**       | Scalabilité verticale (ajout de ressources à un seul serveur) | Scalabilité horizontale (ajout de serveurs supplémentaires) |
 | **Cas d'utilisation** | Applications transactionnelles, systèmes de gestion d'entreprise | Applications nécessitant une grande flexibilité des données, big data, applications en temps réel |
 
+<img src="https://th.bing.com/th/id/R.155a9e4413a56fdd4b210f68e4dbf0c1?rik=M6AYCE3MIpZ8zA&riu=http%3a%2f%2finfodecisionnel.com%2fwp-content%2fuploads%2f2014%2f06%2fcomparaison_SQL_NoSQL_BDD1.jpg&ehk=RIdVmJCGKajLpVOunuYKjTGf0RSyoHyoIb30bEATQek%3d&risl=&pid=ImgRaw&r=0" alt="SGBDR/NoSQL" style="width:500px;"/>
+
+<span><u>**Les différents modèles de bases de données :**</u></span>
+
+Il existe cinq modèles de SGBD, différenciées selon la représentation des données qu'elle contient :
+
+* **Le modèle hiérarchique :** Les données sont classées hiérarchiquement, selon une arborescence descendante. Ce modèle utilise des pointeurs entre les différents enregistrements. Il s'agit du premier modèle de SGDB.
+
+   <img src="https://web.maths.unsw.edu.au/~lafaye/CCM/bdd/images/hierarch.gif" alt="Modèle Hiérarchique" style="width:200px;"/>
+
+* **Le modèle réseau :** Comme le modèle hiérarchique ce modèle utilise des pointeurs vers des enregistrements. Toutefois la structure n'est plus forcément arborescente dans le sens descendant. 
+
+   <img src="https://web.maths.unsw.edu.au/~lafaye/CCM/bdd/images/reseau.gif" alt="Modèle Réseau" style="width:200px;"/>
+
+* **Le modèle relationnel (SGBDR): ** Les données sont enregistrées dans des tableaux à deux dimensions. La manipulation de ces données se fait selon la théorie mathématique des relations. 
+
+   <img src="https://web.maths.unsw.edu.au/~lafaye/CCM/bdd/images/relation.gif" alt="SGBDR" style="width:200px;"/>
+
+* **Le modèle déductif :** Les données sont représentées sous forme de table, mais leur manipulation se fait par calcul de prédicats
+
+* **Le modèle objet (SGBDO) :** Les données sont stockées sous forme d'objets, c'est-à-dire appelées *classes* présentant des données membres. Les champs sont des instances de ces classes. 
+
+   <img src="https://web.maths.unsw.edu.au/~lafaye/CCM/bdd/images/objet.gif" alt="SGBDO" style="width:200px;"/>
 
 ### <span>F.</span> Définissez les notions de clé étrangère et clé primaire. <a id="f-cles-etrangeres-et-cles-primaires"></a>
+
+<img src="https://uploads-ssl.webflow.com/60ec34540d013784844d2ee2/620d2c84b6025f2c63568341_D%C3%A9finir%20une%20cl%C3%A9%20%C3%A9trang%C3%A8re%20sur%20une%20table%20existante.png" alt="KEYS" style="width:500px;"/>
 
 <span><u>**Clé primaire :**</u></span>
 
@@ -242,6 +280,8 @@ Une clé étrangère est un champ ou ensemble de champs dans une table qui crée
   * **Peut contenir des valeurs nulles :** Contrairement à la clé primaire, une clé étrangère peut contenir des valeurs nulles si cela est autorisé par la logique de la base de données. 
 
 ### <span>G.</span> Quelles sont les propriétés ACID ? <a id="g-proprietes-acid"></a>
+
+<img src="https://datascientest.com/wp-content/uploads/2021/06/illu_ACID-10-1024x562.png" alt="ACID" style="width:600px;"/>
 
 Les propriétés **ACID** sont fondamentales pour garantir la fiabilité des transactions dans les bases de données.
 
@@ -261,6 +301,140 @@ Les propriétés **ACID** sont fondamentales pour garantir la fiabilité des tra
 
 ### <span>H.</span> Définissez les méthodes Merise et UML. Quelles sont leur utilité dans le monde de l'informatique ? Donnez des cas précis d'utilisation avec des schémas. <a id="h-methodes-merise-et-uml"></a>
 
+<span><u>**Méthode Merise :**</u></span>
+
+<img src="https://static.techno-science.net/illustration/Definitions/1200px/m/merise_8470372e1293dcc141ecdb59c160a6f8.jpg" alt="MERISE" style="width:400px;"/>
+
+
+La méthode Merise est une méthode de conception et de gestion de projets informatiques, principalement utiliées en France. Elle se concentre sur la modélisation des données et des traitements. Merise utilise trois niveauc de modélisation : 
+
+* **Modèle Conceptuel des Données (MCD) :** Représente les entités et les relations entre elles.
+
+* **Modèle Logique des Données (MLD) :** Transofrme le MDC en un modèle adapté à un SGDB.
+
+* **Modèle Physique des Données (MDP) :** Décrit la structure physique de la base de données. 
+
+**Utilité**
+
+* **Analyse et conception de système d'information :** Permet de structurer et de formaliser les besoins. 
+
+* **Documentation :** Fournit une documentaiton claire et détaillée du système.
+
+* **Communication :** Facilite la communication entre les différents acteurs du projet. 
+
+**Exemple d'utilisation**
+
+* **Gestion de projet :** Concevoir un système de gestion des ressourves humaines.
+
+| Entité | Attributs | Relations |
+|--------|-----------|-----------|
+| Employé | ID, Nom, Prénom, Poste | Travaille dans |
+| Département | ID, Nom | Contient |
+
+<span><u>**Méthode Unified Modeling Language (UML) :**</u></span>
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/DiagrammesUML.svg/1280px-DiagrammesUML.svg.png" alt="UML" style="width:500px;"/>
+
+UML est un langage de modélisation standardisé utilisé pour spécifier, visualiser, construire et documenter les artefacts d'un système logiciel. UML comprend plusieurs types de diagrammes, tels que les diagrammes de cas d'utilisation, les diagrammes de calsses, les diagrammes de séquences, etc.
+
+**Utilité**
+
+* **Conception de logiciels :** Aide à la conception et à la documentation des systèmes logiciels.
+
+* **Communication :** Facilite la communication entre les développeurs et les autres parties prenantes.
+
+* **Standardisation :** Fournit un langage commun pour la modélisation des systèmes.
+
+**Exemple d'utilisation** 
+
+* **développement de logiciels :** Utilisé pour modéliser les fonctionnalités d'une application de gestion de bibliothèque. 
+
+
+| Classe         | Attributs                        | Méthodes                     |
+|----------------|----------------------------------|------------------------------|
+| **Livre**      | - titre : String                 | - emprunter()                |
+|                | - auteur : String                | - retourner()                |
+|                | - ISBN : String                  |                              |
+|                | - estDisponible : boolean        |                              |
+| **Membre**     | - nom : String                   | - emprunterLivre(Livre)      |
+|                | - identifiant : String           | - retournerLivre(Livre)      |
+|                | - adresse : String               |                              |
+| **Bibliothecaire** | - nom : String               | - ajouterLivre(Livre)        |
+|                | - identifiant : String           | - supprimerLivre(Livre)      |
+| **Bibliotheque** | - livres : List~Livre~         | - ajouterMembre(Membre)      |
+|                | - membres : List~Membre~         | - supprimerMembre(Membre)    |
+
+**Relations**
+- Livre --> Membre : "emprunté par"
+- Livre --> Bibliothecaire : "géré par"
+- Bibliotheque --> Livre : "contient"
+- Bibliotheque --> Membre : "a"
+- Bibliothecaire --> Bibliotheque : "travaille pour"
+
 ### <span>I.</span> Définissez le langage SQL. Donnez les commandes les plus utilisées de ce langage et les différentes jointures qu'il est possible de faire. <a id="i-langage-sql-commandes"></a>
 
+Le langage SQL (Structured Query Language) est un langage de programmation utilisé pour gérer et manipuler des bases de données relationnelles. Il permet d'effectuer diverses opérations telles que la création, la modification, la suppression et la récupération des données dans une base de données.
+
+**Commandes les plus utilisés en SQL**
+
+<img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20190826175059/Types-of-SQL-Commands.jpg" alt="SQL COMMANDS" style="width:500px;"/>
+
+* **SELECT :** Récupérer des données à partir d'une base de données. 
+```
+SELECT colonne1, colonne2 FROM table;
+```
+* **INSERT :** Insérer des données existantes dans une table. 
+```
+INSERT INTO table (colonne1, colonne2) VALUES (valeur1, valeur2);
+```
+* **UPDATE :** Modifier des données existantes dans une table.
+```
+UPDATE table SET colonne1 = valeur1 WHERE condition;
+```
+* **DELETE :** Supprimmer des données d'une table. 
+```
+DELETE FROM table WHERE condition;
+```
+* **CREATE TABLE :** Créer une table dans une base de données.
+```
+CREATE TABLE table (
+    colonne1 type_donnée,
+    colonne2 type_donnée
+);
+```
+* **DROP TABLE :** Supprimer une table de la base de données.
+```
+DROP TABLE table;
+```
+
+**Différentes jointures en SQL**
+
+<img src="https://uploads-ssl.webflow.com/60ec34540d013784844d2ee2/620180a62fdeef97b206b558_Jointures%20SQL.PNG" alt="SQL JOIN" style="width:500px;"/>
+
+* **INNER JOIN :** Retourne les enregistrements qui ont des valeurs correspondantes dans les deux tables. 
+```
+SELECT colonne1, colonne2
+FROM table1
+INNER JOIN table2 ON table1.colonne = table2.colonne;
+```
+* **LEFT JOINT (ou LEFT OUTER JOIN) :** Retourne tous les enregistrements de la table de gauche et les enregistrements correspondants dans la table de droite. Si aucunes correspondances n'est trouvée, les résultats de la table de droite seront NULL.
+```
+SELECT colonne1, colonne2
+FROM table1
+LEFT joint table2 ON table1.colonne = table2.colonne;
+```
+* **RIGHT JOINT (ou RIGHT OUTER JOIN) :** Retourne tous les enregistrements de la table de droite et les enregistrements correspondants de la table de gauche. SI aucune correspondance n'est trouvée, les résultats de la table de gauche seront NULL.
+```
+SELECT colonne1, colonne2
+FROM table1
+RIGHT JOIN table2 ON table1.colonne = table2.colonne;
+```
+* **FULL JOIN (ou FULL OUTER JOIN) :** Retourne tous les enregistrements lorsqu'il y a une correspondance dans l'un des tables. Si aucune correspondance n'est trouvée, les résultats seront NULL pour la table sans correpondance.
+```
+SELECT colonne1, colonne2
+FROM table1
+FULL JOIN table2 ON table1.colonne = table2.colonne;
+```
+
+Ces commandes et jointures sont essentielles pour travailler efficacement avec des bases de données relationelles en SQL.
 ## <span>Conclusion <a id="conclusion"></a></span>
