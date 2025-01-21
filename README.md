@@ -415,7 +415,7 @@ SELECT colonne1, colonne2
 FROM table1
 LEFT joint table2 ON table1.colonne = table2.colonne;
 ```
-* **RIGHT JOINT (ou RIGHT OUTER JOIN) : Retourne tous les enregistrements de la table de droite et les enregistrements correspondants de la table de gauche. SI aucune correspondance n'est trouvée, les résultats de la table de gauche seront NULL.
+* **RIGHT JOINT (ou RIGHT OUTER JOIN) :** Retourne tous les enregistrements de la table de droite et les enregistrements correspondants de la table de gauche. SI aucune correspondance n'est trouvée, les résultats de la table de gauche seront NULL.
 ```
 SELECT colonne1, colonne2
 FROM table1
