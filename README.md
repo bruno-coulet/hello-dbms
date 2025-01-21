@@ -27,6 +27,8 @@
 
 ###  <span>A.</span><span> Qu'est-ce qu'une donnée ? Sous quelle forme peut-elle se présenter ? <a id="a-quest-ce-quune-donnee"></a></span>
 
+<img src="https://3.bp.blogspot.com/-rlfbTrL2prE/Wx6N-BeZjYI/AAAAAAAAA3k/lL0rYDbGqGgTH4cSQNh9MbkCTvNremG6gCLcBGAs/s1600/data_1.jpg" alt="DATA" style="width:500px;"/>
+
 <span><u>**Etymologie :**</u> </span>
 
 Étymologiquemen, le terme donnée provient du latin *datum* signifiant " donner " .
@@ -96,6 +98,8 @@ A partir de ces axiomes, les données peuvent être interprétées à la lumire 
 
 
 ### <span>B.</span> Donnez et expliquez les critères de mesure de qualité des données. <a id="b-criteres-de-qualite"></a>
+
+<img src="https://datavalue-consulting.com/wp-content/uploads/2021/10/Criteres-qualite-donnees.png" alt="Mesure qualité" style="width:500px;"/>
 
 Les critères de mesure de la qualité des données permettent de s'assurer que les données sont fiables, précises et utilisables, en d'autres termes, de maximiser la valeur des données pour l'organisation afin de s'assurer qu'elles peuvent être utilisées efficacement pour des analyses et prises de décisions. 
 
@@ -233,6 +237,8 @@ Un système de gestion de bases de données (SGBD) est un logiciel qui permet de
 | **Scalabilité**       | Scalabilité verticale (ajout de ressources à un seul serveur) | Scalabilité horizontale (ajout de serveurs supplémentaires) |
 | **Cas d'utilisation** | Applications transactionnelles, systèmes de gestion d'entreprise | Applications nécessitant une grande flexibilité des données, big data, applications en temps réel |
 
+<img src="https://th.bing.com/th/id/R.155a9e4413a56fdd4b210f68e4dbf0c1?rik=M6AYCE3MIpZ8zA&riu=http%3a%2f%2finfodecisionnel.com%2fwp-content%2fuploads%2f2014%2f06%2fcomparaison_SQL_NoSQL_BDD1.jpg&ehk=RIdVmJCGKajLpVOunuYKjTGf0RSyoHyoIb30bEATQek%3d&risl=&pid=ImgRaw&r=0" alt="SGBDR/NoSQL" style="width:500px;"/>
+
 <span><u>**Les différents modèles de bases de données :**</u></span>
 
 Il existe cinq modèles de SGBD, différenciées selon la représentation des données qu'elle contient :
@@ -256,6 +262,8 @@ Il existe cinq modèles de SGBD, différenciées selon la représentation des do
    <img src="https://web.maths.unsw.edu.au/~lafaye/CCM/bdd/images/objet.gif" alt="SGBDO" style="width:200px;"/>
 
 ### <span>F.</span> Définissez les notions de clé étrangère et clé primaire. <a id="f-cles-etrangeres-et-cles-primaires"></a>
+
+<img src="https://uploads-ssl.webflow.com/60ec34540d013784844d2ee2/620d2c84b6025f2c63568341_D%C3%A9finir%20une%20cl%C3%A9%20%C3%A9trang%C3%A8re%20sur%20une%20table%20existante.png" alt="KEYS" style="width:500px;"/>
 
 <span><u>**Clé primaire :**</u></span>
 
