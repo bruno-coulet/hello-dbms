@@ -171,30 +171,39 @@ Il utilise souvent un modèle de conception de données qui améliore, enrichit 
 
 ### <span>D.</span> Donnez une définition et des exemples de systèmes de gestion de bases de données avec des illustrations. <a id="d-systemes-de-gestion"></a>
 
-
 Un système de gestion de bases de données (SGBD) est un logiciel qui permet de créer, gérer et manipuler des bases de données. Il offre des outils pour stocker, récupérer, modifier et supprimer des données de manière efficace et sécurisée.
+
+  <div style="text-align: center;">
+   <img src="https://sgbd.developpez.com/tutoriels/cours-complet-bases-de-donnees/images/42_img01.jpg" alt="Architecture type SGBD" style="width:450px;"/>
+  </div>
 
 <span><u>**Exemples de SGBD**</u></span>
 
 1. **MySQL**
    - **Description** : SGBD relationnel open-source très utilisé pour les applications web.
-   - **Illustration** : ![MySQL](https://upload.wikimedia.org/wikipedia/commons/0/0a/MySQL_textlogo.svg)
+
+   <img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/MySQL_textlogo.svg" alt="MySQL" style="width:200px;"/>
 
 2. **PostgreSQL**
    - **Description** : SGBD relationnel open-source connu pour sa robustesse et ses fonctionnalités avancées.
-   - **Illustration** : ![PostgreSQL](https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg)
+
+   <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg" alt="PostgreSQL" style="width:200px;"/>
 
 3. **MongoDB**
    - **Description** : SGBD NoSQL orienté documents, idéal pour les applications nécessitant une grande flexibilité des données.
-   - **Illustration** : ![MongoDB](https://upload.wikimedia.org/wikipedia/fr/thumb/4/45/MongoDB-Logo.svg/791px-MongoDB-Logo.svg.png?20190421175613)
+
+   <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/4/45/MongoDB-Logo.svg/791px-MongoDB-Logo.svg.png?20190421175613" alt="MongoDB" style="width:200px;"/>
 
 4. **Oracle Database**
    - **Description** : SGBD relationnel commercial très performant, utilisé par de grandes entreprises pour des applications critiques.
-   - **Illustration** : ![Oracle](https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg)
+
+   <img src="https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg" alt="Oracle" style="width:200px;"/>
 
 5. **Microsoft SQL Server**
    - **Description** : SGBD relationnel commercial développé par Microsoft, utilisé pour des applications d'entreprise.
-   - **Illustration** : ![SQL Server](https://upload.wikimedia.org/wikipedia/commons/8/87/Sql_data_base_with_logo.png)
+
+   <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Sql_data_base_with_logo.png" alt="SQL Server" style="width:200px;"/>
+
 
 
 ### <span>E.</span> Qu'est-ce qu'une base de données relationnelle ? Qu'est-ce qu'une base de données non relationnelle ? Donnez la différence entre les deux avec des exemples d'applications. <a id="e-bases-relationnelles-vs-non-relationnelles"></a>
@@ -224,6 +233,12 @@ Un système de gestion de bases de données (SGBD) est un logiciel qui permet de
 | **Scalabilité**       | Scalabilité verticale (ajout de ressources à un seul serveur) | Scalabilité horizontale (ajout de serveurs supplémentaires) |
 | **Cas d'utilisation** | Applications transactionnelles, systèmes de gestion d'entreprise | Applications nécessitant une grande flexibilité des données, big data, applications en temps réel |
 
+<span><u>**Les différents modèles de bases de données :**</u></span>
+
+Il existe cinq modèles de SGBD, différenciées selon la représentation des données qu'elle contient :
+
+* **Le modèle hiérarchique :** Les données sont classées hiérarchiquement, selon une arborescence descendante. Ce modèle utilise 
+
 
 ### <span>F.</span> Définissez les notions de clé étrangère et clé primaire. <a id="f-cles-etrangeres-et-cles-primaires"></a>
 
@@ -242,6 +257,8 @@ Une clé étrangère est un champ ou ensemble de champs dans une table qui crée
   * **Peut contenir des valeurs nulles :** Contrairement à la clé primaire, une clé étrangère peut contenir des valeurs nulles si cela est autorisé par la logique de la base de données. 
 
 ### <span>G.</span> Quelles sont les propriétés ACID ? <a id="g-proprietes-acid"></a>
+
+![ACID](https://datascientest.com/wp-content/uploads/2021/06/illu_ACID-10-1024x562.png)
 
 Les propriétés **ACID** sont fondamentales pour garantir la fiabilité des transactions dans les bases de données.
 
