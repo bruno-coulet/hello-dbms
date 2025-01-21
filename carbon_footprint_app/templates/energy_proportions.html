@@ -3,11 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Energy Proportions</title>
+    <title>Proportions des Émissions par Source d’Énergie</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
     <h1>Proportions des Émissions par Source d’Énergie</h1>
+
+    <form method="get" action="/energy-source-proportions">
+        <label for="country">Sélectionnez un pays :</label>
+        <select id="country" name="country">
+            <option value="">Tous les pays</option>
+            {% for c in countries %}
+                <option value="{{ c }}" {% if c == country %}selected{% endif %}>{{ c }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Mettre à jour</button>
+    </form>
+
     <div id="pie-chart"></div>
     <script>
         var data = [{
