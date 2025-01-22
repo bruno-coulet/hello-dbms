@@ -83,7 +83,7 @@ Pour pouvoir lancer l'application, il faut nécessairement :
   | Renewable                   | Pourcentage d'utilisation des énergies renouvelables (solaire, éolienne, etc.) |
   | Nuclear                     | Pourcentage d'utilisation de l'énergie nucléaire                            |
 
-* Indiquer dans un fichier .env les informations pour la connexion à la db MySQL suivantes :  
+* Indiquer dans un fichier .env dans le dossier principal les informations pour la connexion à la db MySQL suivantes :  
   * DB_HOST=****
   * DB_USER=****
   * DB_PASSWORD=****
