@@ -7,7 +7,9 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
-    <h1>Proportions des Émissions par Source d’Énergie pour {{ country if country else 'Tous les pays' }}</h1>
+    <h1>Pourcentage d'utilisation de différentes sources d'énergie en 2015 pour la production d'électricité</h1>
+    <h1 style="text-align: center;">{{ country if country else 'Tous les pays' }}</h1>
+    
 
     <form method="get" action="/energy-source-proportions" id="country-form">
         <label for="country">Sélectionnez un pays :</label>
@@ -20,15 +22,6 @@
     </form>
 
     <div id="pie-chart"></div>
-    <div id="additional-info">
-        <h2>Informations supplémentaires</h2>
-        <p>Total des émissions de charbon : <span style="color: #d3d3d3;">{{ data['total_coal'] }}</span></p>
-        <p>Total des émissions de gaz : <span style="color: #ff7f0e;">{{ data['total_gas'] }}</span></p>
-        <p>Total des émissions de pétrole : <span style="color: #696969;">{{ data['total_oil'] }}</span></p>
-        <p>Total des émissions hydroélectriques : <span style="color: #1f77b4;">{{ data['total_hydro'] }}</span></p>
-        <p>Total des émissions renouvelables : <span style="color: #9467bd;">{{ data['total_renewables'] }}</span></p>
-        <p>Total des émissions nucléaires : <span style="color: #2ca02c;">{{ data['total_nuclear'] }}</span></p>
-    </div>
 
     <script>
         var values = [{{ data['total_coal'] }}, {{ data['total_gas'] }}, {{ data['total_oil'] }}, {{ data['total_hydro'] }}, {{ data['total_renewables'] }}, {{ data['total_nuclear'] }}];
