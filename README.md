@@ -58,6 +58,31 @@
 
 Pour pouvoir lancer l'application, il faut nécessairement :
 * Avoir MySQL pour la création de la DB et la généraiton automatique des tables
+* Avoir dans le dossier pre_processed_data
+  * Un fichier de données au format CSV nommé country ayant comme structure 
+
+  | Colonne     | Description                                                                 |
+  |-------------|-----------------------------------------------------------------------------|
+  | Country     | Le nom du pays                                                              |
+  | Coal        | Pourcentage d'utilisation du charbon                                        |
+  | Gas         | Pourcentage d'utilisation du gaz naturel                                    |
+  | Oil         | Pourcentage d'utilisation du pétrole                                        |
+  | Hydro       | Pourcentage d'utilisation de l'énergie hydroélectrique                      |
+  | Renewable   | Pourcentage d'utilisation des énergies renouvelables (solaire, éolienne, etc.) |
+  | Nuclear     | Pourcentage d'utilisation de l'énergie nucléaire |
+
+  * Un fichier de données au format CSV nommé wolrd ayant comme structure
+
+  | Colonne                     | Description                                                                 |
+  |-----------------------------|-----------------------------------------------------------------------------|
+  | World                       | Le nom de la région                                                         |
+  | Coal                        | Pourcentage d'utilisation du charbon                                        |
+  | Gas                         | Pourcentage d'utilisation du gaz naturel                                    |
+  | Oil                         | Pourcentage d'utilisation du pétrole                                        |
+  | Hydro                       | Pourcentage d'utilisation de l'énergie hydroélectrique                      |
+  | Renewable                   | Pourcentage d'utilisation des énergies renouvelables (solaire, éolienne, etc.) |
+  | Nuclear                     | Pourcentage d'utilisation de l'énergie nucléaire                            |
+
 * Indiquer dans un fichier .env les informations pour la connexion à la db MySQL suivantes :  
   * DB_HOST=****
   * DB_USER=****
