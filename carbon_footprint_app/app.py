@@ -57,7 +57,6 @@ def energy_usage():
     data = pd.DataFrame(results, columns=['country', 'coal_emissions', 'gas_emissions', 'oil_emissions', 'hydro_emissions', 'renewable_emissions', 'nuclear_emissions'])
     return render_template('energy_usage.html', data=data.to_dict(orient='list'), energy_source=energy_source)
 
-
 @app.route('/energy-source-proportions')
 def energy_source_proportions():
     country = request.args.get('country')
@@ -95,7 +94,6 @@ def energy_source_proportions():
     data = dict(zip(['total_coal', 'total_gas', 'total_oil', 'total_hydro', 'total_renewables', 'total_nuclear'], results))
     countries = get_countries()
 
-    
     return render_template('energy_proportions.html', data=data, country=country, countries=countries)
 
 if __name__ == '__main__':
