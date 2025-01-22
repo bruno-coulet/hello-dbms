@@ -7,19 +7,19 @@ import config
 # Configuration des logs
 logging.basicConfig(filename='app.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-def create_connection():
+def create_connection(db_name=None):
     try:
         connection = mysql.connector.connect(
             host=config.DB_HOST,
             user=config.DB_USER,
-            password=config.DB_PASSWORD,  # Remplace par ton mot de passe
-            database=config.DB_NAME
+            password=config.DB_PASSWORD,
+            database=db_name
         )
         if connection.is_connected():
-            logging.info("Connexion à la base de données réussie")
+            logging.info(f"Connexion à la base de données {'réussie' if db_name else 'au serveur MySQL réussie'}")
         return connection
     except Error as e:
-        logging.error(f"Erreur lors de la connexion à la base de données: {e}")
+        logging.error(f"Erreur lors de la connexion {'à la base de données' if db_name else 'au serveur MySQL'}: {e}")
         return None
 
 def create_database():
@@ -36,7 +36,7 @@ def create_database():
             connection.close()
 
 def create_tables():
-    connection = create_connection()
+    connection = create_connection('carbon_footprint')
     if connection:
         cursor = connection.cursor()
         try:
@@ -76,3 +76,4 @@ def create_tables():
 if __name__ == "__main__":
     create_database()
     create_tables()
+
