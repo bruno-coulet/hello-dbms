@@ -2,7 +2,7 @@
 
 ## <span> Sommaire</span>
 - [Contexte](#contexte)
-- [ Schéma de l'application](#app-schema)
+- [ Schéma et utilisation de l'application](#app-schema)
 - [Veille scientifique](#veille-scientifique)
   - [A. Qu'est-ce qu'une donnée ? Sous quelle forme peut-elle se présenter ?](#a-quest-ce-quune-donnee)
   - [B. Donnez et expliquez les critères de mesure de qualité des données.](#b-criteres-de-qualite)
@@ -24,7 +24,7 @@
 
 """"""
 
-## <span> Schéma de l'application <a id="app-schema"></a></span>
+## <span> Schéma et utilisation de l'application <a id="app-schema"></a></span>
 
 | Dossier/Fichier                | Description                                      |
 |--------------------------------|--------------------------------------------------|
