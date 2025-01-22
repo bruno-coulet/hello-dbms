@@ -41,39 +41,22 @@ def get_countries():
     connection.close()
     return countries
 
-
-
-@app.route('/total-emissions')
-def total_emissions():
+@app.route('/energy-usage')
+def energy_usage():
+    energy_source = request.args.get('source', 'coal_emissions')
     connection = create_connection()
     with connection.cursor() as cursor:
-        cursor.execute("""
-        SELECT country,
-            (
-                coal_emissions + gas_emissions + oil_emissions + hydro_emissions + renewable_emissions + nuclear_emissions
-            ) AS total_emissions
+        query = f"""
+        SELECT country, coal_emissions, gas_emissions, oil_emissions, hydro_emissions, renewable_emissions, nuclear_emissions
         FROM country
-        ORDER BY total_emissions DESC;
-        """)
+        ORDER BY {energy_source} DESC;
+        """
+        cursor.execute(query)
         results = cursor.fetchall()
     connection.close()
-    data = pd.DataFrame(results, columns=['country', 'total_emissions'])
-    return render_template('total_emissions.html', data=data.to_dict(orient='list'))
+    data = pd.DataFrame(results, columns=['country', 'coal_emissions', 'gas_emissions', 'oil_emissions', 'hydro_emissions', 'renewable_emissions', 'nuclear_emissions'])
+    return render_template('energy_usage.html', data=data.to_dict(orient='list'), energy_source=energy_source)
 
-@app.route('/coal-usage')
-def coal_usage():
-    connection = create_connection()
-    with connection.cursor() as cursor:
-        cursor.execute("""
-        SELECT country, coal_emissions
-        FROM country
-        WHERE coal_emissions > 50
-        ORDER BY coal_emissions DESC;
-        """)
-        results = cursor.fetchall()
-    connection.close()
-    data = pd.DataFrame(results, columns=['country', 'coal_emissions'])
-    return render_template('coal_usage.html', data=data.to_dict(orient='list'))
 
 @app.route('/energy-source-proportions')
 def energy_source_proportions():
