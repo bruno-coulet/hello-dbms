@@ -10,7 +10,7 @@
         <label for="country">Choisissez un pays :</label>
         <select name="country" id="country">
             <option value="">Tous les pays</option>
-            {% for country in countries %}
+            {% for country in get_countries() %}
                 <option value="{{ country }}" {% if country == selected_country %}selected{% endif %}>
                     {{ country }}
                 </option>
@@ -19,8 +19,50 @@
         <button type="submit">Afficher</button>
     </form>
 
+    <div id="pie-chart"></div>
+
+    <script>
+        var values = [{{ data['total_coal'] }}, {{ data['total_gas'] }}, {{ data['total_oil'] }}, {{ data['total_hydro'] }}, {{ data['total_renewables'] }}, {{ data['total_nuclear'] }}];
+        var labels = ['Charbon', 'Gaz', 'Pétrole', 'Hydroélectrique', 'Renouvelables', 'Nucléaire'];
+        var colors = ['#d3d3d3', '#ff7f0e', '#696969', '#1f77b4', '#9467bd', '#2ca02c'];
+
+        // Filtrer les valeurs et les étiquettes pour exclure les valeurs de 0
+        var filteredValues = [];
+        var filteredLabels = [];
+        var filteredColors = [];
+
+        for (var i = 0; i < values.length; i++) {
+            if (values[i] > 0) {
+                filteredValues.push(values[i]);
+                filteredLabels.push(labels[i]);
+                filteredColors.push(colors[i]);
+            }
+        }
+
+        var data = [{
+            values: filteredValues,
+            labels: filteredLabels,
+            type: 'pie',
+            marker: {
+                colors: filteredColors
+            },
+            textinfo: 'label+percent',
+            textposition: 'outside',
+            textfont: {
+                color: filteredColors
+            },
+            automargin: true
+        }];
+
+        var layout = {
+            showlegend: false
+        };
+
+        Plotly.newPlot('pie-chart', data, layout);
+    </script>
+
     <!-- Section pour les proportions -->
-    <div>
+    <div class="proportions">
         <h2>Proportions :</h2>
         <ul>
             <li>Charbon : {{ data.total_coal }}</li>
@@ -33,9 +75,3 @@
     </div>
 </div>
 {% endblock %}
-
-
-
-
-
-
