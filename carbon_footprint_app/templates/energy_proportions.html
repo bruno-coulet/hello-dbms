@@ -34,5 +34,24 @@
 
         Plotly.newPlot('pie-chart', data, layout);
     </script>
+    <h1>Tableau des pays</h1>
+    <table>
+        <thead>
+            <tr>
+                {% for column in emission_contribution_data[0].keys() %}
+                <th>{{ column }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for country in emission_contribution_data %}
+            <tr>
+                {% for value in country.values() %}
+                <td>{{ value }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>

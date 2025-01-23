@@ -79,7 +79,7 @@ def coal_usage():
 def energy_source_proportions():
     country = request.args.get('country')
     connection = create_connection()
-    with connection.cursor() as cursor:
+    with connection.cursor(dictionary=True) as cursor:
         if country:
             cursor.execute("""
             SELECT 
@@ -104,16 +104,135 @@ def energy_source_proportions():
             FROM country;
             """)
         results = cursor.fetchone()
-    connection.close()
-    
-    if not results or all(v is None for v in results):
-        results = (0, 0, 0, 0, 0, 0)
+        
+        if not results or all(v is None for v in results):
+            results = (0, 0, 0, 0, 0, 0)
 
+        if country :
+            cursor.execute('''SELECT
+                            e.source AS "Source de production",
+                            ROUND(c.percent_emission, 2) AS "pourcentage d’utilisation",
+                            e.median_gco2_kwh AS "Médiane de gCO2/kWh",
+                            ROUND((c.percent_emission / 100) * e.median_gco2_kwh, 2) AS "Contribution en émission gCO2/kWh"
+                        FROM (
+                            SELECT
+                                'Charbon' AS source, coal_emissions AS percent_emission FROM country WHERE country = %s
+                            UNION ALL
+                            SELECT
+                                'Gaz naturel', gas_emissions FROM country WHERE country = %s
+                            UNION ALL
+                            SELECT
+                                'Pétrole', oil_emissions FROM country WHERE country = %s
+                            UNION ALL
+                            SELECT
+                                'Hydro', hydro_emissions FROM country WHERE country = %s
+                            UNION ALL
+                            SELECT
+                                'Renouvelable (Solaire)', renewable_emissions FROM country WHERE country = %s
+                            UNION ALL
+                            SELECT
+                                'Nucléaire', nuclear_emissions FROM country WHERE country = %s
+                        ) c
+                        JOIN emissions e ON e.source = c.source;''',(country,) * 6)
+        else:
+            cursor.execute('''SELECT
+                            e.source AS "Source de production",
+                            ROUND(c.percent_emission, 2) AS "pourcentage d’utilisation",
+                            e.median_gco2_kwh AS "Médiane de gCO2/kWh",
+                            ROUND((c.percent_emission / 100) * e.median_gco2_kwh, 2) AS "Contribution en émission gCO2/kWh"
+                        FROM (
+                            SELECT
+                                'Charbon' AS source, coal_emissions AS percent_emission FROM country WHERE country = 'Albania'
+                            UNION ALL
+                            SELECT
+                                'Gaz naturel', gas_emissions FROM country WHERE country = 'Albania'
+                            UNION ALL
+                            SELECT
+                                'Pétrole', oil_emissions FROM country WHERE country = 'Albania'
+                            UNION ALL
+                            SELECT
+                                'Hydro', hydro_emissions FROM country WHERE country = 'Albania'
+                            UNION ALL
+                            SELECT
+                                'Renouvelable (Solaire)', renewable_emissions FROM country WHERE country = 'Albania'
+                            UNION ALL
+                            SELECT
+                                'Nucléaire', nuclear_emissions FROM country WHERE country = 'Albania'
+                        ) c
+                        JOIN emissions e ON e.source = c.source;''')  
+
+        emission_contribution_data = cursor.fetchall()  
+
+    
+    connection.close()
     data = dict(zip(['total_coal', 'total_gas', 'total_oil', 'total_hydro', 'total_renewables', 'total_nuclear'], results))
     countries = get_countries()
 
     
-    return render_template('energy_proportions.html', data=data, country=country, countries=countries)
+    return render_template('energy_proportions.html', emission_contribution_data=emission_contribution_data , data=data, country=country, countries=countries)
+
+@app.route('/emission-contribution')
+def emission_contribution():
+    country = request.args.get('country')
+    connection = create_connection()
+    with connection.cursor(dictionary=True) as cursor:
+        if country :
+            cursor.execute('''SELECT
+                            e.source AS "Source de production",
+                            ROUND(c.percent_emission, 2) AS "pourcentage d’utilisation",
+                            e.median_gco2_kwh AS "Médiane de gCO2/kWh",
+                            ROUND((c.percent_emission / 100) * e.median_gco2_kwh, 2) AS "Contribution en émission gCO2/kWh"
+                        FROM (
+                            SELECT
+                                'Charbon' AS source, coal_emissions AS percent_emission FROM country WHERE country = %s
+                            UNION ALL
+                            SELECT
+                                'Gaz naturel', gas_emissions FROM country WHERE country = %s
+                            UNION ALL
+                            SELECT
+                                'Pétrole', oil_emissions FROM country WHERE country = %s
+                            UNION ALL
+                            SELECT
+                                'Hydro', hydro_emissions FROM country WHERE country = %s
+                            UNION ALL
+                            SELECT
+                                'Renouvelable (Solaire)', renewable_emissions FROM country WHERE country = %s
+                            UNION ALL
+                            SELECT
+                                'Nucléaire', nuclear_emissions FROM country WHERE country = %s
+                        ) c
+                        JOIN emissions e ON e.source = c.source;''',(country,) * 6)
+        else:
+            cursor.execute('''SELECT
+                            e.source AS "Source de production",
+                            ROUND(c.percent_emission, 2) AS "pourcentage d’utilisation",
+                            e.median_gco2_kwh AS "Médiane de gCO2/kWh",
+                            ROUND((c.percent_emission / 100) * e.median_gco2_kwh, 2) AS "Contribution en émission gCO2/kWh"
+                        FROM (
+                            SELECT
+                                'Charbon' AS source, coal_emissions AS percent_emission FROM country WHERE country = 'Albania'
+                            UNION ALL
+                            SELECT
+                                'Gaz naturel', gas_emissions FROM country WHERE country = 'Albania'
+                            UNION ALL
+                            SELECT
+                                'Pétrole', oil_emissions FROM country WHERE country = 'Albania'
+                            UNION ALL
+                            SELECT
+                                'Hydro', hydro_emissions FROM country WHERE country = 'Albania'
+                            UNION ALL
+                            SELECT
+                                'Renouvelable (Solaire)', renewable_emissions FROM country WHERE country = 'Albania'
+                            UNION ALL
+                            SELECT
+                                'Nucléaire', nuclear_emissions FROM country WHERE country = 'Albania'
+                        ) c
+                        JOIN emissions e ON e.source = c.source;''')  
+
+        emission_contribution_data = cursor.fetchall()  
+    connection.close()  # Fermer la connexion à la base de données
+
+    return render_template('emission-contribution.html', emission_contribution_data=emission_contribution_data , country=country)
 
 if __name__ == '__main__':
     app.run(debug=True)
