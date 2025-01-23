@@ -41,7 +41,7 @@ def get_countries():
     connection.close()
     return countries
 
-@app.route('/energy-usage')
+@app.route('/country-energy-usage')
 def energy_usage():
     energy_source = request.args.get('source', 'coal_emissions')
     connection = create_connection()
@@ -55,7 +55,7 @@ def energy_usage():
         results = cursor.fetchall()
     connection.close()
     data = pd.DataFrame(results, columns=['country', 'coal_emissions', 'gas_emissions', 'oil_emissions', 'hydro_emissions', 'renewable_emissions', 'nuclear_emissions'])
-    return render_template('energy_usage.html', data=data.to_dict(orient='list'), energy_source=energy_source)
+    return render_template('country_energy_usage.html', data=data.to_dict(orient='list'), energy_source=energy_source)
 
 @app.route('/regions-energy-usage')
 def regions_energy_usage():

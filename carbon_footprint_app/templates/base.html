@@ -12,26 +12,33 @@
         <header>
             <div id="header-container">
                 <div id="logo">
-                    <img src="{{ url_for('static', filename='img/logo.jpg') }}" alt="logo" width="300px">
+                    <a href="/">Accueil</a>
                 </div>
-                
-                <div id="title">
-                    <h1>Analyse de l'Empreinte Carbone</h1>
+                <div id="images">
+                    <img src="{{ url_for('static', filename='img/IA1.png') }}" alt="IA1">
+                    <img src="{{ url_for('static', filename='img/IA2.png') }}" alt="IA2">
+                    <img src="{{ url_for('static', filename='img/IA3.png') }}" alt="IA3">
+                    <img src="{{ url_for('static', filename='img/IA4.png') }}" alt="IA4">
                 </div>
-    
+            </div>
+            <div id="title">
+                <h1>Analyse de la Production Électrique</h1>
                 <nav id="navigation">
                     <ul>
-                        <li><a href="/">Accueil</a></li>
-                        <li><a href="/total-emissions">Émissions Totales</a></li>
-                        <li><a href="/coal-usage">Usage du Charbon</a></li>
-                        <li><a href="/energy-source-proportions">Proportions d'Énergie</a></li>
-                        <li><a href="/selected_country_total_emissions">Pays Sélectionné</a></li>
+                        <li><a href="/country-energy-usage">Classement des pays par sources d'énergie</a></li>
+                        <li><a href="/regions-energy-usage">Classement des régions par sources d'énergie</a></li>
+                        <li><a href="/energy-source-proportions">Proportions des sources d'énergie pour la production totale</a></li>
+                    </ul>
+                </nav>
+                <h1>Analyse de l'Empreinte Carbone</h1>
+                <nav id="navigation">
+                    <ul>
+                        <li><a href="/total-emissions">XX Émissions Totales XX</a></li>
+                        <li><a href="/coal-usage">XX Usage du Charbon XX</a></li>
                     </ul>
                 </nav>
             </div>
         </header>
-
-
 
         <div id="container">
             {% block content %}
@@ -40,6 +47,3 @@
 
     </body>
 </html>
-
-
-
