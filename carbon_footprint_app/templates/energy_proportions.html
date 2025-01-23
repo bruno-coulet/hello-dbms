@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proportions des Émissions par Source d’Énergie pour {{ country if country else 'Tous les pays' }}</title>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block content %}
     <h1>Proportions mondiale, par pays ou régions des sources d'énergie  pour la production totale d'électricité en 2015</h1>
     <h1 style="text-align: center;">{{ country if country else 'Mondiale' }}</h1>
     
@@ -70,5 +64,4 @@
 
         Plotly.newPlot('pie-chart', data, layout);
     </script>
-</body>
-</html>
+{% endblock %}
