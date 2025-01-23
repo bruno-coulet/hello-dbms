@@ -3,7 +3,10 @@
 {% block content %}
     <h1>Proportions mondiale, par pays ou régions des sources d'énergie  pour la production totale d'électricité en 2015</h1>
     <h1 style="text-align: center;">{{ country if country else 'Mondiale' }}</h1>
-    
+    <ul>
+    <li>Chaque secteur représente la proportion des sources d'énergies pour la production totale d'électricité par pays, régions ou Mondiale.</li>
+    </ul>
+
     <form method="get" action="/energy-source-proportions" id="country-form">
         <label for="country">Sélectionnez un pays ou une région :</label>
         <select id="country" name="country" onchange="document.getElementById('country-form').submit();">
