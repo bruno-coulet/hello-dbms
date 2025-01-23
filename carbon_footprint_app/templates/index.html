@@ -1,5 +1,101 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+    <h1>Aperçu des Données de la Base de Données CarbonFootprint</h1>
+    
+    <h2>Table Country</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Pays</th>
+                <th class="coal">Charbon</th>
+                <th class="gas">Gaz</th>
+                <th class="oil">Pétrole</th>
+                <th class="hydro">Hydroélectrique</th>
+                <th class="renewable">Renouvelables</th>
+                <th class="nuclear">Nucléaire</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in range(country_data['country']|length) %}
+            <tr>
+                <td>{{ country_data['country'][i] }}</td>
+                <td>{{ country_data['coal_emissions'][i] }}</td>
+                <td>{{ country_data['gas_emissions'][i] }}</td>
+                <td>{{ country_data['oil_emissions'][i] }}</td>
+                <td>{{ country_data['hydro_emissions'][i] }}</td>
+                <td>{{ country_data['renewable_emissions'][i] }}</td>
+                <td>{{ country_data['nuclear_emissions'][i] }}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <h2>Table World</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Région</th>
+                <th class="coal">Charbon</th>
+                <th class="gas">Gaz</th>
+                <th class="oil">Pétrole</th>
+                <th class="hydro">Hydroélectrique</th>
+                <th class="renewable">Renouvelables</th>
+                <th class="nuclear">Nucléaire</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in range(world_data['region']|length) %}
+            <tr>
+                <td>{{ world_data['region'][i] }}</td>
+                <td>{{ world_data['coal_emissions_total'][i] }}</td>
+                <td>{{ world_data['gas_emissions_total'][i] }}</td>
+                <td>{{ world_data['oil_emissions_total'][i] }}</td>
+                <td>{{ world_data['hydro_emissions_total'][i] }}</td>
+                <td>{{ world_data['renewable_emissions_total'][i] }}</td>
+                <td>{{ world_data['nuclear_emissions_total'][i] }}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <h2>Table Emissions</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Source</th>
+                <th>Min gCO2/kWh</th>
+                <th>Median gCO2/kWh</th>
+                <th>Max gCO2/kWh</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in range(emissions_data['source']|length) %}
+            <tr>
+                <td>{{ emissions_data['source'][i] }}</td>
+                <td>{{ emissions_data['min_gCO2_kWh'][i] }}</td>
+                <td>{{ emissions_data['median_gCO2_kWh'][i] }}</td>
+                <td>{{ emissions_data['max_gCO2_kWh'][i] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
