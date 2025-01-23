@@ -59,42 +59,58 @@ def energy_usage():
 
 @app.route('/energy-source-proportions')
 def energy_source_proportions():
-    country = request.args.get('country')
+    country_or_region = request.args.get('country')
     connection = create_connection()
-    with connection.cursor() as cursor:
-        if country:
-            cursor.execute("""
-            SELECT 
-                SUM(coal_emissions) AS total_coal,
-                SUM(gas_emissions) AS total_gas,
-                SUM(oil_emissions) AS total_oil,
-                SUM(hydro_emissions) AS total_hydro,
-                SUM(renewable_emissions) AS total_renewables,
-                SUM(nuclear_emissions) AS total_nuclear
-            FROM country
-            WHERE country = %s;
-            """, (country,))
-        else:
-            cursor.execute("""
-            SELECT 
-                SUM(coal_emissions) AS total_coal,
-                SUM(gas_emissions) AS total_gas,
-                SUM(oil_emissions) AS total_oil,
-                SUM(hydro_emissions) AS total_hydro,
-                SUM(renewable_emissions) AS total_renewables,
-                SUM(nuclear_emissions) AS total_nuclear
-            FROM country;
-            """)
-        results = cursor.fetchone()
-    connection.close()
+    if connection is None:
+        return "Erreur de connexion à la base de données", 500
+    try:
+        with connection.cursor() as cursor:
+            if country_or_region:
+                cursor.execute("""
+                SELECT 
+                    SUM(coal_emissions) AS total_coal,
+                    SUM(gas_emissions) AS total_gas,
+                    SUM(oil_emissions) AS total_oil,
+                    SUM(hydro_emissions) AS total_hydro,
+                    SUM(renewable_emissions) AS total_renewables,
+                    SUM(nuclear_emissions) AS total_nuclear
+                FROM (
+                    SELECT * FROM country WHERE country = %s
+                    UNION ALL
+                    SELECT * FROM world WHERE region = %s
+                ) AS combined;
+                """, (country_or_region, country_or_region))
+            else:
+                cursor.execute("""
+                SELECT 
+                    SUM(coal_emissions) AS total_coal,
+                    SUM(gas_emissions) AS total_gas,
+                    SUM(oil_emissions) AS total_oil,
+                    SUM(hydro_emissions) AS total_hydro,
+                    SUM(renewable_emissions) AS total_renewables,
+                    SUM(nuclear_emissions) AS total_nuclear
+                FROM country;
+                """)
+            results = cursor.fetchone()
+
+            cursor.execute("SELECT DISTINCT country FROM country;")
+            countries = [row[0] for row in cursor.fetchall()]
+
+            cursor.execute("SELECT DISTINCT region FROM world;")
+            regions = [row[0] for row in cursor.fetchall()]
+    except Error as e:
+        logging.error(f"Erreur lors de l'exécution de la requête: {e}")
+        return "Erreur lors de l'exécution de la requête", 500
+    finally:
+        connection.close()
     
     if not results or all(v is None for v in results):
         results = (0, 0, 0, 0, 0, 0)
 
     data = dict(zip(['total_coal', 'total_gas', 'total_oil', 'total_hydro', 'total_renewables', 'total_nuclear'], results))
-    countries = get_countries()
 
-    return render_template('energy_proportions.html', data=data, country=country, countries=countries)
+    return render_template('energy_proportions.html', data=data, country=country_or_region, countries=countries, regions=regions)
+
 
 if __name__ == '__main__':
     app.run(debug=True)

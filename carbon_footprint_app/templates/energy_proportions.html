@@ -10,14 +10,22 @@
     <h1>Proportions mondiale et par pays des sources d'énergie pour la production totale d'électricité en 2015</h1>
     <h1 style="text-align: center;">{{ country if country else 'Mondiale' }}</h1>
     
-
     <form method="get" action="/energy-source-proportions" id="country-form">
-        <label for="country">Sélectionnez un pays :</label>
+        <label for="country">Sélectionnez un pays ou une région :</label>
         <select id="country" name="country" onchange="document.getElementById('country-form').submit();">
-            <option value="">Mondiale</option>
-            {% for c in countries %}
-                <option value="{{ c }}" {% if c == country %}selected{% endif %}>{{ c }}</option>
-            {% endfor %}
+            <optgroup label="Mondiale">
+                <option value="">Mondiale</option>
+            </optgroup>
+            <optgroup label="Pays">
+                {% for c in countries %}
+                    <option value="{{ c }}" {% if c == country %}selected{% endif %}>{{ c }}</option>
+                {% endfor %}
+            </optgroup>
+            <optgroup label="Régions">
+                {% for r in regions %}
+                    <option value="{{ r }}" {% if r == country %}selected{% endif %}>{{ r }}</option>
+                {% endfor %}
+            </optgroup>
         </select>
     </form>
 
