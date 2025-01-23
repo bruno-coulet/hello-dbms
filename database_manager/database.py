@@ -67,11 +67,23 @@ def create_tables():
                 )
             ''')
             logging.info("Table 'World' créée ou déjà existante.")
+
+            cursor.execute('''
+                CREATE TABLE IF NOT EXISTS Emissions (
+                    id INT AUTO_INCREMENT PRIMARY KEY,
+                    source VARCHAR(100),
+                    min_gCO2_kWh DECIMAL(10, 2),
+                    median_gCO2_kWh DECIMAL(10, 2),
+                    max_gCO2_kWh DECIMAL(10, 2)
+                )
+            ''')
+            logging.info("Table 'Emissions' créée ou déjà existante.")
         except Error as e:
             logging.error(f"Erreur lors de la création des tables: {e}")
         finally:
             cursor.close()
             connection.close()
+
 
 if __name__ == "__main__":
     create_database()

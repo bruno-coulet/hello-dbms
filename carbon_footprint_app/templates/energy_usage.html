@@ -8,20 +8,7 @@
 </head>
 <body>
     <h1>Classement des Pays par Source d'Énergie pour la Production d'Électricité en 2015</h1>
-    <label for="energy-source">Sélectionnez une source d'énergie :</label>
-    <select id="energy-source" onchange="updateChart()">
-        <option value="coal_emissions" {% if energy_source == 'coal_emissions' %}selected{% endif %}>Charbon</option>
-        <option value="gas_emissions" {% if energy_source == 'gas_emissions' %}selected{% endif %}>Gaz</option>
-        <option value="oil_emissions" {% if energy_source == 'oil_emissions' %}selected{% endif %}>Pétrole</option>
-        <option value="hydro_emissions" {% if energy_source == 'hydro_emissions' %}selected{% endif %}>Hydroélectrique</option>
-        <option value="renewable_emissions" {% if energy_source == 'renewable_emissions' %}selected{% endif %}>Renouvelables</option>
-        <option value="nuclear_emissions" {% if energy_source == 'nuclear_emissions' %}selected{% endif %}>Nucléaire</option>
-    </select>
-    <div id="bar-chart"></div>
-    <div id="description" style="display: flex; align-items: center;">
-        <div id="description-text"></div>
-        <div id="gauge-chart" style="margin-left: 20px;"></div>
-    </div>
+    <div id="charts-container"></div>
 
     <script>
         var data = {
@@ -34,7 +21,18 @@
             nuclear_emissions: {{ data['nuclear_emissions']|tojson }}
         };
 
+        var energySources = ['coal_emissions', 'gas_emissions', 'oil_emissions', 'hydro_emissions', 'renewable_emissions', 'nuclear_emissions'];
+
         var energySourceLabels = {
+            'coal_emissions': 'le charbon',
+            'gas_emissions': 'le gaz',
+            'oil_emissions': 'le pétrole',
+            'hydro_emissions': 'l\'hydroélectrique',
+            'renewable_emissions': 'les énergies renouvelables',
+            'nuclear_emissions': 'le nucléaire'
+        };
+
+        var energySourceTitles = {
             'coal_emissions': 'Charbon',
             'gas_emissions': 'Gaz',
             'oil_emissions': 'Pétrole',
@@ -62,8 +60,7 @@
             }
         }
 
-        function updateChart() {
-            var energySource = document.getElementById('energy-source').value;
+        function createChart(energySource) {
             var sortedData = data.country.map((country, index) => ({
                 country: country,
                 value: data[energySource][index]
@@ -82,27 +79,31 @@
                 x: includedData.map(item => item.country),
                 y: includedData.map(item => item.value),
                 type: 'bar',
-                text: includedData.map(item => `${item.country}: ${item.value}%`), // Ajout des pays et des valeurs en pourcentage dans les info-bulles
-                textposition: 'inside', // Position du texte à l'intérieur des barres
-                insidetextanchor: 'middle', // Ancrage du texte au milieu
-                hoverinfo: 'text+y', // Affichage des pays et des valeurs dans les info-bulles
-                marker: { color: colors } // Application des couleurs
+                text: includedData.map(item => `${item.country}: ${item.value}%`),
+                textposition: 'inside',
+                insidetextanchor: 'middle',
+                hoverinfo: 'text+y',
+                marker: { color: colors },
+                textfont: { color: 'black' }
             }];
 
             var layout = {
+                title: `<b>${energySourceTitles[energySource]}</b>`,
                 xaxis: { 
                     title: 'Pays',
-                    showticklabels: false // Retirer les étiquettes des pays de l'axe des x
+                    showticklabels: false
                 },
                 yaxis: { 
-                    title: 'Pourcentage de ' + energySourceLabels[energySource].replace(/(.{1,15})(\s|$)/g, "$1<br>") + ' dans la production d\'électricité',
-                    type: 'log' // Utilisation d'une échelle logarithmique
+                    title: 'Pourcentage de ' + energySourceTitles[energySource] + ' dans la production d\'électricité',
+                    type: 'log'
                 }
             };
 
-            Plotly.newPlot('bar-chart', chartData, layout);
+            var chartDiv = document.createElement('div');
+            chartDiv.id = energySource + '-chart';
+            document.getElementById('charts-container').appendChild(chartDiv);
+            Plotly.newPlot(chartDiv.id, chartData, layout);
 
-            // Mise à jour de la description
             var totalCountries = data.country.length;
             var displayedCountries = includedData.length;
             var percentageRepresentation = ((displayedCountries / totalCountries) * 100).toFixed(2);
@@ -112,14 +113,27 @@
                 <p>Cela représente ${percentageRepresentation}% des pays de la base de données utilisant cette source d'énergie.</p>
             `;
 
-            document.getElementById('description-text').innerHTML = description;
+            var descriptionDiv = document.createElement('div');
+            descriptionDiv.style.display = 'flex';
+            descriptionDiv.style.alignItems = 'center';
 
-            // Ajout de la jauge
+            var descriptionTextDiv = document.createElement('div');
+            descriptionTextDiv.innerHTML = description;
+            descriptionDiv.appendChild(descriptionTextDiv);
+
+            var gaugeDiv = document.createElement('div');
+            gaugeDiv.id = energySource + '-gauge';
+            gaugeDiv.style.marginLeft = '20px';
+            gaugeDiv.style.width = '600px'; // Augmenter la largeur de la jauge
+            descriptionDiv.appendChild(gaugeDiv);
+
+            document.getElementById('charts-container').appendChild(descriptionDiv);
+
             var gaugeData = [{
                 type: "indicator",
                 mode: "gauge+number",
                 value: parseFloat(percentageRepresentation),
-                title: { text: "Pourcentage de Pays Utilisant " + energySourceLabels[energySource], font: { size: 18 } }, // Réduire la taille de la police
+                title: { text: "Pourcentage des pays utilisant " + energySourceLabels[energySource], font: { size: 18 } },
                 gauge: {
                     axis: { range: [0, 100], tickwidth: 1, tickcolor: "darkblue" },
                     bar: { color: "darkred" },
@@ -134,17 +148,15 @@
             }];
 
             var gaugeLayout = { 
-                width: 400,  // Augmenter la largeur
-                height: 300, // Augmenter la hauteur
-                margin: { t: 50, r: 50, l: 50, b: 50 } // Ajuster les marges
+                width: 600, // Augmenter la largeur de la jauge
+                height: 300,
+                margin: { t: 50, r: 50, l: 50, b: 50 }
             };
 
-            Plotly.newPlot('gauge-chart', gaugeData, gaugeLayout);
+            Plotly.newPlot(gaugeDiv.id, gaugeData, gaugeLayout);
         }
 
-
-        // Initial chart
-        updateChart();
+        energySources.forEach(createChart);
     </script>
 </body>
 </html>

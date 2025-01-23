@@ -73,3 +73,37 @@ def insert_world_data_to_db(df):
             cursor.close()
             connection.close()
             logging.info("Connexion fermée après insertion des données dans 'World'.")
+
+# Fonction pour insérer les données dans la table Emissions
+def insert_emissions_data_to_db(df):
+    connection = mysql.connector.connect(
+        host=DB_HOST,
+        user=DB_USER,
+        password=DB_PASSWORD,
+        database=DB_NAME
+    )
+    if connection:
+        cursor = connection.cursor()
+        try:
+            for index, row in df.iterrows():
+                # Vérification si la source existe déjà dans la base de données
+                cursor.execute("SELECT id FROM Emissions WHERE source = %s", (row['Source'],))
+                result = cursor.fetchone()
+
+                if not result:  # Si la source n'existe pas déjà
+                    cursor.execute('''
+                        INSERT INTO Emissions (source, min_gCO2_kWh, median_gCO2_kWh, max_gCO2_kWh)
+                        VALUES (%s, %s, %s, %s)
+                    ''', (row['Source'], row['Min de gCO2/kWh'], row['Médiane de gCO2/kWh'], row['Max de gCO2/kWh']))
+                    logging.info(f"Insertion réussie pour la source: {row['Source']}")
+                else:
+                    logging.info(f"La source {row['Source']} existe déjà dans la base de données. Aucune insertion effectuée.")
+            
+            connection.commit()
+            logging.info("Données insérées avec succès dans la table 'Emissions'.")
+        except Error as e:
+            logging.error(f"Erreur lors de l'insertion des données dans 'Emissions': {e}")
+        finally:
+            cursor.close()
+            connection.close()
+            logging.info("Connexion fermée après insertion des données dans 'Emissions'.")
