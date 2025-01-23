@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="container">
+
+    <h1>Émissions Totales du pays sélectionné</h1>
+
+    <!-- Formulaire pour sélectionner un pays -->
+    <form method="get" action="/selected_country_total_emissions">
+        <label for="country">Choisissez un pays :</label>
+        <select name="country" id="country">
+            <option value="">Tous les pays</option>
+            {% for country in countries %}
+                <option value="{{ country }}" {% if country == selected_country %}selected{% endif %}>
+                    {{ country }}
+                </option>
+            {% endfor %}
+        </select>
+        <button type="submit">Afficher</button>
+    </form>
+
+    <!-- Section pour les proportions -->
+    <div>
+        <h2>Proportions :</h2>
+        <ul>
+            <li>Charbon : {{ data.total_coal }}</li>
+            <li>Gaz : {{ data.total_gas }}</li>
+            <li>Pétrole : {{ data.total_oil }}</li>
+            <li>Hydro : {{ data.total_hydro }}</li>
+            <li>Renouvelables : {{ data.total_renewables }}</li>
+            <li>Nucléaire : {{ data.total_nuclear }}</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+
+
