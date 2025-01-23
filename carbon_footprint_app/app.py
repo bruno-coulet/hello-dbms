@@ -57,6 +57,33 @@ def energy_usage():
     data = pd.DataFrame(results, columns=['country', 'coal_emissions', 'gas_emissions', 'oil_emissions', 'hydro_emissions', 'renewable_emissions', 'nuclear_emissions'])
     return render_template('energy_usage.html', data=data.to_dict(orient='list'), energy_source=energy_source)
 
+@app.route('/regions-energy-usage')
+def regions_energy_usage():
+    energy_source = request.args.get('source', 'coal_emissions_total')
+    connection = create_connection()
+    if connection is None:
+        return "Erreur de connexion à la base de données", 500
+    try:
+        with connection.cursor() as cursor:
+            query = f"""
+            SELECT region, coal_emissions_total, gas_emissions_total, oil_emissions_total, hydro_emissions_total, renewable_emissions_total, nuclear_emissions_total
+            FROM world
+            ORDER BY {energy_source} DESC;
+            """
+            logging.info(f"Exécution de la requête : {query}")
+            cursor.execute(query)
+            results = cursor.fetchall()
+            logging.info(f"Résultats de la requête : {results}")
+    except Error as e:
+        logging.error(f"Erreur lors de l'exécution de la requête: {e}")
+        return f"Erreur lors de l'exécution de la requête: {e}", 500
+    finally:
+        connection.close()
+    data = pd.DataFrame(results, columns=['region', 'coal_emissions_total', 'gas_emissions_total', 'oil_emissions_total', 'hydro_emissions_total', 'renewable_emissions_total', 'nuclear_emissions_total'])
+    return render_template('regions_energy_usage.html', data=data.to_dict(orient='list'), energy_source=energy_source)
+
+
+
 @app.route('/energy-source-proportions')
 def energy_source_proportions():
     country_or_region = request.args.get('country')

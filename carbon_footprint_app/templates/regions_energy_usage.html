@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classement des Régions par Source d'Énergie pour la Production d'Électricité en 2015</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Classement des Régions par Source d'Énergie pour la Production d'Électricité en 2015</h1>
+    <div id="charts-container" aria-live="polite"></div>
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script>
+        var data = {
+            region: {{ data['region']|tojson }},
+            coal_emissions_total: {{ data['coal_emissions_total']|tojson }},
+            gas_emissions_total: {{ data['gas_emissions_total']|tojson }},
+            oil_emissions_total: {{ data['oil_emissions_total']|tojson }},
+            hydro_emissions_total: {{ data['hydro_emissions_total']|tojson }},
+            renewable_emissions_total: {{ data['renewable_emissions_total']|tojson }},
+            nuclear_emissions_total: {{ data['nuclear_emissions_total']|tojson }}
+        };
+
+        var energySources = ['coal_emissions_total', 'gas_emissions_total', 'oil_emissions_total', 'hydro_emissions_total', 'renewable_emissions_total', 'nuclear_emissions_total'];
+
+        var energySourceLabels = {
+            'coal_emissions_total': 'le charbon',
+            'gas_emissions_total': 'le gaz',
+            'oil_emissions_total': 'le pétrole',
+            'hydro_emissions_total': 'l\'hydroélectrique',
+            'renewable_emissions_total': 'les énergies renouvelables',
+            'nuclear_emissions_total': 'le nucléaire'
+        };
+
+        var energySourceTitles = {
+            'coal_emissions_total': 'Charbon',
+            'gas_emissions_total': 'Gaz',
+            'oil_emissions_total': 'Pétrole',
+            'hydro_emissions_total': 'Hydroélectrique',
+            'renewable_emissions_total': 'Renouvelables',
+            'nuclear_emissions_total': 'Nucléaire'
+        };
+
+        function getColorScale(energySource) {
+            switch (energySource) {
+                case 'coal_emissions_total':
+                    return ['#d3d3d3', '#a9a9a9']; // Dégradé de gris clair
+                case 'gas_emissions_total':
+                    return ['#ffcc99', '#ff6600']; // Dégradé d'orange
+                case 'oil_emissions_total':
+                    return ['#a9a9a9', '#696969']; // Dégradé de gris foncé
+                case 'hydro_emissions_total':
+                    return ['#99ccff', '#0066cc']; // Dégradé de bleu
+                case 'renewable_emissions_total':
+                    return ['#99ff99', '#009933']; // Dégradé de vert
+                case 'nuclear_emissions_total':
+                    return ['#e6ccff', '#9933cc']; // Dégradé de violet
+                default:
+                    return ['#ffffff', '#000000']; // Dégradé par défaut
+            }
+        }
+
+        function createChart(energySource) {
+            var sortedData = data.region.map((region, index) => ({
+                region: region,
+                value: data[energySource][index]
+            })).sort((a, b) => b.value - a.value);
+
+            var includedData = sortedData.filter(item => item.value > 0);
+            var excludedData = sortedData.filter(item => item.value === 0);
+
+            var colorScale = getColorScale(energySource);
+            var colors = includedData.map(item => {
+                var ratio = item.value / Math.max(...includedData.map(d => d.value));
+                return `rgba(${parseInt(colorScale[0].slice(1, 3), 16) * (1 - ratio) + parseInt(colorScale[1].slice(1, 3), 16) * ratio}, ${parseInt(colorScale[0].slice(3, 5), 16) * (1 - ratio) + parseInt(colorScale[1].slice(3, 5), 16) * ratio}, ${parseInt(colorScale[0].slice(5, 7), 16) * (1 - ratio) + parseInt(colorScale[1].slice(5, 7), 16) * ratio}, 1)`;
+            });
+
+            var chartData = [{
+                x: includedData.map(item => item.region),
+                y: includedData.map(item => item.value),
+                type: 'bar',
+                text: includedData.map(item => `${item.region}: ${item.value}%`),
+                textposition: 'inside',
+                insidetextanchor: 'middle',
+                hoverinfo: 'text+y',
+                marker: { color: colors },
+                textfont: { color: 'black' }
+            }];
+
+            var layout = {
+                title: `<b>${energySourceTitles[energySource]}</b>`,
+                xaxis: { 
+                    title: 'Régions',
+                    showticklabels: false
+                },
+                yaxis: { 
+                    title: 'Pourcentage de ' + energySourceTitles[energySource] + ' dans la production d\'électricité',
+                    type: 'log'
+                }
+            };
+
+            var chartDiv = document.createElement('div');
+            chartDiv.id = energySource + '-chart';
+            document.getElementById('charts-container').appendChild(chartDiv);
+            Plotly.newPlot(chartDiv.id, chartData, layout);
+
+            var totalRegions = data.region.length;
+            var displayedRegions = includedData.length;
+            var percentageRepresentation = ((displayedRegions / totalRegions) * 100).toFixed(2);
+
+            var description = `
+                <p>Dans ce classement, nous constatons que pour ${energySourceLabels[energySource]}, nous avons ${displayedRegions} régions utilisant cette source d'énergie sur les ${totalRegions} régions de la base de données.</p> 
+                <p>Cela représente ${percentageRepresentation}% des régions de la base de données utilisant cette source d'énergie.</p>
+            `;
+
+            var descriptionDiv = document.createElement('div');
+            descriptionDiv.style.display = 'flex';
+            descriptionDiv.style.alignItems = 'center';
+
+            var descriptionTextDiv = document.createElement('div');
+            descriptionTextDiv.innerHTML = description;
+            descriptionDiv.appendChild(descriptionTextDiv);
+
+            var gaugeDiv = document.createElement('div');
+            gaugeDiv.id = energySource + '-gauge';
+            gaugeDiv.style.marginLeft = '20px';
+            gaugeDiv.style.width = '600px'; // Augmenter la largeur de la jauge
+            descriptionDiv.appendChild(gaugeDiv);
+
+            document.getElementById('charts-container').appendChild(descriptionDiv);
+
+            var gaugeData = [{
+                type: "indicator",
+                mode: "gauge+number",
+                value: parseFloat(percentageRepresentation),
+                title: { text: "Pourcentage des régions utilisant " + energySourceLabels[energySource], font: { size: 18 } },
+                gauge: {
+                    axis: { range: [0, 100], tickwidth: 1, tickcolor: "darkblue" },
+                    bar: { color: "darkred" },
+                    bgcolor: "gray",
+                    borderwidth: 2,
+                    bordercolor: "black",
+                    steps: [
+                        { range: [0, 50], color: "orange" },
+                        { range: [50, 100], color: "green" }
+                    ],
+                }
+            }];
+
+            var gaugeLayout = { 
+                width: 600, // Augmenter la largeur de la jauge
+                height: 300,
+                margin: { t: 50, r: 50, l: 50, b: 50 }
+            };
+
+            Plotly.newPlot(gaugeDiv.id, gaugeData, gaugeLayout);
+        }
+
+        energySources.forEach(createChart);
+    </script>
+</body>
+</html>
