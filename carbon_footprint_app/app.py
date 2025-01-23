@@ -81,16 +81,6 @@ def data_preview():
     return render_template('data_preview.html', country_data=country_data.to_dict(orient='list'), world_data=world_data.to_dict(orient='list'))
 
 
-
-@app.route('/countries')
-def get_countries():
-    connection = create_connection()
-    with connection.cursor() as cursor:
-        cursor.execute("SELECT DISTINCT country FROM country;")
-        countries = [row[0] for row in cursor.fetchall()]
-    connection.close()
-    return countries
-
 @app.route('/country-energy-usage')
 def energy_usage():
     energy_source = request.args.get('source', 'coal_emissions')
