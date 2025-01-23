@@ -1,5 +1,5 @@
-from data_processing import load_and_clean_country_data, load_and_clean_world_data
-from insert_data import insert_country_data_to_db, insert_world_data_to_db
+from data_processing import load_and_clean_country_data, load_and_clean_world_data, load_and_clean_emission_data
+from insert_data import insert_country_data_to_db, insert_world_data_to_db, insert_emissions_data_to_db
 from database import create_database, create_tables, create_connection 
 import logging
 
@@ -21,6 +21,7 @@ def main():
         # Chemins vers les fichiers CSV
         country_file_path = './pre_processed_data/Country.csv'
         world_file_path = './pre_processed_data/World.csv'
+        emission_file_path = './pre_processed_data/emissions.csv'
 
         # Traitement et nettoyage des données pays
         country_df = load_and_clean_country_data(country_file_path)
@@ -35,6 +36,13 @@ def main():
             insert_world_data_to_db(world_df)  # N'envoyez pas la connexion ici
         else:
             logging.error("Erreur lors du chargement et du nettoyage des données mondiales.")
+
+        # Traitement et nettoyage des données d'émissions
+        emission_df = load_and_clean_emission_data(emission_file_path)
+        if emission_df is not None:
+            insert_emissions_data_to_db(emission_df)
+        else:
+            logging.error("Erreur lors du chargement et du nettoyage des données d'émissions.")
 
     except Exception as e:
         logging.error(f"Erreur lors de l'exécution du programme : {e}")

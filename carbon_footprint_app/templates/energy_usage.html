@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classement des Pays par Source d'Énergie pour la Production d'Électricité en 2015</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h1>Classement des Pays par Source d'Énergie pour la Production d'Électricité en 2015</h1>
+    <div id="charts-container"></div>
+
+    <script>
+        var data = {
+            country: {{ data['country']|tojson }},
+            coal_emissions: {{ data['coal_emissions']|tojson }},
+            gas_emissions: {{ data['gas_emissions']|tojson }},
+            oil_emissions: {{ data['oil_emissions']|tojson }},
+            hydro_emissions: {{ data['hydro_emissions']|tojson }},
+            renewable_emissions: {{ data['renewable_emissions']|tojson }},
+            nuclear_emissions: {{ data['nuclear_emissions']|tojson }}
+        };
+
+        var energySources = ['coal_emissions', 'gas_emissions', 'oil_emissions', 'hydro_emissions', 'renewable_emissions', 'nuclear_emissions'];
+
+        var energySourceLabels = {
+            'coal_emissions': 'le charbon',
+            'gas_emissions': 'le gaz',
+            'oil_emissions': 'le pétrole',
+            'hydro_emissions': 'l\'hydroélectrique',
+            'renewable_emissions': 'les énergies renouvelables',
+            'nuclear_emissions': 'le nucléaire'
+        };
+
+        var energySourceTitles = {
+            'coal_emissions': 'Charbon',
+            'gas_emissions': 'Gaz',
+            'oil_emissions': 'Pétrole',
+            'hydro_emissions': 'Hydroélectrique',
+            'renewable_emissions': 'Renouvelables',
+            'nuclear_emissions': 'Nucléaire'
+        };
+
+        function getColorScale(energySource) {
+            switch (energySource) {
+                case 'coal_emissions':
+                    return ['#d3d3d3', '#a9a9a9']; // Dégradé de gris clair
+                case 'gas_emissions':
+                    return ['#ffcc99', '#ff6600']; // Dégradé d'orange
+                case 'oil_emissions':
+                    return ['#a9a9a9', '#696969']; // Dégradé de gris foncé
+                case 'hydro_emissions':
+                    return ['#99ccff', '#0066cc']; // Dégradé de bleu
+                case 'renewable_emissions':
+                    return ['#99ff99', '#009933']; // Dégradé de vert
+                case 'nuclear_emissions':
+                    return ['#e6ccff', '#9933cc']; // Dégradé de violet
+                default:
+                    return ['#ffffff', '#000000']; // Dégradé par défaut
+            }
+        }
+
+        function createChart(energySource) {
+            var sortedData = data.country.map((country, index) => ({
+                country: country,
+                value: data[energySource][index]
+            })).sort((a, b) => b.value - a.value);
+
+            var includedData = sortedData.filter(item => item.value > 0);
+            var excludedData = sortedData.filter(item => item.value === 0);
+
+            var colorScale = getColorScale(energySource);
+            var colors = includedData.map(item => {
+                var ratio = item.value / Math.max(...includedData.map(d => d.value));
+                return `rgba(${parseInt(colorScale[0].slice(1, 3), 16) * (1 - ratio) + parseInt(colorScale[1].slice(1, 3), 16) * ratio}, ${parseInt(colorScale[0].slice(3, 5), 16) * (1 - ratio) + parseInt(colorScale[1].slice(3, 5), 16) * ratio}, ${parseInt(colorScale[0].slice(5, 7), 16) * (1 - ratio) + parseInt(colorScale[1].slice(5, 7), 16) * ratio}, 1)`;
+            });
+
+            var chartData = [{
+                x: includedData.map(item => item.country),
+                y: includedData.map(item => item.value),
+                type: 'bar',
+                text: includedData.map(item => `${item.country}: ${item.value}%`),
+                textposition: 'inside',
+                insidetextanchor: 'middle',
+                hoverinfo: 'text+y',
+                marker: { color: colors },
+                textfont: { color: 'black' }
+            }];
+
+            var layout = {
+                title: `<b>${energySourceTitles[energySource]}</b>`,
+                xaxis: { 
+                    title: 'Pays',
+                    showticklabels: false
+                },
+                yaxis: { 
+                    title: 'Pourcentage de ' + energySourceTitles[energySource] + ' dans la production d\'électricité',
+                    type: 'log'
+                }
+            };
+
+            var chartDiv = document.createElement('div');
+            chartDiv.id = energySource + '-chart';
+            document.getElementById('charts-container').appendChild(chartDiv);
+            Plotly.newPlot(chartDiv.id, chartData, layout);
+
+            var totalCountries = data.country.length;
+            var displayedCountries = includedData.length;
+            var percentageRepresentation = ((displayedCountries / totalCountries) * 100).toFixed(2);
+
+            var description = `
+                <p>Dans ce classement, nous constatons que pour ${energySourceLabels[energySource]}, nous avons ${displayedCountries} pays utilisant cette source d'énergie sur les ${totalCountries} pays de la base de données.</p> 
+                <p>Cela représente ${percentageRepresentation}% des pays de la base de données utilisant cette source d'énergie.</p>
+            `;
+
+            var descriptionDiv = document.createElement('div');
+            descriptionDiv.style.display = 'flex';
+            descriptionDiv.style.alignItems = 'center';
+
+            var descriptionTextDiv = document.createElement('div');
+            descriptionTextDiv.innerHTML = description;
+            descriptionDiv.appendChild(descriptionTextDiv);
+
+            var gaugeDiv = document.createElement('div');
+            gaugeDiv.id = energySource + '-gauge';
+            gaugeDiv.style.marginLeft = '20px';
+            gaugeDiv.style.width = '600px'; // Augmenter la largeur de la jauge
+            descriptionDiv.appendChild(gaugeDiv);
+
+            document.getElementById('charts-container').appendChild(descriptionDiv);
+
+            var gaugeData = [{
+                type: "indicator",
+                mode: "gauge+number",
+                value: parseFloat(percentageRepresentation),
+                title: { text: "Pourcentage des pays utilisant " + energySourceLabels[energySource], font: { size: 18 } },
+                gauge: {
+                    axis: { range: [0, 100], tickwidth: 1, tickcolor: "darkblue" },
+                    bar: { color: "darkred" },
+                    bgcolor: "gray",
+                    borderwidth: 2,
+                    bordercolor: "black",
+                    steps: [
+                        { range: [0, 50], color: "orange" },
+                        { range: [50, 100], color: "green" }
+                    ],
+                }
+            }];
+
+            var gaugeLayout = { 
+                width: 600, // Augmenter la largeur de la jauge
+                height: 300,
+                margin: { t: 50, r: 50, l: 50, b: 50 }
+            };
+
+            Plotly.newPlot(gaugeDiv.id, gaugeData, gaugeLayout);
+        }
+
+        energySources.forEach(createChart);
+    </script>
+</body>
+</html>

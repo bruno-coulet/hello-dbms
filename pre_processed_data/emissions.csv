@@ -1,0 +1,7 @@
+Source;Min de gCO2/kWh;Médiane de gCO2/kWh;Max de gCO2/kWh
+Coal;740;820;910
+Natural gas;410;490;650
+Oil;620;740;890
+Hydro;1;24;2200
+Renewable (Solar);26;41;60
+Nuclear;3.7;12;110

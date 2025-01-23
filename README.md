@@ -2,7 +2,7 @@
 
 ## <span> Sommaire</span>
 - [Contexte](#contexte)
-- [ Schéma de l'application](#app-schema)
+- [ Schéma et utilisation de l'application](#app-schema)
 - [Veille scientifique](#veille-scientifique)
   - [A. Qu'est-ce qu'une donnée ? Sous quelle forme peut-elle se présenter ?](#a-quest-ce-quune-donnee)
   - [B. Donnez et expliquez les critères de mesure de qualité des données.](#b-criteres-de-qualite)
@@ -24,7 +24,7 @@
 
 """"""
 
-## <span> Schéma de l'application <a id="app-schema"></a></span>
+## <span> Schéma et utilisation de l'application <a id="app-schema"></a></span>
 
 | Dossier/Fichier                | Description                                      |
 |--------------------------------|--------------------------------------------------|
@@ -58,7 +58,32 @@
 
 Pour pouvoir lancer l'application, il faut nécessairement :
 * Avoir MySQL pour la création de la DB et la généraiton automatique des tables
-* Indiquer dans un fichier .env les informations pour la connexion à la db MySQL suivantes :  
+* Avoir dans le dossier pre_processed_data
+  * Un fichier de données au format CSV nommé country ayant comme structure 
+
+  | Colonne     | Description                                                                 |
+  |-------------|-----------------------------------------------------------------------------|
+  | Country     | Le nom du pays                                                              |
+  | Coal        | Pourcentage d'utilisation du charbon                                        |
+  | Gas         | Pourcentage d'utilisation du gaz naturel                                    |
+  | Oil         | Pourcentage d'utilisation du pétrole                                        |
+  | Hydro       | Pourcentage d'utilisation de l'énergie hydroélectrique                      |
+  | Renewable   | Pourcentage d'utilisation des énergies renouvelables (solaire, éolienne, etc.) |
+  | Nuclear     | Pourcentage d'utilisation de l'énergie nucléaire |
+
+  * Un fichier de données au format CSV nommé wolrd ayant comme structure
+
+  | Colonne                     | Description                                                                 |
+  |-----------------------------|-----------------------------------------------------------------------------|
+  | World                       | Le nom de la région                                                         |
+  | Coal                        | Pourcentage d'utilisation du charbon                                        |
+  | Gas                         | Pourcentage d'utilisation du gaz naturel                                    |
+  | Oil                         | Pourcentage d'utilisation du pétrole                                        |
+  | Hydro                       | Pourcentage d'utilisation de l'énergie hydroélectrique                      |
+  | Renewable                   | Pourcentage d'utilisation des énergies renouvelables (solaire, éolienne, etc.) |
+  | Nuclear                     | Pourcentage d'utilisation de l'énergie nucléaire                            |
+
+* Indiquer dans un fichier .env dans le dossier principal les informations pour la connexion à la db MySQL suivantes :  
   * DB_HOST=****
   * DB_USER=****
   * DB_PASSWORD=****
