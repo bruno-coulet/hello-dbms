@@ -298,8 +298,8 @@ def world_map():
                         hover_data={"energy_usage_percentage": True, "country": False, "energy_usage_percentage_numeric": False},  # Supprime 'energy_usage_percentage_numeric' du hover
                         color_continuous_scale=color_scale,  # Applique le dégradé de couleur approprié
                         range_color=[0, 100],  # Spécifie que l'échelle de couleurs va de 0 à 100
-                        labels={'energy_usage_percentage': 'Pourcentage d\'utilisation de la source d\'énergie'}, 
-                        title=f"Utilisation {energy_source_translation.get(energy_source, 'Source d\'énergie inconnue')}")
+                        labels={'energy_usage_percentage': 'Pourcentage d utilisation de la source d énergie'}, 
+                        title=f"Utilisation {energy_source_translation.get(energy_source, 'Source d énergie inconnue')}")
     
     # Modifier le titre de la légende
     fig.update_layout(coloraxis_colorbar_title="Pourcentage d'utilisation de la source d'énergie")
