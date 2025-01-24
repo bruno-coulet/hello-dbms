@@ -89,7 +89,6 @@ body {
     color: #1563b1;
 }
 
-<<<<<<< HEAD
 /* Images */
 #images {
     display: flex;
@@ -102,7 +101,7 @@ body {
     max-width: 400px;
 }
 
-<<<<<<< HEAD
+
 /* Fichier static/css/style.css */
 
 .logo-text-container {
@@ -121,11 +120,9 @@ body {
 
 
 /* Title */
-#title {
-=======
 
 #nav {
->>>>>>> b97ba35 (Revert "css Merge branch 'main' into big_bruno")
+
     text-align: center;
     font-family: Arial, sans-serif;
     color: #333;
@@ -172,9 +169,9 @@ h1, h2 {
 }
 
 /* Conteneur principal */
-=======
+
 /* Main content styles */
->>>>>>> 82bf7a9 (update css et bas.html)
+
 .container {
     max-width: 1200px;
     margin: 20px auto;
@@ -248,9 +245,6 @@ table tr:nth-child(even) {
 /* Footer styles */
 footer {
     text-align: center;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     margin: 20px 0;
     font-size: 14px;
     color: #666;
@@ -310,9 +304,6 @@ th.nuclear {
 .proportions {
     background-color: #f8f9fa;
     border: 1px solid #ddd;
->>>>>>> b97ba35 (Revert "css Merge branch 'main' into big_bruno")
-=======
->>>>>>> 82bf7a9 (update css et bas.html)
     padding: 20px;
     background-color: #1563b1;
     color: white;
