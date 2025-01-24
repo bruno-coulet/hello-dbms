@@ -9,6 +9,7 @@
 </head>
 <body>
     <header>
+<<<<<<< HEAD
         <div class="header-container">
             <img src="{{ url_for('static', filename='img/IA.png') }}" alt="Logo IA4" class="logo">
             <h1>Calculateur d'Empreinte Carbone</h1>
@@ -49,5 +50,37 @@
     <footer>
         <p>&copy; 2023 Analyse de l'Empreinte Carbone. Tous droits réservés.</p>
     </footer>
+=======
+        <div id="header-container">
+            <img src="{{ url_for('static', filename='img/IA.png') }}" alt="Logo IA4" width="200">
+            <h1>Calculateur d'Empreinte Carbone</h1>
+        </div>
+
+        <nav class="main-nav">
+            <a href="/" class="nav-home">Accueil</a>
+            <div class="nav-bloc">
+                <h2>Production Électrique</h2>
+                <ul>
+                    <li><a href="/country-energy-usage">Classement des pays par sources d'énergie</a></li>
+                    <li><a href="/regions-energy-usage">Classement des régions par sources d'énergie</a></li>
+                    <li><a href="/energy-source-proportions">Proportions des sources d'énergie pour la production totale</a></li>
+                </ul>
+            </div>
+            <div class="nav-bloc">
+                <h2>Empreinte Carbone</h2>
+                <ul>
+                    <li><a href="/total-emissions">Émissions Totales</a></li>
+                    <li><a href="/selected_country_total_emissions">Émissions Totales Du Pays Sélectionné</a></li>
+                    <li><a href="/coal-usage">Usage du Charbon</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main id="container">
+        {% block content %}
+        {% endblock %}
+    </main>
+>>>>>>> 30ac7fd (css upgrade)
 </body>
 </html>
