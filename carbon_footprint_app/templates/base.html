@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Carbon Footprint Analysis</title>
+        <title>Analyse de l'Empreinte Carbone</title>
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
         <link rel="stylesheet" href="{{ url_for ('static', filename='css/style.css') }}">
     </head>
@@ -27,59 +27,22 @@
 
             <div id="title">
 
+                <h1>Calculateur d’Empreinte Carbone</h1>
 
-                <h1>Analyse de la Production Électrique</h1>
+                <h2>Production Électrique</h2>
 
                 <nav id="navigation">
                     <ul>
-                        <li>
-                            <a href="/country-energy-usage">
-                                <div class="logo-text-container">
-                                    <img src="{{ url_for('static', filename='img/classement_pays_logo.webp') }}" 
-                                         alt="Classement des pays" 
-                                         class="small-logo">
-                                    Classement des pays par sources d'énergie
-                                </div>
-                            </a>
-                        </li>                                              
-                        <li>
-                            <a href="/regions-energy-usage">
-                                <div class="logo-text-container">
-                                    <img src="{{ url_for('static', filename='img/classement_regions_logo.webp') }}" 
-                                         alt="Classement des régions" 
-                                         class="small-logo">
-                                    Classement des régions par sources d'énergie
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/energy-source-proportions">
-                                <div class="logo-text-container">
-                                    <img src="{{ url_for('static', filename='img/proportion_logo.png') }}" 
-                                         alt="Proportions des sources d'énergie" 
-                                         class="small-logo">
-                                    Proportions des sources d'énergie pour la production totale
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/world-map">
-                                <div class="logo-text-container">
-                                    <img src="{{ url_for('static', filename='img/carte_logo.png') }}" 
-                                         alt="Carte du Monde des sources d'énergie" 
-                                         class="small-logo">
-                                         Carte du Monde des sources d'énergie
-                                </div>
-                            </a>
-                        </li>
+                        <li><a href="/country-energy-usage">Classement des pays par sources d'énergie</a></li>
+                        <li><a href="/regions-energy-usage">Classement des régions par sources d'énergie</a></li>
+                        <li><a href="/energy-source-proportions">Proportions des sources d'énergie pour la production totale</a></li>
                     </ul>
                 </nav>
 
-                <h1>Analyse de l'Empreinte Carbone</h1>
+                <h2>Empreinte Carbone</h2>
 
                 <nav id="navigation">
                     <ul>
-                        <li><a href="/emission_contribution">les emissions de co2 par pays et par energie</a></li>
                         <li><a href="/total-emissions">XX Émissions Totales XX</a></li>
                         <li><a href="/selected_country_total_emissions">Émissions Totales Du Pays Sélectionné</a></li>
                         <li><a href="/coal-usage">XX Usage du Charbon XX</a></li>
@@ -87,12 +50,12 @@
                 </nav>
 
             </div>
-        </header>
+        </nav>
+    </header>
 
-        <div id="container">
-            {% block content %}
-            {% endblock %}
-        </div>
-
-    </body>
+    <main id="container">
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
 </html>
