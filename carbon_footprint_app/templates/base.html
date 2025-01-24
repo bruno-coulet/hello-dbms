@@ -1,44 +1,32 @@
 <!DOCTYPE html>
-<html lang="fr-fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Analyse de l'Empreinte Carbone</title>
-        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-        <link rel="stylesheet" href="{{ url_for ('static', filename='css/style.css') }}">
-    </head>
-    <body>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyse de l'Empreinte Carbone</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <img src="{{ url_for('static', filename='img/IA.png') }}" alt="Logo IA4" class="logo">
+            <h1>Calculateur d'Empreinte Carbone</h1>
+        </div>
 
-        <header>
-            <div id="header-container">
-
-                <div id="logo">
-                    <a href="/">Accueil</a>
-                </div>
-
-                <div id="images">
-                    <img src="{{ url_for('static', filename='img/IA1.png') }}" alt="IA1">
-                    <img src="{{ url_for('static', filename='img/IA2.png') }}" alt="IA2">
-                    <img src="{{ url_for('static', filename='img/IA3.png') }}" alt="IA3">
-                    <img src="{{ url_for('static', filename='img/IA4.png') }}" alt="IA4">
-                </div>
-                
+        <nav class="main-nav">
+            <div class="nav-item nav-home-container">
+                <a href="/" class="nav-home">Accueil</a>
             </div>
-
-            <div id="title">
-
-                <h1>Calculateur d’Empreinte Carbone</h1>
-
+            <div class="nav-item nav-bloc">
                 <h2>Production Électrique</h2>
-
-                <nav id="navigation">
-                    <ul>
-                        <li><a href="/country-energy-usage">Classement des pays par sources d'énergie</a></li>
-                        <li><a href="/regions-energy-usage">Classement des régions par sources d'énergie</a></li>
-                        <li><a href="/energy-source-proportions">Proportions des sources d'énergie pour la production totale</a></li>
-                    </ul>
-                </nav>
-
+                <ul>
+                    <li><a href="/country-energy-usage">Classement des pays par sources d'énergie</a></li>
+                    <li><a href="/regions-energy-usage">Classement des régions par sources d'énergie</a></li>
+                    <li><a href="/energy-source-proportions">Proportions des sources d'énergie pour la production totale</a></li>
+                </ul>
+            </div>
+            <div class="nav-item nav-bloc">
                 <h2>Empreinte Carbone</h2>
 
                 <nav id="navigation">
@@ -53,9 +41,13 @@
         </nav>
     </header>
 
-    <main id="container">
+    <main class="container">
         {% block content %}
         {% endblock %}
     </main>
+
+    <footer>
+        <p>&copy; 2023 Analyse de l'Empreinte Carbone. Tous droits réservés.</p>
+    </footer>
 </body>
 </html>
