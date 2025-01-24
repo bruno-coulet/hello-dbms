@@ -234,5 +234,178 @@ def selected_country_total_emissions():
         regions=regions
     )
 
+@app.route('/world-map')
+def world_map():
+    # Récupérer la source d'énergie depuis les paramètres de la requête
+    energy_source = request.args.get('source', 'coal_emissions')  # Par défaut, charbon
+
+    # Dictionnaire pour les noms en français des sources d'énergie
+    energy_source_translation = {
+        'coal_emissions': 'du charbon',
+        'gas_emissions': 'du gaz',
+        'oil_emissions': 'du pétrole',
+        'hydro_emissions': 'de l\'hydroélectrique',
+        'renewable_emissions': 'des énergies renouvelables',
+        'nuclear_emissions': 'du nucléaire'
+    }
+
+    # Connexion à la base de données
+    connection = create_connection()
+    if connection is None:
+        return "Erreur de connexion à la base de données", 500
+    
+    try:
+        with connection.cursor() as cursor:
+            # Exécuter la requête pour récupérer les pourcentages d'utilisation de la source d'énergie par pays
+            cursor.execute(f"SELECT country, {energy_source} FROM country")
+            results = cursor.fetchall()
+    except Error as e:
+        logging.error(f"Erreur lors de l'exécution de la requête: {e}")
+        return f"Erreur lors de l'exécution de la requête: {e}", 500
+    finally:
+        connection.close()
+
+    # Convertir les résultats en DataFrame pandas
+    df = pd.DataFrame(results, columns=['country', 'energy_usage_percentage'])
+    
+    # Formater le pourcentage en ajoutant '%' à la valeur
+    df['energy_usage_percentage'] = df['energy_usage_percentage'].apply(lambda x: f"{x:.2f}%")
+    
+    # Ajuster les valeurs à un format numérique pour l'échelle de couleurs
+    df['energy_usage_percentage_numeric'] = df['energy_usage_percentage'].apply(lambda x: float(x.strip('%')) if isinstance(x, str) else x)
+
+    # Définir les dégradés de couleurs en fonction de la source d'énergie
+    color_scales = {
+        'coal_emissions': ["#ffffff", "#000000"],  # Dégradé pour charbon (de blanc à noir)
+        'gas_emissions': ["#ffffff", "#ff4f00"],   # Dégradé pour gaz (orange)
+        'oil_emissions': ["#ffffff", "#b4533f"],   # Dégradé pour pétrole (marron)
+        'hydro_emissions': ["#ffffff", "#00bfff"],  # Dégradé pour hydroélectrique (bleu)
+        'renewable_emissions': ["#ffffff", "#006400"],  # Dégradé pour renouvelables (vert)
+        'nuclear_emissions': ["#ffffff", "#4b0082"]  # Dégradé pour nucléaire (violet)
+    }
+
+    # Sélectionner le dégradé de couleur approprié en fonction de la source d'énergie
+    color_scale = color_scales.get(energy_source, ["white", "black"])
+
+    # Utilisation de Plotly Express pour créer la carte choroplèthe
+    fig = px.choropleth(df, 
+                        locations="country", 
+                        locationmode="country names", 
+                        color="energy_usage_percentage_numeric", 
+                        hover_name="country",  # Garde le nom du pays pour la carte
+                        hover_data={"energy_usage_percentage": True, "country": False, "energy_usage_percentage_numeric": False},  # Supprime 'energy_usage_percentage_numeric' du hover
+                        color_continuous_scale=color_scale,  # Applique le dégradé de couleur approprié
+                        range_color=[0, 100],  # Spécifie que l'échelle de couleurs va de 0 à 100
+                        labels={'energy_usage_percentage': 'Pourcentage d utilisation de la source d énergie'}, 
+                        title=f"Utilisation {energy_source_translation.get(energy_source, 'Source d énergie inconnue')}")
+    
+    # Modifier le titre de la légende
+    fig.update_layout(coloraxis_colorbar_title="Pourcentage d'utilisation de la source d'énergie")
+
+    # Centrer le titre du graphique
+    fig.update_layout(title_x=0.5)  # Centrer le titre horizontalement
+    
+    # Générer le code HTML du graphique
+    graph_html = fig.to_html(full_html=False)
+
+    # Rendre la page avec le graphique
+    return render_template('world_map.html', graph_html=graph_html, energy_source=energy_source)
+
+
+@app.route('/emission_contribution')
+def emission_contribution():
+    country_or_region = request.args.get('country')
+    connection = create_connection()
+    with connection.cursor(dictionary=True) as cursor:
+        if country_or_region :
+            cursor.execute('''SELECT
+                            e.source AS "Source de production",
+                            ROUND(c.percent_emission, 2) AS "pourcentage d’utilisation",
+                            e.median_gco2_kwh AS "Médiane de gCO2/kWh",
+                            ROUND((c.percent_emission / 100) * e.median_gco2_kwh, 2) AS "Contribution en émission gCO2/kWh"
+                        FROM (
+                            SELECT
+                                'Coal' AS source, coal_emissions AS percent_emission FROM (
+                                        SELECT * FROM country WHERE country = %s
+                                        UNION 
+                                        SELECT * FROM world WHERE region = %s
+                                    ) AS combined
+                            UNION 
+                            SELECT
+                                'Natural gas', gas_emissions FROM  (
+                                        SELECT * FROM country WHERE country = %s
+                                        UNION 
+                                        SELECT * FROM world WHERE region = %s
+                                    ) AS combined
+                            UNION 
+                            SELECT
+                                'Oil', oil_emissions FROM (
+                                        SELECT * FROM country WHERE country = %s
+                                        UNION 
+                                        SELECT * FROM world WHERE region = %s
+                                    ) AS combined
+                            UNION 
+                            SELECT
+                                'Hydro', hydro_emissions FROM (
+                                        SELECT * FROM country WHERE country = %s
+                                        UNION 
+                                        SELECT * FROM world WHERE region = %s
+                                    ) AS combined
+                            UNION 
+                            SELECT
+                                'Renewable Solar', renewable_emissions FROM  (
+                                        SELECT * FROM country WHERE country = %s
+                                        UNION 
+                                        SELECT * FROM world WHERE region = %s
+                                    ) AS combined
+                            UNION 
+                            SELECT
+                                'Nuclear', nuclear_emissions FROM (
+                                        SELECT * FROM country WHERE country = %s
+                                        UNION 
+                                        SELECT * FROM world WHERE region = %s
+                                    ) AS combined
+                        ) c
+                        JOIN emissions e ON e.source = c.source;''',(country_or_region,) * 12  )
+        else:
+            cursor.execute('''SELECT
+                            e.source AS "Source de production",
+                            ROUND(c.percent_emission, 2) AS "pourcentage d’utilisation",
+                            e.median_gco2_kwh AS "Médiane de gCO2/kWh",
+                            ROUND((c.percent_emission / 100) * e.median_gco2_kwh, 2) AS "Contribution en émission gCO2/kWh"
+                        FROM (
+                            SELECT
+                                'Coal' AS source, coal_emissions AS percent_emission FROM country WHERE country = 'Albania'
+                            UNION ALL
+                            SELECT
+                                'Natural gas', gas_emissions FROM country WHERE country = 'Albania'
+                            UNION ALL
+                            SELECT
+                                'Oil', oil_emissions FROM country WHERE country = 'Albania'
+                            UNION ALL
+                            SELECT
+                                'Hydro', hydro_emissions FROM country WHERE country = 'Albania'
+                            UNION ALL
+                            SELECT
+                                'Renewable Solar', renewable_emissions FROM country WHERE country = 'Albania'
+                            UNION ALL
+                            SELECT
+                                'Nuclear', nuclear_emissions FROM country WHERE country = 'Albania'
+                        ) c
+                        JOIN emissions e ON e.source = c.source;''')  
+
+        emission_contribution_data = cursor.fetchall()  
+        
+        cursor.execute("SELECT DISTINCT country FROM country;")
+        countries = [row['country'] for row in cursor.fetchall()]
+        cursor.execute("SELECT DISTINCT region FROM world;")
+        regions = [row['region'] for row in cursor.fetchall()]
+
+    connection.close() 
+
+    return render_template('emission_contribution.html', country=country_or_region , emission_contribution_data=emission_contribution_data , countries=countries, regions=regions)
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
