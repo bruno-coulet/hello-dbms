@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form method="get" action="/total_emission" id="country-form">
+    <label for="country">Sélectionnez un pays ou une région :</label>
+    <select id="country" name="country" onchange="document.getElementById('country-form').submit();">
+        <optgroup label="Mondiale">
+            <option value="">Mondiale</option>
+        </optgroup>
+        <optgroup label="Pays">
+            {% for c in countries %}
+            <option value="{{ c }}" {% if c==country %}selected{% endif %}>{{ c }}</option>
+            {% endfor %}
+        </optgroup>
+    </select>
+</form>
+
+
+{% if total_emission is not none %}
+<div>
+    <H1 id="emission-result">L'émission totale de {{ country }} est de {{ total_emission }} gCO2/kWh.</H1>
+    <H1 id="emission-result">L'émission annuelle totale de {{ country }} est de {{ annual_total_emission }} kg de CO2
+        pour 1kw.
+    </H1>
+</div>
+{% endif %}
+
+{% endblock %}

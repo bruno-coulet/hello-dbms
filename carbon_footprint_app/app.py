@@ -184,57 +184,6 @@ def energy_source_proportions():
         regions=regions
         )
 
-@app.route('/selected_country_total_emissions')
-def selected_country_total_emissions():
-    country = request.args.get('country')  # Récupération du pays sélectionné
-    connection = create_connection()
-    
-    with connection.cursor() as cursor:
-        if country:
-            cursor.execute("""
-                SELECT 
-                    SUM(coal_percentage) AS total_coal,
-                    SUM(gas_percentage) AS total_gas,
-                    SUM(oil_percentage) AS total_oil,
-                    SUM(hydro_percentage) AS total_hydro,
-                    SUM(renewable_percentage) AS total_renewables,
-                    SUM(nuclear_percentage) AS total_nuclear
-                FROM percentage
-                WHERE country = %s;
-            """, (country,))
-        else:
-            cursor.execute("""
-                SELECT 
-                    SUM(coal_percentage) AS total_coal,
-                    SUM(gas_percentage) AS total_gas,
-                    SUM(oil_percentage) AS total_oil,
-                    SUM(hydro_percentage) AS total_hydro,
-                    SUM(renewable_percentage) AS total_renewables,
-                    SUM(nuclear_percentage) AS total_nuclear
-                FROM percentage;
-            """)
-        results = cursor.fetchone()
-        # Récupération des listes de pays
-        cursor.execute("SELECT DISTINCT country FROM percentage;")
-        countries = [row[0] for row in cursor.fetchall()]
-        # Récupération des régions
-        cursor.execute("SELECT DISTINCT region FROM world;")
-        regions = [row[0] for row in cursor.fetchall()]
-    connection.close()
-
-    # Si aucun résultat trouvé ou données vides
-    if not results or all(v is None for v in results):
-        results = (0, 0, 0, 0, 0, 0)
-    # Transformation des résultats en dictionnaire
-    data = dict(zip(['total_coal', 'total_gas', 'total_oil', 'total_hydro', 'total_renewables', 'total_nuclear'], results))
-    # La fonction get_countries est maintenant disponible dans le template
-    return render_template(
-        'selected_country_total_emissions.html',
-        data=data,
-        selected_country=country,
-        countries=countries,
-        regions=regions
-    )
 
 @app.route('/world-map')
 def world_map():
@@ -406,6 +355,83 @@ def emission_contribution():
     connection.close() 
 
     return render_template('emission_contribution.html', country=country_or_region , emission_contribution_data=emission_contribution_data , countries=countries, regions=regions)
+
+
+
+@app.route('/total_emission')
+def total_emission():
+    annual_total_emission = None
+    country = request.args.get('country')
+    connection = create_connection()
+    with connection.cursor(dictionary=True) as cursor:
+        if country :
+            cursor.execute('''SELECT
+         c.country,
+         (
+             (c.coal_emissions / 100) * e1.median_gCO2_kWh +
+             (c.gas_emissions / 100) * e2.median_gCO2_kWh +
+             (c.oil_emissions / 100) * e3.median_gCO2_kWh +
+             (c.hydro_emissions / 100) * e4.median_gCO2_kWh +
+             (c.renewable_emissions / 100) * e5.median_gCO2_kWh +
+             (c.nuclear_emissions / 100) * e6.median_gCO2_kWh
+         ) AS total_contribution_gCO2_kWh
+     FROM
+         country c
+     JOIN
+         emissions e1 ON e1.source = 'Coal'
+     JOIN
+         emissions e2 ON e2.source = 'Natural gas'
+     JOIN
+         emissions e3 ON e3.source = 'Oil'
+     JOIN
+         emissions e4 ON e4.source = 'Hydro'
+     JOIN
+         emissions e5 ON e5.source = 'Renewable Solar'
+     JOIN
+         emissions e6 ON e6.source = 'Nuclear'
+     WHERE c.country = %s;''',(country,))
+        else:
+            cursor.execute('''SELECT
+         c.country,
+         (
+             (c.coal_emissions / 100) * e1.median_gCO2_kWh +
+             (c.gas_emissions / 100) * e2.median_gCO2_kWh +
+             (c.oil_emissions / 100) * e3.median_gCO2_kWh +
+             (c.hydro_emissions / 100) * e4.median_gCO2_kWh +
+             (c.renewable_emissions / 100) * e5.median_gCO2_kWh +
+             (c.nuclear_emissions / 100) * e6.median_gCO2_kWh
+         ) AS total_contribution_gCO2_kWh
+     FROM
+         country c
+     JOIN
+         emissions e1 ON e1.source = 'Coal'
+     JOIN
+         emissions e2 ON e2.source = 'Natural gas'
+     JOIN
+         emissions e3 ON e3.source = 'Oil'
+     JOIN
+         emissions e4 ON e4.source = 'Hydro'
+     JOIN
+         emissions e5 ON e5.source = 'Renewable Solar'
+     JOIN
+         emissions e6 ON e6.source = 'Nuclear'
+     WHERE c.country = 'Albania';''')  
+
+        result_total_emission = cursor.fetchone() 
+
+        if result_total_emission :
+            total_emission = result_total_emission['total_contribution_gCO2_kWh'] 
+            total_emission = round(total_emission, 2)
+            annual_total_emission = total_emission * 24 *365 
+        else :
+            total_emission = None
+        
+        cursor.execute("SELECT DISTINCT country FROM country;")
+        countries = [row['country'] for row in cursor.fetchall()]
+
+    connection.close() 
+
+    return render_template('total_emission.html', country=country ,annual_total_emission=annual_total_emission , total_emission=total_emission , countries=countries)
 
 
 
