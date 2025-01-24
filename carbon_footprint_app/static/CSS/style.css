@@ -58,22 +58,16 @@ body {
     color: #1563b1;
 }
 
-/* Style commun pour le lien d'accueil et les titres h2 */
-.nav-home, .nav-bloc h2 {
-    font-weight: bold;
-    color: #1563b1;
-    text-decoration: none;
+.nav-bloc h2 {
     font-size: 1.2em;
-    margin: 0;
-    padding: 0;
+    margin-bottom: 10px;
 }
 
 .nav-bloc ul {
     list-style-type: none;
     padding: 0;
-    margin: 10px 0 0 0;
+    margin: 0;
 }
-
 
 .nav-bloc li {
     margin-bottom: 5px;
@@ -89,89 +83,7 @@ body {
     color: #1563b1;
 }
 
-/* Images */
-#images {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 10px;
-}
-
-#images img {
-    max-width: 400px;
-}
-
-
-/* Fichier static/css/style.css */
-
-.logo-text-container {
-    display: flex;           /* Utilise Flexbox pour organiser les éléments */
-    flex-direction: column;  /* Dispose les éléments (image et texte) en colonne */
-    align-items: center;     /* Centre les éléments horizontalement */
-    text-align: center;      /* Centre le texte */
-}
-
-.small-logo {
-    width: 200px;    /* Ajustez la largeur selon votre besoin */
-    height: 200px;   /* Ajustez la hauteur selon votre besoin */
-    object-fit: contain;  /* Assure que l'image garde ses proportions */
-    margin-bottom: 8px;   /* Ajoute de l'espace entre l'image et le texte */
-}
-
-
-/* Title */
-
-#nav {
-
-    text-align: center;
-    font-family: Arial, sans-serif;
-    color: #333;
-}
-
-#nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-}
-
-#nav ul li {
-    display: inline;
-}
-
-#nav ul li a {
-    text-decoration: none;
-    font-size: 16px;
-    color: #007BFF;
-    padding: 5px 10px;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-#nav ul li a:hover {
-    background-color: #007BFF;
-    color: white;
-    border-radius: 5px;
-}
-
-/* En-tête */
-h1, h2 {
-    text-align: center;
-    color: #0056b3;
-    margin-bottom: 20px;
-}
-
-#selected_country_name h2{
-    color: white;
-    background-color: #0056b3;
-    padding: 2em;
-}
-
-/* Conteneur principal */
-
 /* Main content styles */
-
 .container {
     max-width: 1200px;
     margin: 20px auto;
@@ -245,127 +157,15 @@ table tr:nth-child(even) {
 /* Footer styles */
 footer {
     text-align: center;
-    margin: 20px 0;
-    font-size: 14px;
-    color: #666;
-}
-
-/* Styles pour les types d'énergie */
-.coal {
-    background-color: #d3d3d3;
-}
-
-.gas {
-    background-color: #ff7f0e;
-}
-
-.oil {
-    background-color: #696969;
-}
-
-.hydro {
-    background-color: #1f77b4;
-}
-
-.renewable {
-    background-color: #9467bd;
-}
-
-.nuclear {
-    background-color: #2ca02c;
-}
-
-th.coal {
-    background-color: #d3d3d3;
-}
-
-th.gas {
-    background-color: #ff7f0e;
-}
-
-th.oil {
-    background-color: #696969;
-}
-
-th.hydro {
-    background-color: #1f77b4;
-}
-
-th.renewable {
-    background-color: #9467bd;
-}
-
-th.nuclear {
-    background-color: #2ca02c;
-}
-
-
-/* Section pour les proportions */
-.proportions {
-    background-color: #f8f9fa;
-    border: 1px solid #ddd;
     padding: 20px;
-    margin: 20px auto;
-    border-radius: 8px;
-    max-width: 600px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #1563b1;
+    color: white;
 }
 
-.proportions h2 {
-    text-align: center;
-    color: #0056b3;
-    margin-bottom: 15px;
-}
-
-.proportions ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.proportions ul li {
-    padding: 10px 0;
-    border-bottom: 1px solid #ddd;
-    color: #333;
-}
-
-.proportions ul li:last-child {
-    border-bottom: none;
-}
-
-
-/* Section Proportions */
-#proportions-container {
-    margin-top: 30px;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-#proportions-container h2 {
-    color: #0056b3;
-    text-align: center;
-}
-
-#proportions-container ul {
-    list-style-type: none;
-    padding: 0;
-    font-size: 18px;
-}
-
-#proportions-container ul li {
-    padding: 8px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    margin-bottom: 10px;
-    border-radius: 4px;
-}
-
-#proportions-container ul li:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-/*commentaire inutile*/
-#proportions-container ul li:hover {
-    background-color: #f1f1f1;
-}
+/* Utility classes for energy types */
+.coal { background-color: #d3d3d3; }
+.gas { background-color: #ff7f0e; }
+.oil { background-color: #696969; }
+.hydro { background-color: #1f77b4; }
+.renewable { background-color: #9467bd; }
+.nuclear { background-color: #2ca02c; }
