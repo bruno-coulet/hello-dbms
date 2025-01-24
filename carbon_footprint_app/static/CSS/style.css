@@ -299,3 +299,14 @@ footer {
 #proportions-container ul li:hover {
     background-color: #f1f1f1;
 }
+
+.emission-result {
+    font-size: 30;
+    /* Ajuste la taille de la police ici */
+    font-weight: bold;
+    /* Gras */
+    color: #333333;
+    /* Couleur */
+    text-align: center;
+    /* Centrer le texte */
+}
