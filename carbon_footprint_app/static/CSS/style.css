@@ -90,6 +90,12 @@ h1, h2 {
     margin-bottom: 20px;
 }
 
+#selected_country_name h2{
+    color: white;
+    background-color: #0056b3;
+    padding: 2em;
+}
+
 /* Conteneur principal */
 .container {
     max-width: 800px;
