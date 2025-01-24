@@ -29,22 +29,57 @@ def create_connection():
 
 @app.route('/')
 def index():
-    return render_template('index.html')
-
-@app.context_processor
-def inject_countries():
-    def get_countries():
-        connection = create_connection()
-        if connection is None:
-            return []
+    connection = create_connection()
+    if connection is None:
+        return "Erreur de connexion à la base de données", 500
+    try:
         with connection.cursor() as cursor:
-            cursor.execute("SELECT DISTINCT country FROM country;")
-            countries = [row[0] for row in cursor.fetchall()]
-            cursor.execute("SELECT DISTINCT region FROM world;")
-            regions = [row[0] for row in cursor.fetchall()]
+            cursor.execute("SELECT country, coal_emissions, gas_emissions, oil_emissions, hydro_emissions, renewable_emissions, nuclear_emissions FROM country LIMIT 10;")
+            country_results = cursor.fetchall()
+            cursor.execute("SELECT region, coal_emissions_total, gas_emissions_total, oil_emissions_total, hydro_emissions_total, renewable_emissions_total, nuclear_emissions_total FROM world LIMIT 10;")
+            world_results = cursor.fetchall()
+            cursor.execute("SELECT source, min_gCO2_kWh, median_gCO2_kWh, max_gCO2_kWh FROM emissions LIMIT 10;")
+            emissions_results = cursor.fetchall()
+    except Error as e:
+        logging.error(f"Erreur lors de l'exécution de la requête: {e}")
+        return "Erreur lors de l'exécution de la requête: {e}", 500
+    finally:
         connection.close()
-        return countries
-    return dict(get_countries=get_countries)
+    
+    # Créer les DataFrames sans la colonne id pour country wolrd et emissions
+    country_columns = ['country', 'coal_emissions', 'gas_emissions', 'oil_emissions', 'hydro_emissions', 'renewable_emissions', 'nuclear_emissions']
+    world_columns = ['region', 'coal_emissions_total', 'gas_emissions_total', 'oil_emissions_total', 'hydro_emissions_total', 'renewable_emissions_total', 'nuclear_emissions_total']
+    emissions_columns = ['source', 'min_gCO2_kWh', 'median_gCO2_kWh', 'max_gCO2_kWh']
+    
+    country_data = pd.DataFrame(country_results, columns=country_columns)
+    world_data = pd.DataFrame(world_results, columns=world_columns)
+    emissions_data = pd.DataFrame(emissions_results, columns=emissions_columns)
+    
+    return render_template('index.html', country_data=country_data.to_dict(orient='list'), world_data=world_data.to_dict(orient='list'), emissions_data=emissions_data.to_dict(orient='list'))
+
+
+@app.route('/data-preview')
+def data_preview():
+    connection = create_connection()
+    if connection is None:
+        return "Erreur de connexion à la base de données", 500
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT * FROM country LIMIT 10;")
+            country_results = cursor.fetchall()
+            cursor.execute("SELECT * FROM world LIMIT 10;")
+            world_results = cursor.fetchall()
+    except Error as e:
+        logging.error(f"Erreur lors de l'exécution de la requête: {e}")
+        return "Erreur lors de l'exécution de la requête: {e}", 500
+    finally:
+        connection.close()
+    
+    country_data = pd.DataFrame(country_results, columns=['country', 'coal_emissions', 'gas_emissions', 'oil_emissions', 'hydro_emissions', 'renewable_emissions', 'nuclear_emissions'])
+    world_data = pd.DataFrame(world_results, columns=['region', 'coal_emissions_total', 'gas_emissions_total', 'oil_emissions_total', 'hydro_emissions_total', 'renewable_emissions_total', 'nuclear_emissions_total'])
+    
+    return render_template('data_preview.html', country_data=country_data.to_dict(orient='list'), world_data=world_data.to_dict(orient='list'))
+
 
 @app.route('/country-energy-usage')
 def energy_usage():

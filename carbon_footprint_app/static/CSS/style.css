@@ -180,6 +180,55 @@ footer {
     color: #666;
 }
 
+/* Styles pour les types d'énergie */
+.coal {
+    background-color: #d3d3d3;
+}
+
+.gas {
+    background-color: #ff7f0e;
+}
+
+.oil {
+    background-color: #696969;
+}
+
+.hydro {
+    background-color: #1f77b4;
+}
+
+.renewable {
+    background-color: #9467bd;
+}
+
+.nuclear {
+    background-color: #2ca02c;
+}
+
+th.coal {
+    background-color: #d3d3d3;
+}
+
+th.gas {
+    background-color: #ff7f0e;
+}
+
+th.oil {
+    background-color: #696969;
+}
+
+th.hydro {
+    background-color: #1f77b4;
+}
+
+th.renewable {
+    background-color: #9467bd;
+}
+
+th.nuclear {
+    background-color: #2ca02c;
+}
+
 
 /* Section pour les proportions */
 .proportions {
