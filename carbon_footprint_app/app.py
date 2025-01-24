@@ -314,6 +314,99 @@ def world_map():
     return render_template('world_map.html', graph_html=graph_html, energy_source=energy_source)
 
 
+@app.route('/emission_contribution')
+def emission_contribution():
+    country_or_region = request.args.get('country')
+    connection = create_connection()
+    with connection.cursor(dictionary=True) as cursor:
+        if country_or_region :
+            cursor.execute('''SELECT
+                            e.source AS "Source de production",
+                            ROUND(c.percent_emission, 2) AS "pourcentage d’utilisation",
+                            e.median_gco2_kwh AS "Médiane de gCO2/kWh",
+                            ROUND((c.percent_emission / 100) * e.median_gco2_kwh, 2) AS "Contribution en émission gCO2/kWh"
+                        FROM (
+                            SELECT
+                                'Coal' AS source, coal_emissions AS percent_emission FROM (
+                                        SELECT * FROM country WHERE country = %s
+                                        UNION 
+                                        SELECT * FROM world WHERE region = %s
+                                    ) AS combined
+                            UNION 
+                            SELECT
+                                'Natural gas', gas_emissions FROM  (
+                                        SELECT * FROM country WHERE country = %s
+                                        UNION 
+                                        SELECT * FROM world WHERE region = %s
+                                    ) AS combined
+                            UNION 
+                            SELECT
+                                'Oil', oil_emissions FROM (
+                                        SELECT * FROM country WHERE country = %s
+                                        UNION 
+                                        SELECT * FROM world WHERE region = %s
+                                    ) AS combined
+                            UNION 
+                            SELECT
+                                'Hydro', hydro_emissions FROM (
+                                        SELECT * FROM country WHERE country = %s
+                                        UNION 
+                                        SELECT * FROM world WHERE region = %s
+                                    ) AS combined
+                            UNION 
+                            SELECT
+                                'Renewable Solar', renewable_emissions FROM  (
+                                        SELECT * FROM country WHERE country = %s
+                                        UNION 
+                                        SELECT * FROM world WHERE region = %s
+                                    ) AS combined
+                            UNION 
+                            SELECT
+                                'Nuclear', nuclear_emissions FROM (
+                                        SELECT * FROM country WHERE country = %s
+                                        UNION 
+                                        SELECT * FROM world WHERE region = %s
+                                    ) AS combined
+                        ) c
+                        JOIN emissions e ON e.source = c.source;''',(country_or_region,) * 12  )
+        else:
+            cursor.execute('''SELECT
+                            e.source AS "Source de production",
+                            ROUND(c.percent_emission, 2) AS "pourcentage d’utilisation",
+                            e.median_gco2_kwh AS "Médiane de gCO2/kWh",
+                            ROUND((c.percent_emission / 100) * e.median_gco2_kwh, 2) AS "Contribution en émission gCO2/kWh"
+                        FROM (
+                            SELECT
+                                'Coal' AS source, coal_emissions AS percent_emission FROM country WHERE country = 'Albania'
+                            UNION ALL
+                            SELECT
+                                'Natural gas', gas_emissions FROM country WHERE country = 'Albania'
+                            UNION ALL
+                            SELECT
+                                'Oil', oil_emissions FROM country WHERE country = 'Albania'
+                            UNION ALL
+                            SELECT
+                                'Hydro', hydro_emissions FROM country WHERE country = 'Albania'
+                            UNION ALL
+                            SELECT
+                                'Renewable Solar', renewable_emissions FROM country WHERE country = 'Albania'
+                            UNION ALL
+                            SELECT
+                                'Nuclear', nuclear_emissions FROM country WHERE country = 'Albania'
+                        ) c
+                        JOIN emissions e ON e.source = c.source;''')  
+
+        emission_contribution_data = cursor.fetchall()  
+        
+        cursor.execute("SELECT DISTINCT country FROM country;")
+        countries = [row['country'] for row in cursor.fetchall()]
+        cursor.execute("SELECT DISTINCT region FROM world;")
+        regions = [row['region'] for row in cursor.fetchall()]
+
+    connection.close() 
+
+    return render_template('emission_contribution.html', country=country_or_region , emission_contribution_data=emission_contribution_data , countries=countries, regions=regions)
+
 
 
 if __name__ == '__main__':
