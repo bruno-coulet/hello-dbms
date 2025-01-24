@@ -10,12 +10,67 @@ body {
 /* Header Container */
 #header-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     padding: 10px 20px;
-    background-color: #f8f9fa;
+    background-color: #1563b1;
     border-bottom: 2px solid #ccc;
+    gap: 50px;
+    justify-content: center;
 }
+
+#header-container h1 {
+    color:white;
+}
+
+.main-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6rem;
+    background-color: #f0f0f0;
+    min-height: 200px; 
+}
+
+
+.nav-bloc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.nav-bloc h2 {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.nav-bloc ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-bloc li {
+    margin-bottom: 5px;
+}
+
+.nav-bloc a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s;
+}
+
+.nav-bloc a:hover {
+    color: #007BFF;
+}
+
+
+.nav-home {
+    font-weight: bold;
+    align-self: center;
+}
+
 
 /* Logo */
 #logo {
@@ -48,15 +103,14 @@ body {
     max-width: 400px;
 }
 
-/* Title */
-#title {
+
+#nav {
     text-align: center;
     font-family: Arial, sans-serif;
     color: #333;
 }
 
-/* Navigation Menu */
-#navigation ul {
+#nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -65,11 +119,11 @@ body {
     gap: 15px;
 }
 
-#navigation ul li {
+#nav ul li {
     display: inline;
 }
 
-#navigation ul li a {
+#nav ul li a {
     text-decoration: none;
     font-size: 16px;
     color: #007BFF;
@@ -77,7 +131,7 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
-#navigation ul li a:hover {
+#nav ul li a:hover {
     background-color: #007BFF;
     color: white;
     border-radius: 5px;
