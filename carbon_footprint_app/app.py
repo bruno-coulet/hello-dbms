@@ -295,15 +295,17 @@ def world_map():
                         locationmode="country names", 
                         color="energy_usage_percentage_numeric", 
                         hover_name="country",  # Garde le nom du pays pour la carte
-                        hover_data={"energy_usage_percentage": True, "country": False},  # Supprime 'country' du hover
+                        hover_data={"energy_usage_percentage": True, "country": False, "energy_usage_percentage_numeric": False},  # Supprime 'energy_usage_percentage_numeric' du hover
                         color_continuous_scale=color_scale,  # Applique le dégradé de couleur approprié
                         range_color=[0, 100],  # Spécifie que l'échelle de couleurs va de 0 à 100
                         labels={'energy_usage_percentage': 'Pourcentage d\'utilisation de la source d\'énergie'}, 
                         title=f"Utilisation {energy_source_translation.get(energy_source, 'Source d\'énergie inconnue')}")
     
+    # Modifier le titre de la légende
+    fig.update_layout(coloraxis_colorbar_title="Pourcentage d'utilisation de la source d'énergie")
+
     # Centrer le titre du graphique
     fig.update_layout(title_x=0.5)  # Centrer le titre horizontalement
-    
     
     # Générer le code HTML du graphique
     graph_html = fig.to_html(full_html=False)
@@ -404,6 +406,7 @@ def emission_contribution():
     connection.close() 
 
     return render_template('emission_contribution.html', country=country_or_region , emission_contribution_data=emission_contribution_data , countries=countries, regions=regions)
+
 
 
 if __name__ == '__main__':
