@@ -1,6 +1,8 @@
+
 from flask import Flask, render_template, request
 import mysql.connector
 from mysql.connector import Error
+import plotly.express as px
 import pandas as pd
 import logging
 import config
@@ -177,6 +179,83 @@ def energy_source_proportions():
     data = dict(zip(['total_coal', 'total_gas', 'total_oil', 'total_hydro', 'total_renewables', 'total_nuclear'], results))
 
     return render_template('energy_proportions.html', data=data, country=country_or_region, countries=countries, regions=regions)
+
+
+@app.route('/world-map')
+def world_map():
+    # Récupérer la source d'énergie depuis les paramètres de la requête
+    energy_source = request.args.get('source', 'coal_emissions')  # Par défaut, charbon
+
+    # Dictionnaire pour les noms en français des sources d'énergie
+    energy_source_translation = {
+        'coal_emissions': 'du charbon',
+        'gas_emissions': 'du gaz',
+        'oil_emissions': 'du pétrole',
+        'hydro_emissions': 'de l\'hydroélectrique',
+        'renewable_emissions': 'des énergies renouvelables',
+        'nuclear_emissions': 'du nucléaire'
+    }
+
+    # Connexion à la base de données
+    connection = create_connection()
+    if connection is None:
+        return "Erreur de connexion à la base de données", 500
+    
+    try:
+        with connection.cursor() as cursor:
+            # Exécuter la requête pour récupérer les pourcentages d'utilisation de la source d'énergie par pays
+            cursor.execute(f"SELECT country, {energy_source} FROM country")
+            results = cursor.fetchall()
+    except Error as e:
+        logging.error(f"Erreur lors de l'exécution de la requête: {e}")
+        return f"Erreur lors de l'exécution de la requête: {e}", 500
+    finally:
+        connection.close()
+
+    # Convertir les résultats en DataFrame pandas
+    df = pd.DataFrame(results, columns=['country', 'energy_usage_percentage'])
+    
+    # Formater le pourcentage en ajoutant '%' à la valeur
+    df['energy_usage_percentage'] = df['energy_usage_percentage'].apply(lambda x: f"{x:.2f}%")
+    
+    # Ajuster les valeurs à un format numérique pour l'échelle de couleurs
+    df['energy_usage_percentage_numeric'] = df['energy_usage_percentage'].apply(lambda x: float(x.strip('%')) if isinstance(x, str) else x)
+
+    # Définir les dégradés de couleurs en fonction de la source d'énergie
+    color_scales = {
+        'coal_emissions': ["#ffffff", "#000000"],  # Dégradé pour charbon (de blanc à noir)
+        'gas_emissions': ["#ffffff", "#ff4f00"],   # Dégradé pour gaz (orange)
+        'oil_emissions': ["#ffffff", "#b4533f"],   # Dégradé pour pétrole (marron)
+        'hydro_emissions': ["#ffffff", "#00bfff"],  # Dégradé pour hydroélectrique (bleu)
+        'renewable_emissions': ["#ffffff", "#006400"],  # Dégradé pour renouvelables (vert)
+        'nuclear_emissions': ["#ffffff", "#4b0082"]  # Dégradé pour nucléaire (violet)
+    }
+
+    # Sélectionner le dégradé de couleur approprié en fonction de la source d'énergie
+    color_scale = color_scales.get(energy_source, ["white", "black"])
+
+    # Utilisation de Plotly Express pour créer la carte choroplèthe
+    fig = px.choropleth(df, 
+                        locations="country", 
+                        locationmode="country names", 
+                        color="energy_usage_percentage_numeric", 
+                        hover_name="country",  # Garde le nom du pays pour la carte
+                        hover_data={"energy_usage_percentage": True, "country": False},  # Supprime 'country' du hover
+                        color_continuous_scale=color_scale,  # Applique le dégradé de couleur approprié
+                        range_color=[0, 100],  # Spécifie que l'échelle de couleurs va de 0 à 100
+                        labels={'energy_usage_percentage': 'Pourcentage d\'utilisation de la source d\'énergie'}, 
+                        title=f"Utilisation {energy_source_translation.get(energy_source, 'Source d\'énergie inconnue')}")
+    
+    # Centrer le titre du graphique
+    fig.update_layout(title_x=0.5)  # Centrer le titre horizontalement
+    
+    
+    # Générer le code HTML du graphique
+    graph_html = fig.to_html(full_html=False)
+
+    # Rendre la page avec le graphique
+    return render_template('world_map.html', graph_html=graph_html, energy_source=energy_source)
+
 
 
 if __name__ == '__main__':

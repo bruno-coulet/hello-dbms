@@ -184,7 +184,7 @@ footer {
 }
 
 .oil {
-    background-color: #696969;
+    background-color: #875019;
 }
 
 .hydro {
@@ -199,26 +199,10 @@ footer {
     background-color: #2ca02c;
 }
 
-th.coal {
-    background-color: #d3d3d3;
-}
-
-th.gas {
-    background-color: #ff7f0e;
-}
-
-th.oil {
-    background-color: #696969;
-}
-
-th.hydro {
-    background-color: #1f77b4;
-}
-
-th.renewable {
-    background-color: #9467bd;
-}
-
-th.nuclear {
-    background-color: #2ca02c;
+/* Style pour le conteneur de la carte */
+#world-map {
+    width: 100%;        /* Prend toute la largeur disponible */
+    height: 90vh;       /* Augmenter la hauteur à 90% de la hauteur de la fenêtre */
+    max-width: 1400px;  /* Limite la largeur maximale à 1400px */
+    margin: 0 auto;     /* Centre la carte horizontalement */
 }

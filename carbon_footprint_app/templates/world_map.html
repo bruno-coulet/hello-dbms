@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Carte du Monde par Source d'Énergie</h1>
+    <!-- Formulaire pour sélectionner la source d'énergie -->
+    <form method="get" action="/world-map">
+        <label for="source">Sélectionnez une source d'énergie :</label>
+        <select name="source" id="source">
+            <option value="coal_emissions" {% if energy_source == 'coal_emissions' %}selected{% endif %}>Charbon</option>
+            <option value="gas_emissions" {% if energy_source == 'gas_emissions' %}selected{% endif %}>Gaz</option>
+            <option value="oil_emissions" {% if energy_source == 'oil_emissions' %}selected{% endif %}>Pétrole</option>
+            <option value="hydro_emissions" {% if energy_source == 'hydro_emissions' %}selected{% endif %}>Hydroélectrique</option>
+            <option value="renewable_emissions" {% if energy_source == 'renewable_emissions' %}selected{% endif %}>Renouvelables</option>
+            <option value="nuclear_emissions" {% if energy_source == 'nuclear_emissions' %}selected{% endif %}>Nucléaire</option>
+        </select>
+        <button type="submit">Afficher</button>
+    </form>
+
+    <!-- Div pour afficher le graphique -->
+    <div id="world-map">
+        {{ graph_html|safe }}
+    </div>
+{% endblock %}
