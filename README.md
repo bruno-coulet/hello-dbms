@@ -18,11 +18,9 @@
 ## <span> Contexte <a id="contexte"></a></span>
 
 
-"""""""""""""""""""
+Aujourd’hui, les données sont partout : elles guident nos décisions, alimentent nos applis et transforment nos métiers. Mais avant de manipuler ces données, il faut en comprendre les bases. Ce projet est là pour ça !
 
-""""
-
-""""""
+On y explore tout ce qu’il faut savoir : qu’est-ce qu’une donnée, comment évaluer sa qualité, où et comment on les stocke, et quels outils utiliser pour les gérer efficacement. On va aussi parler de bases de données (relationnelles et non relationnelles), d’architectures comme le Data Lake ou le Data Warehouse, et même de méthodes comme Merise et UML. Bref, tout ce qu’il faut pour avoir une vision claire et structurée, avec des exemples et des schémas pour rendre ça concret et compréhensible.
 
 ## <span> Schéma et utilisation de l'application <a id="app-schema"></a></span>
 
@@ -509,3 +507,9 @@ FULL JOIN table2 ON table1.colonne = table2.colonne;
 
 Ces commandes et jointures sont essentielles pour travailler efficacement avec des bases de données relationelles en SQL.
 ## <span>Conclusion <a id="conclusion"></a></span>
+
+Ce projet vous a permis de découvrir les bases essentielles autour des données et des systèmes qui les gèrent. Que ce soit pour comprendre ce qu’est une donnée, explorer les différentes architectures de stockage comme le Data Lake ou le Lake House, ou encore différencier les bases relationnelles et non relationnelles, chaque notion abordée vise à vous donner une vision claire et structurée du sujet.
+
+Vous avez également pu voir l’importance de la qualité des données, des clés primaires et étrangères, et des propriétés ACID pour garantir la fiabilité des systèmes. Enfin, les outils méthodologiques comme Merise et UML, ainsi que le langage SQL, offrent des moyens concrets pour concevoir et interagir avec des bases de données de manière efficace.
+
+En résumé, que vous soyez débutant ou curieux d’approfondir vos connaissances, ce projet vous donne les bases pour naviguer dans le vaste univers des données et mieux comprendre leur rôle dans notre monde numérique. Il ne vous reste plus qu’à mettre ces concepts en pratique et continuer à explorer ! 
