@@ -27,12 +27,9 @@ def create_connection():
         logging.error(f"Erreur lors de la connexion à la base de données: {e}")
         return None
 
-
 @app.route('/')
 def index():
     return render_template('index.html')
-
-
 
 @app.context_processor
 def inject_countries():
@@ -48,11 +45,6 @@ def inject_countries():
         connection.close()
         return countries
     return dict(get_countries=get_countries)
-
-
-
-
-
 
 @app.route('/country-energy-usage')
 def energy_usage():
@@ -147,8 +139,13 @@ def energy_source_proportions():
 
     data = dict(zip(['total_coal', 'total_gas', 'total_oil', 'total_hydro', 'total_renewables', 'total_nuclear'], results))
 
-    return render_template('energy_proportions.html', data=data, country=country_or_region, countries=countries, regions=regions)
-
+    return render_template(
+        'energy_proportions.html',
+        data=data,
+        country=country_or_region,
+        countries=countries,
+        regions=regions
+        )
 
 @app.route('/selected_country_total_emissions')
 def selected_country_total_emissions():
@@ -159,44 +156,40 @@ def selected_country_total_emissions():
         if country:
             cursor.execute("""
                 SELECT 
-                    SUM(coal_emissions) AS total_coal,
-                    SUM(gas_emissions) AS total_gas,
-                    SUM(oil_emissions) AS total_oil,
-                    SUM(hydro_emissions) AS total_hydro,
-                    SUM(renewable_emissions) AS total_renewables,
-                    SUM(nuclear_emissions) AS total_nuclear
-                FROM country
+                    SUM(coal_percentage) AS total_coal,
+                    SUM(gas_percentage) AS total_gas,
+                    SUM(oil_percentage) AS total_oil,
+                    SUM(hydro_percentage) AS total_hydro,
+                    SUM(renewable_percentage) AS total_renewables,
+                    SUM(nuclear_percentage) AS total_nuclear
+                FROM percentage
                 WHERE country = %s;
             """, (country,))
         else:
             cursor.execute("""
                 SELECT 
-                    SUM(coal_emissions) AS total_coal,
-                    SUM(gas_emissions) AS total_gas,
-                    SUM(oil_emissions) AS total_oil,
-                    SUM(hydro_emissions) AS total_hydro,
-                    SUM(renewable_emissions) AS total_renewables,
-                    SUM(nuclear_emissions) AS total_nuclear
-                FROM country;
+                    SUM(coal_percentage) AS total_coal,
+                    SUM(gas_percentage) AS total_gas,
+                    SUM(oil_percentage) AS total_oil,
+                    SUM(hydro_percentage) AS total_hydro,
+                    SUM(renewable_percentage) AS total_renewables,
+                    SUM(nuclear_percentage) AS total_nuclear
+                FROM percentage;
             """)
         results = cursor.fetchone()
-        
-        # Récupération des listes de pays et de régions
-    with connection.cursor() as cursor:
-        cursor.execute("SELECT DISTINCT country FROM country;")
+        # Récupération des listes de pays
+        cursor.execute("SELECT DISTINCT country FROM percentage;")
         countries = [row[0] for row in cursor.fetchall()]
+        # Récupération des régions
         cursor.execute("SELECT DISTINCT region FROM world;")
         regions = [row[0] for row in cursor.fetchall()]
-
     connection.close()
 
     # Si aucun résultat trouvé ou données vides
     if not results or all(v is None for v in results):
         results = (0, 0, 0, 0, 0, 0)
-
     # Transformation des résultats en dictionnaire
     data = dict(zip(['total_coal', 'total_gas', 'total_oil', 'total_hydro', 'total_renewables', 'total_nuclear'], results))
-
     # La fonction get_countries est maintenant disponible dans le template
     return render_template(
         'selected_country_total_emissions.html',
@@ -205,10 +198,6 @@ def selected_country_total_emissions():
         countries=countries,
         regions=regions
     )
-
-
-
-
 
 if __name__ == '__main__':
     app.run(debug=True)

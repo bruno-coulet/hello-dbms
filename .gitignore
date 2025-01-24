@@ -1,3 +1,5 @@
+
+carbon_footprint_app/test.sql
 raw_data/
 processed_data/
 .env
