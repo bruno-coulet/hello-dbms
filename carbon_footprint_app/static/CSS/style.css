@@ -89,6 +89,7 @@ body {
     color: #1563b1;
 }
 
+<<<<<<< HEAD
 /* Images */
 #images {
     display: flex;
@@ -171,6 +172,9 @@ h1, h2 {
 }
 
 /* Conteneur principal */
+=======
+/* Main content styles */
+>>>>>>> 82bf7a9 (update css et bas.html)
 .container {
     max-width: 1200px;
     margin: 20px auto;
@@ -245,6 +249,7 @@ table tr:nth-child(even) {
 footer {
     text-align: center;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     margin: 20px 0;
     font-size: 14px;
@@ -306,6 +311,8 @@ th.nuclear {
     background-color: #f8f9fa;
     border: 1px solid #ddd;
 >>>>>>> b97ba35 (Revert "css Merge branch 'main' into big_bruno")
+=======
+>>>>>>> 82bf7a9 (update css et bas.html)
     padding: 20px;
     background-color: #1563b1;
     color: white;
