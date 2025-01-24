@@ -3,39 +3,101 @@
 {% block content %}
 <div id="container">
 
-    <h1>Émissions Totales du pays sélectionné</h1>
+    <h1>Proportions des Sources d'Énergie par Pays</h1>
 
     <!-- Formulaire pour sélectionner un pays -->
     <form method="get" action="/selected_country_total_emissions">
-        <label for="country">Choisissez un pays :</label>
-        <select name="country" id="country">
-            <option value="">Tous les pays</option>
-            {% for country in countries %}
-                <option value="{{ country }}" {% if country == selected_country %}selected{% endif %}>
-                    {{ country }}
-                </option>
-            {% endfor %}
+        <label for="country">Sélectionnez un pays ou une région :</label>
+        <select id="country" name="country" onchange="document.getElementById('country-form').submit();">
+            <optgroup label="Mondiale">
+                <option value="">Tous les pays</option>
+            </optgroup>
+            <optgroup label="Pays">
+                {% for country in countries %}
+                    <option value="{{ country }}" {% if country == selected_country %}selected{% endif %}>
+                        {{ country }}
+                    </option>
+                {% endfor %}
+            </optgroup>
+            <optgroup label="Régions">
+                {% for r in regions %}
+                    <option value="{{ r }}" {% if r == country %}selected{% endif %}>{{ r }}</option>
+                {% endfor %}
+            </optgroup>
         </select>
         <button type="submit">Afficher</button>
     </form>
 
-    <!-- Section pour les proportions -->
-    <div>
-        <h2>Proportions :</h2>
+    <div id="selected_country_name">
+        <h2>{% if selected_country %}{{ selected_country }}{% else %}Tous les pays{% endif %}</h2>
+    </div>
+
+
+
+    <!-- Graphique des proportions -->
+    {% if data %}
+    <div id="pie-chart"></div>
+
+    <script>
+        // Données pour le graphique
+        var values = [
+            {{ data['total_coal'] }},
+            {{ data['total_gas'] }},
+            {{ data['total_oil'] }},
+            {{ data['total_hydro'] }},
+            {{ data['total_renewables'] }},
+            {{ data['total_nuclear'] }}
+        ];
+        var labels = ['Charbon', 'Gaz', 'Pétrole', 'Hydroélectrique', 'Renouvelables', 'Nucléaire'];
+        var colors = ['#d3d3d3', '#ff7f0e', '#696969', '#1f77b4', '#9467bd', '#2ca02c'];
+
+        // Filtrer les valeurs et étiquettes pour exclure les zéros
+        var filteredValues = [];
+        var filteredLabels = [];
+        var filteredColors = [];
+
+        for (var i = 0; i < values.length; i++) {
+            if (values[i] > 0) {
+                filteredValues.push(values[i]);
+                filteredLabels.push(labels[i]);
+                filteredColors.push(colors[i]);
+            }
+        }
+
+        var data = [{
+            values: filteredValues,
+            labels: filteredLabels,
+            type: 'pie',
+            marker: {
+                colors: filteredColors
+            },
+            textinfo: 'label+percent',
+            textposition: 'outside',
+            automargin: true
+        }];
+
+        var layout = {
+            title: 'Proportions des Émissions',
+            showlegend: true
+        };
+
+        Plotly.newPlot('pie-chart', data, layout);
+    </script>
+
+    <!-- Section des proportions -->
+    <div class="proportions">
+        <h2>Proportions des Sources d'Énergie :</h2>
         <ul>
-            <li>Charbon : {{ data.total_coal }}</li>
-            <li>Gaz : {{ data.total_gas }}</li>
-            <li>Pétrole : {{ data.total_oil }}</li>
-            <li>Hydro : {{ data.total_hydro }}</li>
-            <li>Renouvelables : {{ data.total_renewables }}</li>
-            <li>Nucléaire : {{ data.total_nuclear }}</li>
+            <li><strong>Charbon :</strong> {{ data['total_coal'] }}%</li>
+            <li><strong>Gaz :</strong> {{ data['total_gas'] }}%</li>
+            <li><strong>Pétrole :</strong> {{ data['total_oil'] }}%</li>
+            <li><strong>Hydroélectrique :</strong> {{ data['total_hydro'] }}%</li>
+            <li><strong>Renouvelables :</strong> {{ data['total_renewables'] }}%</li>
+            <li><strong>Nucléaire :</strong> {{ data['total_nuclear'] }}%</li>
         </ul>
     </div>
+    {% else %}
+    <p>Aucune donnée disponible pour le pays sélectionné. Veuillez choisir un autre pays.</p>
+    {% endif %}
 </div>
 {% endblock %}
-
-
-
-
-
-

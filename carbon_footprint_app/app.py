@@ -124,8 +124,6 @@ def regions_energy_usage():
     data = pd.DataFrame(results, columns=['region', 'coal_emissions_total', 'gas_emissions_total', 'oil_emissions_total', 'hydro_emissions_total', 'renewable_emissions_total', 'nuclear_emissions_total'])
     return render_template('regions_energy_usage.html', data=data.to_dict(orient='list'), energy_source=energy_source)
 
-
-
 @app.route('/energy-source-proportions')
 def energy_source_proportions():
     country_or_region = request.args.get('country')
@@ -178,8 +176,65 @@ def energy_source_proportions():
 
     data = dict(zip(['total_coal', 'total_gas', 'total_oil', 'total_hydro', 'total_renewables', 'total_nuclear'], results))
 
-    return render_template('energy_proportions.html', data=data, country=country_or_region, countries=countries, regions=regions)
+    return render_template(
+        'energy_proportions.html',
+        data=data,
+        country=country_or_region,
+        countries=countries,
+        regions=regions
+        )
 
+@app.route('/selected_country_total_emissions')
+def selected_country_total_emissions():
+    country = request.args.get('country')  # Récupération du pays sélectionné
+    connection = create_connection()
+    
+    with connection.cursor() as cursor:
+        if country:
+            cursor.execute("""
+                SELECT 
+                    SUM(coal_percentage) AS total_coal,
+                    SUM(gas_percentage) AS total_gas,
+                    SUM(oil_percentage) AS total_oil,
+                    SUM(hydro_percentage) AS total_hydro,
+                    SUM(renewable_percentage) AS total_renewables,
+                    SUM(nuclear_percentage) AS total_nuclear
+                FROM percentage
+                WHERE country = %s;
+            """, (country,))
+        else:
+            cursor.execute("""
+                SELECT 
+                    SUM(coal_percentage) AS total_coal,
+                    SUM(gas_percentage) AS total_gas,
+                    SUM(oil_percentage) AS total_oil,
+                    SUM(hydro_percentage) AS total_hydro,
+                    SUM(renewable_percentage) AS total_renewables,
+                    SUM(nuclear_percentage) AS total_nuclear
+                FROM percentage;
+            """)
+        results = cursor.fetchone()
+        # Récupération des listes de pays
+        cursor.execute("SELECT DISTINCT country FROM percentage;")
+        countries = [row[0] for row in cursor.fetchall()]
+        # Récupération des régions
+        cursor.execute("SELECT DISTINCT region FROM world;")
+        regions = [row[0] for row in cursor.fetchall()]
+    connection.close()
+
+    # Si aucun résultat trouvé ou données vides
+    if not results or all(v is None for v in results):
+        results = (0, 0, 0, 0, 0, 0)
+    # Transformation des résultats en dictionnaire
+    data = dict(zip(['total_coal', 'total_gas', 'total_oil', 'total_hydro', 'total_renewables', 'total_nuclear'], results))
+    # La fonction get_countries est maintenant disponible dans le template
+    return render_template(
+        'selected_country_total_emissions.html',
+        data=data,
+        selected_country=country,
+        countries=countries,
+        regions=regions
+    )
 
 @app.route('/world-map')
 def world_map():
