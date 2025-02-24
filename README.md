@@ -344,7 +344,7 @@ Une clé primaire est un champ ou ensemble de champ d'une table dans une base de
 
 <span><u>**Clé étrangère:**</u></span>
 
-Une clé étrangère est un champ ou ensemble de champs dans une table qui crée un lien entre cete table et une autre table. La clé étrangère fait référence à la clé primaire de l'autre table, établissant ainsi une relation entre les enregistrements des deux tables. Voici ses principales caractéristiques : 
+Une clé étrangère est un champ ou ensemble de champs dans une table qui crée un lien entre cette table et une autre table. La clé étrangère fait référence à la clé primaire de l'autre table, établissant ainsi une relation entre les enregistrements des deux tables. Voici ses principales caractéristiques : 
   * **Relation :** Elle établit une relation entre deux tables en faisant référence à la clé primaire de l'autre table.
   * **Intégrité référentielle :** Elle assure que les valeurs des champs de la clé étrangère correspondent à des valeurs exsistantes de la clé primaire dans la table référencée. 
   * **Peut contenir des valeurs nulles :** Contrairement à la clé primaire, une clé étrangère peut contenir des valeurs nulles si cela est autorisé par la logique de la base de données. 
