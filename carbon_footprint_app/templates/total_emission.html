@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+<h1>Analyse de l'émission totale</h1>
 <form method="get" action="/total_emission" id="country-form">
     <label for="country">Sélectionnez un pays ou une région :</label>
     <select id="country" name="country" onchange="document.getElementById('country-form').submit();">
@@ -17,11 +18,11 @@
 
 
 {% if total_emission is not none %}
-<div>
-    <H1 id="emission-result">L'émission totale de {{ country }} est de {{ total_emission }} gCO2/kWh.</H1>
-    <H1 id="emission-result">L'émission annuelle totale de {{ country }} est de {{ annual_total_emission }} kg de CO2
+<div id="emission-result">
+    <p>L'émission totale de {{ country }} est de {{ total_emission }} gCO2/kWh.</p>
+    <p>L'émission annuelle totale de {{ country }} est de {{ annual_total_emission }} kg de CO2
         pour 1kw.
-    </H1>
+    </p>
 </div>
 {% endif %}
 
