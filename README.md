@@ -55,7 +55,7 @@ On y explore tout ce qu’il faut savoir : qu’est-ce qu’une donnée, comment
 | └── app.log                    | Fichier de log (ignoré mais généré au lancement de l'application) |
 
 Pour pouvoir lancer l'application, il faut nécessairement :
-* Avoir MySQL pour la création de la DB et la généraiton automatique des tables
+* Avoir MySQL pour la création de la DB et la génération automatique des tables
 * Avoir dans le dossier pre_processed_data
   * Un fichier de données au format CSV nommé country ayant comme structure 
 
@@ -125,7 +125,8 @@ Cette différence historique met en évidence le caractère sélectif et partiel
 
 <span><u>**En résumé :**</u> </span>
 
-Une donnée est ce qui est connu et qui sert de point de départ à un raisonnement ayant pour objet la détermination d'une solution à un problème en relaiton avec cette donnée. Cela peut être une description élémentaire qui vise à objectiver une réalité, le résultat d'une comparaison entre deux événements du même ordre (mesure) soit en d'autres termes une observation ou une mesure. 
+Une donnée est ce qui est connu et qui sert de point de départ à un raisonnement ayant pour objet la détermination d'une solution à un problème en relation avec cette donnée.
+Cela peut être une description élémentaire qui vise à objectiver une réalité, le résultat d'une comparaison entre deux événements du même ordre (mesure) soit en d'autres termes une observation ou une mesure. 
 
 La donnée brute est dépourvue de tout raisonnement, supposition, constatation, probabilité.
 
@@ -133,13 +134,13 @@ Si elle est considérée comme indiscutable ou même si elle est indiscutée par
 
 La nature des données pouvant différer en fonction de leur source, elles doivent souvent faire l'objet d'une transformation préalable avant traitement. 
 
-La technique contemporaine est la quatification numérique dans un système binaire, associée à des machines de traitement à deux états de fonctionnement. Cela veut dire que le monde réel est vu par des capteurs dont la réponse continue ou discrète est traduite en nombres qui sont traités, c'est à dire traduits, par des ordinateurs. 
+La technique contemporaine est la qualification numérique dans un système binaire, associée à des machines de traitement à deux états de fonctionnement. Cela veut dire que le monde réel est vu par des capteurs dont la réponse continue ou discrète est traduite en nombres qui sont traités, c'est à dire traduits, par des ordinateurs. 
 
-Un travail est souvent fait sur les données burtes pour leur donner un sens, plus précisément un contexte, afin de pouvoir les transformer en information. 
+Un travail est souvent fait sur les données brutes pour leur donner un sens, plus précisément un contexte, afin de pouvoir les transformer en information. 
 
 Les données peuvent être : 
 
-* Des résultats de mesure fonction d'un étalon de référence pouvant, associé à la manire de traiter les données, générer des biais sur l'interprétations finale (limites des sondages).
+* Des résultats de mesure fonction d'un étalon de référence pouvant, associé à la manière de traiter les données, générer des biais sur l'interprétations finale (limites des sondages).
 
 * Des valeurs discrètes représentant l'état d'un système. 
 
@@ -151,19 +152,19 @@ Le résultat du traitement sera souvent *in fine* soumis à l'interprétation d'
 
 <span><u>**La valeur des données :**</u> </span>
 
-La valorisation de la donnée s fait à travers un processus capable à cahque étape de la transformation d'augmenter sa vlaeur directement ou par combinaison avec d'autres données. En général la finalité est l'exploitation par l'homme por la price de décision ou par un autre système permettant une commande de processus. 
+La valorisation de la donnée se fait à travers un processus capable à chaque étape de la transformation d'augmenter sa valeur directement ou par combinaison avec d'autres données. En général la finalité est l'exploitation par l'homme pour la prise de décision ou par un autre système permettant une commande de processus. 
 
 Le calcul fait partie du processus de transformation par la machine et le jugement qualitatif qui appartient à l'humain fait partie de l'interprétation et donne la valeur objective à l'information finale. 
 
-Simon Chignard et Louis-David Benyayer ont essayé de créer une grille de lecture pour la quatification des données en partant de trois conceptions de la valeur : 
+Simon Chignard et Louis-David Benyayer ont essayé de créer une grille de lecture pour la qualification des données en partant de trois conceptions de la valeur : 
 
-* 1. La valeur est subjective : elle dépend de l'intérêt porté par l'humain qui va l'utiliser directement ou après transformation. 
+1. La valeur est subjective : elle dépend de l'intérêt porté par l'humain qui va l'utiliser directement ou après transformation. 
 
-* 2. La valeur est co-construire : elle augmente à partir de l'instant ou elle rentre dans un processus de transformation, notemment à travers des études croisées, capables d'exprimer des concerpt, d'où l'importance de la collaboration et de la cooridnation dans le processus de la valorisation des données.
+2. La valeur est co-construire : elle augmente à partir de l'instant ou elle rentre dans un processus de transformation, notemment à travers des études croisées, capables d'exprimer des concepts, d'où l'importance de la collaboration et de la coordination dans le processus de la valorisation des données.
 
-* 3. La valeur est potentielle : elle donne ou pas un avantage futur à ceux qui la détiennent. 
+3. La valeur est potentielle : elle donne ou pas un avantage futur à ceux qui la détiennent. 
 
-A partir de ces axiomes, les données peuvent être interprétées à la lumire de trois formes de valeur. 
+A partir de ces axiomes, les données peuvent être interprétées à la lumière de trois formes de valeur. 
 
 
 ### <span>B.</span> Donnez et expliquez les critères de mesure de qualité des données. <a id="b-criteres-de-qualite"></a>
@@ -179,7 +180,7 @@ Les critères de mesure de la qualité des données permettent de s'assurer que 
 
 <span><u>**2. Complétude :**</u></span>
   
-  * Les données doivent petre complètes et ne pas contenir de champs vides lorsque ces informations sont essentielles. 
+  * Les données doivent être complètes et ne pas contenir de champs vides lorsque ces informations sont essentielles. 
     * Par exemple, une base de données de clients sans adresses email serait incomplète pour une campagne marketing par courriel.  
 
 <span><u>**3. Cohérence :**</u></span> 
