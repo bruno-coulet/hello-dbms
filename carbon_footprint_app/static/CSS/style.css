@@ -12,14 +12,9 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px 20px;
     background-color: #f8f9fa;
-    border-bottom: 2px solid #ccc;
 }
 
-/* Logo */
-/* #logo {
-} */
 
 #logo a {
     text-decoration: none;
@@ -50,17 +45,16 @@ body {
 /* Fichier static/css/style.css */
 
 .logo-text-container {
-    display: flex;           /* Utilise Flexbox pour organiser les éléments */
-    flex-direction: column;  /* Dispose les éléments (image et texte) en colonne */
-    align-items: center;     /* Centre les éléments horizontalement */
-    text-align: center;      /* Centre le texte */
+    display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
 }
 
 .small-logo {
-    width: 200px;    /* Ajustez la largeur selon votre besoin */
-    height: 200px;   /* Ajustez la hauteur selon votre besoin */
-    object-fit: contain;  /* Assure que l'image garde ses proportions */
-    margin-bottom: 8px;   /* Ajoute de l'espace entre l'image et le texte */
+    width: 100px;
+        object-fit: contain;
+        margin-bottom: 8px;
 }
 
 
@@ -222,10 +216,10 @@ footer {
 
 /* Style pour le conteneur de la carte */
 #world-map {
-    width: 100%;        /* Prend toute la largeur disponible */
-    height: 90vh;       /* Augmenter la hauteur à 90% de la hauteur de la fenêtre */
-    max-width: 1400px;  /* Limite la largeur maximale à 1400px */
-    margin: 0 auto;     /* Centre la carte horizontalement */
+    width: 100%;
+        height: 90vh;
+        max-width: 1400px;
+        margin: 0 auto;
 }
 
 
@@ -301,11 +295,11 @@ footer {
 
 .emission-result {
     font-size: 30;
-    /* Ajuste la taille de la police ici */
+
     font-weight: bold;
-    /* Gras */
+    
     color: #333333;
-    /* Couleur */
+    
     text-align: center;
-    /* Centrer le texte */
+    
 }
