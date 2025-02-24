@@ -303,3 +303,7 @@ footer {
     text-align: center;
     
 }
+div#emission-result {
+    width: fit-content;
+    margin: auto
+}
