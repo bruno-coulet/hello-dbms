@@ -309,3 +309,10 @@ footer {
     text-align: center;
     /* Centrer le texte */
 }
+
+
+/* total emission */
+div#emission-result {
+    width: fit-content;
+    margin: auto;
+}
