@@ -1,7 +1,7 @@
 /* Styles de base */
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
+    margin: 0 5rem;
     padding: 0;
     background-color: #f9f9f9;
     color: #333;
@@ -18,9 +18,8 @@ body {
 }
 
 /* Logo */
-#logo {
-    align-self: flex-start;
-}
+/* #logo {
+} */
 
 #logo a {
     text-decoration: none;
@@ -45,7 +44,7 @@ body {
 }
 
 #images img {
-    max-width: 400px;
+    max-width: 200px;
 }
 
 /* Fichier static/css/style.css */
@@ -95,8 +94,7 @@ body {
 }
 
 #navigation ul li a:hover {
-    background-color: #007BFF;
-    color: white;
+    color: rgb(246, 0, 246);
     border-radius: 5px;
 }
 
