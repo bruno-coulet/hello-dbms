@@ -125,7 +125,7 @@ Cette différence historique met en évidence le caractère sélectif et partiel
 
 <span><u>**En résumé :**</u> </span>
 
-Une donnée est ce qui est connu et qui sert de point de départ à un raisonnement ayant pour objet la détermination d'une solution à un problème en relaiton avec cette donnée. Cela peut être une description élémentaire qui vise à objectiver une réalité, le résultat d'une comparaison entre deux événements du même ordre (mesure) soit en d'autres termes une observation ou une mesure. 
+Une donnée est ce qui est connu et qui sert de point de départ à un raisonnement ayant pour objet la détermination d'une solution à un problème en relation avec cette donnée. Cela peut être une description élémentaire qui vise à objectiver une réalité, le résultat d'une comparaison entre deux événements du même ordre (mesure) soit en d'autres termes une observation ou une mesure. 
 
 La donnée brute est dépourvue de tout raisonnement, supposition, constatation, probabilité.
 
