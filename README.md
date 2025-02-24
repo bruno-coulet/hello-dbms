@@ -363,7 +363,7 @@ Les propriétés **ACID** sont fondamentales pour garantir la fiabilité des tra
     * Une transaction transforme le système d'un état cohérent à un autre. Elle doit respecter toutes les règles et contraintes définies dans la base de données.
 
 3. **Isolation :**
-    * Les modifications apportées par une transaction en cours ne doivent pas être visibles par d'autres transactions jusqu'à ce que la transaction soit terminée. CEla prévient les interférences entre transcations simultanées.
+    * Les modifications apportées par une transaction en cours ne doivent pas être visibles par d'autres transactions jusqu'à ce que la transaction soit terminée. Cela prévient les interférences entre transactions simultanées.
 
 4. **Durabilité :**
     * Une fois qu'une transaction est validée, ses modifications sont permanentes et suirvivent à tout type de panne. 
