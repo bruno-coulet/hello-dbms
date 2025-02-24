@@ -55,7 +55,7 @@ On y explore tout ce qu’il faut savoir : qu’est-ce qu’une donnée, comment
 | └── app.log                    | Fichier de log (ignoré mais généré au lancement de l'application) |
 
 Pour pouvoir lancer l'application, il faut nécessairement :
-* Avoir MySQL pour la création de la DB et la généraiton automatique des tables
+* Avoir MySQL pour la création de la DB et la génération automatique des tables
 * Avoir dans le dossier pre_processed_data
   * Un fichier de données au format CSV nommé country ayant comme structure 
 
