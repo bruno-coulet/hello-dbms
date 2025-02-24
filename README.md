@@ -394,7 +394,7 @@ La méthode Merise est une méthode de conception et de gestion de projets infor
 
 **Exemple d'utilisation**
 
-* **Gestion de projet :** Concevoir un système de gestion des ressourves humaines.
+* **Gestion de projet :** Concevoir un système de gestion des ressources humaines.
 
 | Entité | Attributs | Relations |
 |--------|-----------|-----------|
