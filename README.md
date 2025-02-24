@@ -152,19 +152,19 @@ Le résultat du traitement sera souvent *in fine* soumis à l'interprétation d'
 
 <span><u>**La valeur des données :**</u> </span>
 
-La valorisation de la donnée s fait à travers un processus capable à cahque étape de la transformation d'augmenter sa valeur directement ou par combinaison avec d'autres données. En général la finalité est l'exploitation par l'homme por la price de décision ou par un autre système permettant une commande de processus. 
+La valorisation de la donnée se fait à travers un processus capable à chaque étape de la transformation d'augmenter sa valeur directement ou par combinaison avec d'autres données. En général la finalité est l'exploitation par l'homme pour la prise de décision ou par un autre système permettant une commande de processus. 
 
 Le calcul fait partie du processus de transformation par la machine et le jugement qualitatif qui appartient à l'humain fait partie de l'interprétation et donne la valeur objective à l'information finale. 
 
-Simon Chignard et Louis-David Benyayer ont essayé de créer une grille de lecture pour la quatification des données en partant de trois conceptions de la valeur : 
+Simon Chignard et Louis-David Benyayer ont essayé de créer une grille de lecture pour la qualification des données en partant de trois conceptions de la valeur : 
 
-* 1. La valeur est subjective : elle dépend de l'intérêt porté par l'humain qui va l'utiliser directement ou après transformation. 
+1. La valeur est subjective : elle dépend de l'intérêt porté par l'humain qui va l'utiliser directement ou après transformation. 
 
-* 2. La valeur est co-construire : elle augmente à partir de l'instant ou elle rentre dans un processus de transformation, notemment à travers des études croisées, capables d'exprimer des concerpt, d'où l'importance de la collaboration et de la cooridnation dans le processus de la valorisation des données.
+2. La valeur est co-construire : elle augmente à partir de l'instant ou elle rentre dans un processus de transformation, notemment à travers des études croisées, capables d'exprimer des concepts, d'où l'importance de la collaboration et de la coordination dans le processus de la valorisation des données.
 
-* 3. La valeur est potentielle : elle donne ou pas un avantage futur à ceux qui la détiennent. 
+3. La valeur est potentielle : elle donne ou pas un avantage futur à ceux qui la détiennent. 
 
-A partir de ces axiomes, les données peuvent être interprétées à la lumire de trois formes de valeur. 
+A partir de ces axiomes, les données peuvent être interprétées à la lumière de trois formes de valeur. 
 
 
 ### <span>B.</span> Donnez et expliquez les critères de mesure de qualité des données. <a id="b-criteres-de-qualite"></a>
@@ -180,7 +180,7 @@ Les critères de mesure de la qualité des données permettent de s'assurer que 
 
 <span><u>**2. Complétude :**</u></span>
   
-  * Les données doivent petre complètes et ne pas contenir de champs vides lorsque ces informations sont essentielles. 
+  * Les données doivent être complètes et ne pas contenir de champs vides lorsque ces informations sont essentielles. 
     * Par exemple, une base de données de clients sans adresses email serait incomplète pour une campagne marketing par courriel.  
 
 <span><u>**3. Cohérence :**</u></span> 
