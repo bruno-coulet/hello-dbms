@@ -376,7 +376,7 @@ Les propriétés **ACID** sont fondamentales pour garantir la fiabilité des tra
 <img src="https://static.techno-science.net/illustration/Definitions/1200px/m/merise_8470372e1293dcc141ecdb59c160a6f8.jpg" alt="MERISE" style="width:400px;"/>
 
 
-La méthode Merise est une méthode de conception et de gestion de projets informatiques, principalement utiliées en France. Elle se concentre sur la modélisation des données et des traitements. Merise utilise trois niveauc de modélisation : 
+La méthode Merise est une méthode de conception et de gestion de projets informatiques, principalement utiliées en France. Elle se concentre sur la modélisation des données et des traitements. Merise utilise trois niveaux de modélisation : 
 
 * **Modèle Conceptuel des Données (MCD) :** Représente les entités et les relations entre elles.
 
