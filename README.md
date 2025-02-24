@@ -125,7 +125,8 @@ Cette différence historique met en évidence le caractère sélectif et partiel
 
 <span><u>**En résumé :**</u> </span>
 
-Une donnée est ce qui est connu et qui sert de point de départ à un raisonnement ayant pour objet la détermination d'une solution à un problème en relation avec cette donnée. Cela peut être une description élémentaire qui vise à objectiver une réalité, le résultat d'une comparaison entre deux événements du même ordre (mesure) soit en d'autres termes une observation ou une mesure. 
+Une donnée est ce qui est connu et qui sert de point de départ à un raisonnement ayant pour objet la détermination d'une solution à un problème en relation avec cette donnée.
+Cela peut être une description élémentaire qui vise à objectiver une réalité, le résultat d'une comparaison entre deux événements du même ordre (mesure) soit en d'autres termes une observation ou une mesure. 
 
 La donnée brute est dépourvue de tout raisonnement, supposition, constatation, probabilité.
 
@@ -133,13 +134,13 @@ Si elle est considérée comme indiscutable ou même si elle est indiscutée par
 
 La nature des données pouvant différer en fonction de leur source, elles doivent souvent faire l'objet d'une transformation préalable avant traitement. 
 
-La technique contemporaine est la quatification numérique dans un système binaire, associée à des machines de traitement à deux états de fonctionnement. Cela veut dire que le monde réel est vu par des capteurs dont la réponse continue ou discrète est traduite en nombres qui sont traités, c'est à dire traduits, par des ordinateurs. 
+La technique contemporaine est la qualification numérique dans un système binaire, associée à des machines de traitement à deux états de fonctionnement. Cela veut dire que le monde réel est vu par des capteurs dont la réponse continue ou discrète est traduite en nombres qui sont traités, c'est à dire traduits, par des ordinateurs. 
 
-Un travail est souvent fait sur les données burtes pour leur donner un sens, plus précisément un contexte, afin de pouvoir les transformer en information. 
+Un travail est souvent fait sur les données brutes pour leur donner un sens, plus précisément un contexte, afin de pouvoir les transformer en information. 
 
 Les données peuvent être : 
 
-* Des résultats de mesure fonction d'un étalon de référence pouvant, associé à la manire de traiter les données, générer des biais sur l'interprétations finale (limites des sondages).
+* Des résultats de mesure fonction d'un étalon de référence pouvant, associé à la manière de traiter les données, générer des biais sur l'interprétations finale (limites des sondages).
 
 * Des valeurs discrètes représentant l'état d'un système. 
 
@@ -151,7 +152,7 @@ Le résultat du traitement sera souvent *in fine* soumis à l'interprétation d'
 
 <span><u>**La valeur des données :**</u> </span>
 
-La valorisation de la donnée s fait à travers un processus capable à cahque étape de la transformation d'augmenter sa vlaeur directement ou par combinaison avec d'autres données. En général la finalité est l'exploitation par l'homme por la price de décision ou par un autre système permettant une commande de processus. 
+La valorisation de la donnée s fait à travers un processus capable à cahque étape de la transformation d'augmenter sa valeur directement ou par combinaison avec d'autres données. En général la finalité est l'exploitation par l'homme por la price de décision ou par un autre système permettant une commande de processus. 
 
 Le calcul fait partie du processus de transformation par la machine et le jugement qualitatif qui appartient à l'humain fait partie de l'interprétation et donne la valeur objective à l'information finale. 
 
